@@ -5,7 +5,7 @@ import confetti from "canvas-confetti";
 import { toast } from "sonner";
 import {
   ArrowRight, ArrowUpRight, Copy, Download, FileText, Package, Database, Sigma, Network, Rocket,
-  Cpu, Code2, Dna, LineChart as LineIcon, Github, Twitter, Linkedin, BookOpen, Smile, Menu,
+  Cpu, Code2, Dna, LineChart as LineIcon, GitBranch, AtSign, Briefcase, BookOpen, Smile, Menu,
   ShieldCheck, Repeat, Scale, Microscope,
 } from "lucide-react";
 import {
@@ -375,9 +375,9 @@ export function About() {
 }
 
 const socials = [
-  { icon: Github, l: "GitHub", h: "https://github.com" }, { icon: FileText, l: "arXiv", h: ARXIV },
-  { icon: Smile, l: "Hugging Face", h: "https://huggingface.co" }, { icon: Twitter, l: "X", h: "https://x.com" },
-  { icon: Linkedin, l: "LinkedIn", h: "https://linkedin.com" },
+  { icon: GitBranch, l: "GitHub", h: "https://github.com" }, { icon: FileText, l: "arXiv", h: ARXIV },
+  { icon: Smile, l: "Hugging Face", h: "https://huggingface.co" }, { icon: AtSign, l: "X", h: "https://x.com" },
+  { icon: Briefcase, l: "LinkedIn", h: "https://linkedin.com" },
 ];
 
 export function Footer() {
