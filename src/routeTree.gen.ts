@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ObservatoryRouteImport } from './routes/observatory'
+import { Route as ParadigmRouteImport } from './routes/paradigm'
+import { Route as ResearchIndexRouteImport } from './routes/research/index'
+import { Route as ResearchPaperIdRouteImport } from './routes/research/$paperId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ObservatoryRoute = ObservatoryRouteImport.update({
+  id: '/observatory',
+  path: '/observatory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParadigmRoute = ParadigmRouteImport.update({
+  id: '/paradigm',
+  path: '/paradigm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchIndexRoute = ResearchIndexRouteImport.update({
+  id: '/research/',
+  path: '/research/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchPaperIdRoute = ResearchPaperIdRouteImport.update({
+  id: '/research/$paperId',
+  path: '/research/$paperId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/observatory': typeof ObservatoryRoute
+  '/paradigm': typeof ParadigmRoute
+  '/research/$paperId': typeof ResearchPaperIdRoute
+  '/research/': typeof ResearchIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/observatory': typeof ObservatoryRoute
+  '/paradigm': typeof ParadigmRoute
+  '/research/$paperId': typeof ResearchPaperIdRoute
+  '/research': typeof ResearchIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/observatory': typeof ObservatoryRoute
+  '/paradigm': typeof ParadigmRoute
+  '/research/$paperId': typeof ResearchPaperIdRoute
+  '/research/': typeof ResearchIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/observatory'
+    | '/paradigm'
+    | '/research/$paperId'
+    | '/research/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/observatory'
+    | '/paradigm'
+    | '/research/$paperId'
+    | '/research'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/observatory'
+    | '/paradigm'
+    | '/research/$paperId'
+    | '/research/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ObservatoryRoute: typeof ObservatoryRoute
+  ParadigmRoute: typeof ParadigmRoute
+  ResearchPaperIdRoute: typeof ResearchPaperIdRoute
+  ResearchIndexRoute: typeof ResearchIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/observatory': {
+      id: '/observatory'
+      path: '/observatory'
+      fullPath: '/observatory'
+      preLoaderRoute: typeof ObservatoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paradigm': {
+      id: '/paradigm'
+      path: '/paradigm'
+      fullPath: '/paradigm'
+      preLoaderRoute: typeof ParadigmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/': {
+      id: '/research/'
+      path: '/research'
+      fullPath: '/research/'
+      preLoaderRoute: typeof ResearchIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/$paperId': {
+      id: '/research/$paperId'
+      path: '/research/$paperId'
+      fullPath: '/research/$paperId'
+      preLoaderRoute: typeof ResearchPaperIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ObservatoryRoute: ObservatoryRoute,
+  ParadigmRoute: ParadigmRoute,
+  ResearchPaperIdRoute: ResearchPaperIdRoute,
+  ResearchIndexRoute: ResearchIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
