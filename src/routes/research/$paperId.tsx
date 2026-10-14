@@ -164,7 +164,7 @@ function PaperDetailPage() {
           {/* Badges */}
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary font-mono text-xs">
-              {paper.category}
+              {paper.industry || paper.category}
             </Badge>
             <span className="font-mono text-xs text-muted-foreground">
               {paper.arxivId}
@@ -175,20 +175,61 @@ function PaperDetailPage() {
             <span className="font-mono text-xs text-muted-foreground">
               {paper.date}
             </span>
+            <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] text-primary hidden sm:inline-flex items-center gap-1">
+              <Sparkles className="size-3" /> Plain English + Original arXiv Layout
+            </span>
           </div>
 
-          {/* Title & Subtitle */}
-          <div className="space-y-3">
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-[1.12]">
-              {paper.title}
-            </h1>
-            <p className="text-lg md:text-xl font-medium text-muted-foreground leading-relaxed">
-              {paper.subtitle}
-            </p>
+          {/* Plain English Primary Headline Card */}
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-primary/30 bg-primary/5 p-6 md:p-8 space-y-3 relative overflow-hidden shadow-xs">
+              <div className="flex items-center gap-2 font-mono text-xs font-semibold text-primary uppercase">
+                <Sparkles className="size-4 text-primary" /> Plain English Explanation
+              </div>
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-[1.18]">
+                {paper.plainTitle || paper.title}
+              </h1>
+              <p className="text-base sm:text-lg font-medium text-muted-foreground leading-relaxed">
+                {paper.plainSubtitle || paper.subtitle}
+              </p>
+
+              <div className="grid gap-3 sm:grid-cols-2 pt-4 border-t border-primary/20">
+                <div className="rounded-xl border border-border/80 bg-background/70 p-4 space-y-1.5">
+                  <div className="font-mono text-[11px] font-semibold text-primary uppercase flex items-center gap-1.5">
+                    <Sparkles className="size-3.5" /> What We Discovered In Simple Terms
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {paper.plainExplanation || paper.summary}
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-border/80 bg-background/70 p-4 space-y-1.5">
+                  <div className="font-mono text-[11px] font-semibold text-emerald-400 uppercase flex items-center gap-1.5">
+                    <CheckCircle2 className="size-3.5 text-emerald-400" /> Why This Matters To Everyday People
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    {paper.whyItMatters || paper.executiveBreakthrough}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Formal Academic Citation Title */}
+            <div className="rounded-xl border border-border/70 bg-secondary/30 p-4 space-y-1">
+              <div className="font-mono text-xs text-muted-foreground font-semibold flex items-center gap-1.5">
+                <FileText className="size-3.5 text-primary" /> Formal Academic Title (for Researchers & Citations):
+              </div>
+              <div className="font-serif text-base sm:text-lg font-semibold text-foreground italic">
+                {paper.title}
+              </div>
+              <div className="text-xs font-serif text-muted-foreground italic">
+                {paper.subtitle}
+              </div>
+            </div>
           </div>
 
           {/* Author & Lab */}
-          <div className="flex items-center gap-3 pt-2 text-sm text-muted-foreground font-mono">
+          <div className="flex flex-wrap items-center gap-3 pt-1 text-sm text-muted-foreground font-mono">
             <span className="text-foreground font-semibold">{paper.author}</span>
             <span>•</span>
             <span>{paper.institution}</span>

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, BookOpen, Copy, Download, FileText, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Copy, Download, FileText, Sparkles, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -46,7 +46,7 @@ export function PaperCard({ paper }: { paper: ResearchPaper }) {
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary font-mono text-[11px]">
-              {paper.category}
+              {paper.industry || paper.category}
             </Badge>
             <span className="font-mono text-xs text-muted-foreground">
               {paper.arxivId}
@@ -57,21 +57,48 @@ export function PaperCard({ paper }: { paper: ResearchPaper }) {
           </span>
         </div>
 
-        {/* Paper Title & Subtitle */}
+        {/* Paper Title & Subtitle (Plain English Primary Headline) */}
         <div>
           <Link
             to="/research/$paperId"
             params={{ paperId: paper.slug }}
             className="group block"
           >
-            <h3 className="font-display text-xl md:text-2xl font-semibold leading-snug tracking-tight text-foreground transition-colors group-hover:text-primary">
-              {paper.title}
+            <h3 className="font-display text-xl md:text-2xl font-bold leading-snug tracking-tight text-foreground transition-colors group-hover:text-primary">
+              {paper.plainTitle || paper.title}
             </h3>
           </Link>
           <p className="mt-1.5 text-sm font-medium text-muted-foreground">
-            {paper.subtitle}
+            {paper.plainSubtitle || paper.subtitle}
+          </p>
+
+          {/* Academic Formal Reference Note */}
+          <div className="mt-2 flex items-center gap-1.5 text-[11px] font-mono text-muted-foreground/80">
+            <span className="font-semibold text-primary/80">Formal Title:</span>
+            <span className="truncate italic">{paper.title}</span>
+          </div>
+        </div>
+
+        {/* Highlighted "In Plain English" Box */}
+        <div className="rounded-xl border border-primary/25 bg-primary/5 p-3.5 space-y-1 text-xs">
+          <div className="flex items-center gap-1.5 font-mono font-semibold text-primary uppercase text-[10.5px]">
+            <Sparkles className="size-3 text-primary" /> In Plain English (What We Proved)
+          </div>
+          <p className="text-foreground/90 text-[12.5px] leading-relaxed">
+            {paper.plainExplanation || paper.summary}
           </p>
         </div>
+
+        {/* Why This Matters to Everyday People */}
+        {paper.whyItMatters && (
+          <div className="rounded-lg border border-border/70 bg-secondary/30 p-2.5 text-xs flex items-start gap-2">
+            <ShieldCheck className="size-3.5 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="text-[11.5px] text-muted-foreground">
+              <strong className="text-foreground">Why It Matters: </strong>
+              {paper.whyItMatters}
+            </div>
+          </div>
+        )}
 
         {/* Dataset Scale Badges */}
         <div className="flex flex-wrap gap-2 pt-1">
@@ -86,15 +113,10 @@ export function PaperCard({ paper }: { paper: ResearchPaper }) {
           ))}
         </div>
 
-        {/* Executive Summary */}
-        <p className="text-sm leading-relaxed text-muted-foreground/90 line-clamp-3">
-          {paper.summary}
-        </p>
-
         {/* Macro Hypotheses Pills */}
-        <div className="space-y-2 pt-1">
+        <div className="space-y-1.5 pt-1">
           <p className="font-mono text-[11px] font-semibold uppercase text-muted-foreground flex items-center gap-1.5">
-            <Sparkles className="size-3 text-primary" /> Proven Hypotheses:
+            <Sparkles className="size-3 text-primary" /> Empirically Verified Findings:
           </p>
           <div className="flex flex-wrap gap-1.5">
             {paper.hypotheses.map((h) => (
@@ -108,18 +130,6 @@ export function PaperCard({ paper }: { paper: ResearchPaper }) {
             ))}
           </div>
         </div>
-
-        {/* Top Benefit Callout */}
-        {paper.benefits[0] && (
-          <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 text-xs">
-            <span className="font-mono font-semibold text-primary">
-              Impact ({paper.benefits[0].audience}):
-            </span>{" "}
-            <span className="text-muted-foreground">
-              {paper.benefits[0].takeaway}
-            </span>
-          </div>
-        )}
       </div>
 
       {/* Action Footer */}
