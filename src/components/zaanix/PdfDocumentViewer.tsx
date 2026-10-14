@@ -89,29 +89,29 @@ export function PdfDocumentViewer({
   return (
     <div 
       ref={containerRef}
-      className={`space-y-4 ${isFullscreen ? "fixed inset-0 z-50 bg-slate-950 p-6 overflow-y-auto" : ""}`}
+      className={`space-y-4 ${isFullscreen ? "fixed inset-0 z-50 bg-slate-900 p-6 overflow-y-auto" : ""}`}
     >
       {/* Top Document Controls Toolbar */}
-      <div className="glass rounded-xl p-3 px-4 flex flex-wrap items-center justify-between gap-3 border-border shadow-md">
+      <div className="rounded-xl border border-slate-200 bg-white p-3 px-4 flex flex-wrap items-center justify-between gap-3 shadow-xs">
         {/* Left Side: Document Meta & Mode */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 text-xs font-mono">
-            <BookOpen className="size-4 text-primary" />
-            <span className="font-semibold text-foreground">Camera-Ready Document Viewer</span>
-            <Badge variant="outline" className="text-[10px] font-mono border-primary/40 bg-primary/10 text-primary hidden sm:inline-flex">
+            <BookOpen className="size-4 text-blue-700" />
+            <span className="font-semibold text-slate-900">Camera-Ready Document Viewer</span>
+            <Badge variant="outline" className="text-[10px] font-mono border-blue-200 bg-blue-50 text-blue-700 hidden sm:inline-flex">
               {paper.arxivId}
             </Badge>
           </div>
 
           {/* Continuous vs Single Page Switcher */}
-          <div className="hidden md:flex rounded-lg bg-secondary/50 p-0.5 border border-border text-xs font-mono">
+          <div className="hidden md:flex rounded-lg bg-slate-100 p-0.5 border border-slate-200 text-xs font-mono">
             <button
               type="button"
               onClick={() => setViewMode("continuous")}
               className={`px-2.5 py-1 rounded-md transition-all ${
                 viewMode === "continuous" 
-                  ? "bg-primary text-primary-foreground font-semibold shadow-xs" 
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-blue-600 text-white font-semibold shadow-xs" 
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               Continuous
@@ -121,8 +121,8 @@ export function PdfDocumentViewer({
               onClick={() => setViewMode("single")}
               className={`px-2.5 py-1 rounded-md transition-all ${
                 viewMode === "single" 
-                  ? "bg-primary text-primary-foreground font-semibold shadow-xs" 
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-blue-600 text-white font-semibold shadow-xs" 
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               Page Flip
@@ -133,7 +133,7 @@ export function PdfDocumentViewer({
         {/* Center: Pagination & Zoom Controls */}
         <div className="flex items-center gap-2 text-xs font-mono">
           {viewMode === "single" && (
-            <div className="flex items-center gap-1 border-r border-border/80 pr-2 mr-1">
+            <div className="flex items-center gap-1 border-r border-slate-200 pr-2 mr-1">
               <Button
                 variant="glass"
                 size="sm"
@@ -144,8 +144,8 @@ export function PdfDocumentViewer({
               >
                 <ChevronLeft className="size-4" />
               </Button>
-              <span className="px-1 text-muted-foreground">
-                <strong className="text-foreground">{currentPage}</strong> / {pageCount}
+              <span className="px-1 text-slate-500">
+                <strong className="text-slate-900">{currentPage}</strong> / {pageCount}
               </span>
               <Button
                 variant="glass"
@@ -175,7 +175,7 @@ export function PdfDocumentViewer({
             <button
               type="button"
               onClick={handleResetZoom}
-              className="px-2 py-1 rounded hover:bg-secondary/60 text-muted-foreground hover:text-foreground transition-colors"
+              className="px-2 py-1 rounded hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-colors"
               title="Reset to 100%"
             >
               {zoomLevel}%
@@ -203,7 +203,7 @@ export function PdfDocumentViewer({
               className="text-xs font-mono h-8"
               title="Switch to interactive two-column LaTeX view"
             >
-              <FileText className="mr-1.5 size-3.5 text-primary" /> arXiv Format
+              <FileText className="mr-1.5 size-3.5 text-blue-700" /> arXiv Format
             </Button>
           )}
 
@@ -235,7 +235,7 @@ export function PdfDocumentViewer({
             variant="glass"
             size="sm"
             onClick={toggleFullscreen}
-            className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
+            className="h-8 w-8 p-0 text-slate-600 hover:text-slate-900"
             title={isFullscreen ? "Exit Fullscreen" : "Fullscreen Viewer"}
           >
             {isFullscreen ? <Minimize2 className="size-3.5" /> : <Maximize2 className="size-3.5" />}
@@ -244,7 +244,7 @@ export function PdfDocumentViewer({
       </div>
 
       {/* Main Document Viewer Canvas */}
-      <div className="rounded-2xl border border-border/80 bg-slate-900/90 p-4 md:p-8 overflow-x-auto shadow-2xl min-h-[800px] flex flex-col items-center justify-start">
+      <div className="rounded-2xl border border-slate-300 bg-slate-100/90 p-4 md:p-8 overflow-x-auto shadow-inner min-h-[800px] flex flex-col items-center justify-start">
         {showNativeEmbed ? (
           /* Native PDF iframe embed fallback toggle */
           <div className="w-full">
@@ -276,7 +276,7 @@ export function PdfDocumentViewer({
               pages.map((p) => (
                 <div 
                   key={p.pageNumber} 
-                  className="relative group w-full bg-white rounded-md shadow-2xl border border-slate-300/80 dark:border-slate-800 overflow-hidden"
+                  className="relative group w-full bg-white rounded-md shadow-xl border border-slate-300/80 overflow-hidden"
                 >
                   {/* Floating Page Number Pill */}
                   <div className="absolute top-3 right-3 z-10 rounded-full bg-slate-900/80 px-2.5 py-0.5 font-mono text-[10px] text-white backdrop-blur-md border border-white/20">
@@ -294,7 +294,7 @@ export function PdfDocumentViewer({
               ))
             ) : (
               // Single Page Mode
-              <div className="relative group w-full bg-white rounded-md shadow-2xl border border-slate-300/80 dark:border-slate-800 overflow-hidden">
+              <div className="relative group w-full bg-white rounded-md shadow-xl border border-slate-300/80 overflow-hidden">
                 <div className="absolute top-3 right-3 z-10 rounded-full bg-slate-900/80 px-2.5 py-0.5 font-mono text-[10px] text-white backdrop-blur-md border border-white/20">
                   Page {currentPage} of {pageCount}
                 </div>
@@ -310,20 +310,20 @@ export function PdfDocumentViewer({
       </div>
 
       {/* Bottom Viewer Footnote & Quick Native Switch */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-2 text-xs font-mono text-muted-foreground">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-2 text-xs font-mono text-slate-500">
         <div className="flex items-center gap-2">
           <span>Camera-Ready IEEE/arXiv Layout</span>
           <span>•</span>
           <span>2 Pages Complete</span>
           <span>•</span>
-          <span className="text-emerald-500 font-semibold">100% Visual Fidelity</span>
+          <span className="text-emerald-700 font-semibold">100% Visual Fidelity</span>
         </div>
 
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={() => setShowNativeEmbed(!showNativeEmbed)}
-            className="hover:text-primary transition-colors underline"
+            className="hover:text-blue-700 transition-colors underline"
           >
             {showNativeEmbed ? "Switch to Canvas Pages" : "Try Browser Native Embed"}
           </button>
@@ -332,7 +332,7 @@ export function PdfDocumentViewer({
             href={pdfUrl}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-primary transition-colors inline-flex items-center gap-1"
+            className="hover:text-blue-700 transition-colors inline-flex items-center gap-1"
           >
             Open RAW PDF <ExternalLink className="size-3" />
           </a>

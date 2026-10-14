@@ -91,20 +91,20 @@ export function AgentWorkflowDiagram() {
               onClick={() => setActiveStep(idx)}
               className={`flex flex-col items-start rounded-xl border p-4 text-left transition-all ${
                 isSelected
-                  ? "border-primary bg-primary/10 shadow-glow"
-                  : "border-border/80 bg-background/50 hover:border-primary/40 hover:bg-accent/30"
+                  ? "border-blue-600 bg-blue-50/90 shadow-xs"
+                  : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
               }`}
             >
               <div className="flex items-center justify-between w-full mb-2">
-                <span className="font-mono text-xs font-semibold text-primary">
+                <span className={`font-mono text-xs font-semibold ${isSelected ? "text-blue-700" : "text-slate-500"}`}>
                   STAGE {s.step}
                 </span>
-                <Icon className={`size-4 ${isSelected ? "text-primary" : "text-muted-foreground"}`} />
+                <Icon className={`size-4 ${isSelected ? "text-blue-700" : "text-slate-400"}`} />
               </div>
-              <p className="font-display text-sm font-semibold text-foreground leading-tight">
+              <p className={`font-display text-sm font-semibold leading-tight ${isSelected ? "text-slate-900" : "text-slate-700"}`}>
                 {s.short}
               </p>
-              <span className="mt-1 text-[11px] font-mono text-muted-foreground truncate w-full">
+              <span className="mt-1 text-[11px] font-mono text-slate-500 truncate w-full">
                 {s.tech}
               </span>
             </button>
@@ -113,27 +113,27 @@ export function AgentWorkflowDiagram() {
       </div>
 
       {/* Active Step Deep-Dive Card */}
-      <div className="glass rounded-2xl p-6 md:p-8 space-y-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 pb-4">
+      <div className="rounded-xl border border-slate-200 bg-white p-6 md:p-8 shadow-xs space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
           <div className="flex items-center gap-3">
-            <div className="grid size-12 place-items-center rounded-xl bg-gradient-accent text-primary-foreground font-display font-bold shadow-glow">
+            <div className="grid size-12 place-items-center rounded-xl bg-blue-700 text-white font-display font-bold shadow-xs">
               {current.step}
             </div>
             <div>
-              <span className="font-mono text-xs text-primary font-semibold">
+              <span className="font-mono text-xs text-blue-800 font-semibold tracking-wider">
                 STAGE {current.step} OF THE AGENTIC RESEARCH PARADIGM
               </span>
-              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-slate-900">
                 {current.title}
               </h3>
             </div>
           </div>
-          <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-xs text-primary">
+          <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 font-mono text-xs text-blue-800 font-medium">
             {current.tech}
           </span>
         </div>
 
-        <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p className="text-base leading-relaxed text-slate-600 md:text-lg">
           {current.summary}
         </p>
 
@@ -142,13 +142,13 @@ export function AgentWorkflowDiagram() {
           {current.details.map((item, i) => (
             <div
               key={i}
-              className="rounded-xl border border-border/70 bg-background/60 p-4 space-y-1.5"
+              className="rounded-lg border border-slate-200 bg-slate-50 p-4 space-y-1.5"
             >
-              <div className="flex items-center gap-1.5 font-mono text-xs text-primary">
-                <CheckCircle2 className="size-3.5 text-primary" />
+              <div className="flex items-center gap-1.5 font-mono text-xs text-blue-700 font-semibold">
+                <CheckCircle2 className="size-3.5 text-blue-700" />
                 <span>Capability 0{i + 1}</span>
               </div>
-              <p className="text-xs leading-relaxed text-muted-foreground">
+              <p className="text-xs leading-relaxed text-slate-600">
                 {item}
               </p>
             </div>
@@ -156,12 +156,12 @@ export function AgentWorkflowDiagram() {
         </div>
 
         {/* Step Next Action Helper */}
-        <div className="flex items-center justify-between pt-2 text-xs font-mono text-muted-foreground">
-          <span>Click any stage above to inspect its internal mechanics</span>
+        <div className="flex items-center justify-between pt-2 text-xs font-mono text-slate-500">
+          <span>Click any stage above to inspect its formal analytical mechanism</span>
           {activeStep < workflowSteps.length - 1 && (
             <button
               onClick={() => setActiveStep((prev) => prev + 1)}
-              className="flex items-center gap-1 text-primary hover:underline"
+              className="flex items-center gap-1 text-blue-700 hover:text-blue-800 hover:underline font-semibold"
             >
               Next: Stage 0{activeStep + 2} <ArrowRight className="size-3" />
             </button>

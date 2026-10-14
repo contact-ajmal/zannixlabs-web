@@ -56,7 +56,7 @@ const researchDomains = [
 
 function AboutPage() {
   return (
-    <div className="dark min-h-screen bg-background bg-mesh text-foreground">
+    <div className="min-h-screen bg-slate-50/50 text-slate-900">
       <GlobalNav />
 
       <main className="pt-24 pb-20">
@@ -64,19 +64,19 @@ function AboutPage() {
         <section className="mx-auto max-w-7xl px-5 py-12 md:py-16 space-y-6">
           <div className="max-w-4xl space-y-5">
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary font-mono text-xs">
+              <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-800 font-mono text-xs">
                 INSTITUTE PROFILE
               </Badge>
-              <span className="font-mono text-xs text-muted-foreground">
+              <span className="font-mono text-xs text-slate-500">
                 Independent Autonomous Research
               </span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.08]">
-              Research at the Speed of <span className="text-gradient">Agent Intelligence.</span>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.08]">
+              Research at the Speed of <span className="text-blue-700">Agent Intelligence.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
               ZannixLabs was founded on a singular conviction: that the bottlenecks of traditional scientific discovery—months-long drafting, manual data wrangling, and the replication crisis—can be solved by combining high-capacity AI intelligence with automated telemetry lakehouses.
             </p>
           </div>
@@ -84,45 +84,45 @@ function AboutPage() {
 
         {/* Founder Profile Card */}
         <section className="mx-auto max-w-7xl px-5 py-8">
-          <div className="glass rounded-3xl p-8 md:p-12 border-primary/30 bg-primary/5 space-y-6">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 border-b border-border/60 pb-8">
-              <div className="grid size-20 place-items-center rounded-2xl bg-gradient-accent text-primary-foreground font-display text-2xl font-bold shadow-glow-violet shrink-0">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12 shadow-xs space-y-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 border-b border-slate-200 pb-8">
+              <div className="grid size-20 place-items-center rounded-2xl bg-blue-700 text-white font-display text-2xl font-bold shadow-xs shrink-0">
                 AB
               </div>
               <div className="space-y-1">
-                <span className="font-mono text-xs text-primary font-semibold uppercase tracking-wider">
+                <span className="font-mono text-xs text-blue-800 font-semibold uppercase tracking-wider">
                   FOUNDER &amp; CHIEF SCIENTIST
                 </span>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-slate-900">
                   Ajmal Baba
                 </h2>
-                <p className="font-mono text-xs text-muted-foreground">
+                <p className="font-mono text-xs text-slate-500">
                   Data &amp; AI Architect • Independent Quantitative Researcher
                 </p>
               </div>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 text-sm text-muted-foreground leading-relaxed pt-2">
+            <div className="grid gap-6 md:grid-cols-2 text-sm text-slate-600 leading-relaxed pt-2">
               <p>
                 Ajmal Baba established ZannixLabs as an independent empirical research institute dedicated to proving that autonomous AI agents, guided by human strategic inquiry, can conduct rigorous scientific discovery faster, deeper, and more objectively than traditional institutional setups.
               </p>
               <p>
-                From authoring camera-ready preprints on global LLM gateway economics and crowdsourced leaderboard confounders to decoding aviation terminal airspace tortuosity, Ajmal directs the institute&apos;s research agendas and verifies mathematical integrity across every study.
+                From authoring camera-ready preprints on global LLM gateway economics, NHS healthcare waiting times, and crowdsourced leaderboard confounders to decoding aviation terminal airspace tortuosity, Ajmal directs the institute&apos;s research agendas and verifies mathematical integrity across every study.
               </p>
             </div>
           </div>
         </section>
 
         {/* Core Principles */}
-        <section className="mx-auto max-w-7xl px-5 py-12 border-t border-border/60">
+        <section className="mx-auto max-w-7xl px-5 py-12 border-t border-slate-200">
           <div className="mb-10 max-w-2xl">
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">
+            <span className="font-mono text-xs text-blue-800 font-semibold tracking-wider uppercase">
               // SCIENTIFIC ETHOS
             </span>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
               Our Core Operating Principles
             </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 text-sm text-slate-600">
               Guiding how ZannixLabs conducts, reviews, and releases independent scientific preprints.
             </p>
           </div>
@@ -131,14 +131,14 @@ function AboutPage() {
             {principles.map((p) => {
               const Icon = p.icon;
               return (
-                <div key={p.title} className="glass rounded-2xl p-6 md:p-8 space-y-4 hover:border-primary/40 transition-colors">
-                  <div className="grid size-12 place-items-center rounded-xl bg-primary/10 text-primary border border-primary/30">
+                <div key={p.title} className="rounded-xl border border-slate-200 bg-white p-6 md:p-8 shadow-xs space-y-4 hover:border-blue-300 transition-all">
+                  <div className="grid size-12 place-items-center rounded-xl bg-blue-50 text-blue-700 border border-blue-200">
                     <Icon className="size-6" />
                   </div>
-                  <h3 className="font-display text-xl font-bold text-foreground">
+                  <h3 className="font-display text-xl font-bold text-slate-900">
                     {p.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
+                  <p className="text-sm leading-relaxed text-slate-600">
                     {p.description}
                   </p>
                 </div>
@@ -148,15 +148,15 @@ function AboutPage() {
         </section>
 
         {/* Research Domains Portfolio */}
-        <section className="mx-auto max-w-7xl px-5 py-12 border-t border-border/60">
+        <section className="mx-auto max-w-7xl px-5 py-12 border-t border-slate-200">
           <div className="mb-8 max-w-2xl">
-            <span className="font-mono text-xs text-primary tracking-widest uppercase">
+            <span className="font-mono text-xs text-blue-800 font-semibold tracking-wider uppercase">
               // CROSS-INDUSTRY SCOPE
             </span>
-            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
               Research Domains in Scope
             </h2>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 text-sm text-slate-600">
               We apply our agentic pipeline wherever continuous telemetry creates complex, non-linear empirical challenges.
             </p>
           </div>
@@ -165,17 +165,17 @@ function AboutPage() {
             {researchDomains.map((d) => (
               <div
                 key={d.title}
-                className="glass rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-primary/40 transition-all"
+                className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-blue-300 transition-all"
               >
                 <div>
-                  <h4 className="font-display text-base font-semibold text-foreground">
+                  <h4 className="font-display text-base font-semibold text-slate-900">
                     {d.title}
                   </h4>
-                  <p className="font-mono text-xs text-muted-foreground mt-0.5">
-                    Analyzed Scale: <span className="text-primary font-medium">{d.count}</span>
+                  <p className="font-mono text-xs text-slate-500 mt-0.5">
+                    Analyzed Scale: <span className="text-blue-700 font-semibold">{d.count}</span>
                   </p>
                 </div>
-                <span className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 font-mono text-xs text-primary shrink-0 self-start sm:self-auto">
+                <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 font-mono text-xs text-blue-800 font-medium shrink-0 self-start sm:self-auto">
                   {d.status}
                 </span>
               </div>
@@ -185,12 +185,12 @@ function AboutPage() {
 
         {/* Contact & Academic Inquiries */}
         <section className="mx-auto max-w-7xl px-5 pt-8">
-          <div className="glass rounded-3xl p-8 md:p-12 text-center space-y-6">
-            <Mail className="mx-auto size-10 text-primary" />
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 md:p-12 text-center shadow-xs space-y-6">
+            <Mail className="mx-auto size-10 text-blue-700" />
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-slate-900">
               Collaborate with ZannixLabs
             </h2>
-            <p className="mx-auto max-w-2xl text-sm md:text-base text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-sm md:text-base text-slate-600">
               Are you an academic lab, university department, or enterprise research team with large-scale telemetry datasets? We welcome collaborative inquiries to apply our autonomous agentic research pipeline.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

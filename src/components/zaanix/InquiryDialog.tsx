@@ -13,9 +13,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const CYAN = "#00F2FE";
-const VIOLET = "#7B2CBF";
-
 interface InquiryDialogProps {
   children?: React.ReactNode;
 }
@@ -62,10 +59,10 @@ export function InquiryDialog({ children }: InquiryDialogProps) {
       }
 
       confetti({
-        particleCount: 120,
+        particleCount: 100,
         spread: 70,
         origin: { y: 0.6 },
-        colors: [CYAN, VIOLET, "#ffffff"],
+        colors: ["#1d4ed8", "#1e3a8a", "#0284c7"],
       });
 
       toast.success("Collaboration Inquiry Dispatched", {
@@ -94,39 +91,39 @@ export function InquiryDialog({ children }: InquiryDialogProps) {
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="border-primary/40 bg-background/95 backdrop-blur-2xl sm:max-w-lg">
+      <DialogContent className="border-slate-200 bg-white sm:max-w-lg text-slate-900 shadow-xl">
         <DialogHeader className="space-y-2">
-          <div className="flex items-center gap-2 text-primary font-mono text-xs font-semibold uppercase tracking-wider">
-            <Sparkles className="size-3.5" />
+          <div className="flex items-center gap-2 text-blue-800 font-mono text-xs font-semibold uppercase tracking-wider">
+            <Sparkles className="size-3.5 text-blue-700" />
             <span>INSTITUTIONAL COLLABORATION</span>
           </div>
-          <DialogTitle className="font-display text-2xl font-bold text-foreground">
+          <DialogTitle className="font-display text-2xl font-bold text-slate-900">
             Connect with ZannixLabs PIs
           </DialogTitle>
-          <DialogDescription className="text-xs text-muted-foreground leading-relaxed">
+          <DialogDescription className="text-xs text-slate-600 leading-relaxed">
             Submit dataset proposals, academic peer-review invitations, or inquiries to replicate empirical findings across our autonomous AI pipeline.
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 pt-2">
           <div className="space-y-1.5">
-            <label className="text-xs font-mono text-muted-foreground flex items-center gap-1.5">
-              <User className="size-3 text-primary" /> Principal Investigator / Name
+            <label className="text-xs font-mono text-slate-600 flex items-center gap-1.5 font-medium">
+              <User className="size-3 text-blue-700" /> Principal Investigator / Name
             </label>
             <Input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Dr. Katherine Johnson"
-              className="bg-glass text-sm h-9"
+              className="bg-white border-slate-300 text-slate-900 text-sm h-9 focus:border-blue-600"
               maxLength={120}
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-xs font-mono text-muted-foreground flex items-center gap-1.5">
-                <Mail className="size-3 text-primary" /> Academic / Institutional Email *
+              <label className="text-xs font-mono text-slate-600 flex items-center gap-1.5 font-medium">
+                <Mail className="size-3 text-blue-700" /> Academic / Institutional Email *
               </label>
               <Input
                 type="email"
@@ -134,29 +131,29 @@ export function InquiryDialog({ children }: InquiryDialogProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="kjohnson@lab.org"
-                className="bg-glass text-sm h-9"
+                className="bg-white border-slate-300 text-slate-900 text-sm h-9 focus:border-blue-600"
                 maxLength={255}
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-mono text-muted-foreground flex items-center gap-1.5">
-                <Building className="size-3 text-primary" /> Organization / Lab
+              <label className="text-xs font-mono text-slate-600 flex items-center gap-1.5 font-medium">
+                <Building className="size-3 text-blue-700" /> Organization / Lab
               </label>
               <Input
                 type="text"
                 value={organization}
                 onChange={(e) => setOrganization(e.target.value)}
                 placeholder="Department of AI / University"
-                className="bg-glass text-sm h-9"
+                className="bg-white border-slate-300 text-slate-900 text-sm h-9 focus:border-blue-600"
                 maxLength={150}
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-mono text-muted-foreground flex items-center gap-1.5">
-              <MessageSquare className="size-3 text-primary" /> Collaboration Scope or Dataset Brief *
+            <label className="text-xs font-mono text-slate-600 flex items-center gap-1.5 font-medium">
+              <MessageSquare className="size-3 text-blue-700" /> Collaboration Scope or Dataset Brief *
             </label>
             <textarea
               required
@@ -164,7 +161,7 @@ export function InquiryDialog({ children }: InquiryDialogProps) {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Describe your research question, candidate telemetry dataset (e.g. scale, modality), or replication request..."
-              className="w-full rounded-md border border-border bg-glass px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary resize-none"
+              className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-600 resize-none"
               maxLength={2000}
             />
           </div>

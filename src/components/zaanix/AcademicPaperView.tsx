@@ -49,12 +49,12 @@ export function AcademicPaperView({ paper, onSwitchToPdf, onSwitchToExecutive }:
   return (
     <div className="space-y-6">
       {/* Paper Control Toolbar */}
-      <div className="glass rounded-xl p-3 px-4 flex flex-wrap items-center justify-between gap-3 border-border">
-        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-          <FileText className="size-4 text-primary" />
-          <span className="text-foreground font-semibold">arXiv Original Paper Format</span>
+      <div className="rounded-xl border border-slate-200 bg-white p-3 px-4 flex flex-wrap items-center justify-between gap-3 shadow-xs">
+        <div className="flex items-center gap-2 text-xs font-mono text-slate-600">
+          <FileText className="size-4 text-blue-700" />
+          <span className="text-slate-900 font-semibold">arXiv Original Paper Format</span>
           <span className="hidden sm:inline">•</span>
-          <span className="hidden sm:inline font-mono">{paper.arxivId}</span>
+          <span className="hidden sm:inline font-mono text-slate-500">{paper.arxivId}</span>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -79,11 +79,11 @@ export function AcademicPaperView({ paper, onSwitchToPdf, onSwitchToExecutive }:
           >
             {twoColumn ? (
               <>
-                <AlignLeft className="mr-1.5 size-3.5 text-primary" /> Single Column
+                <AlignLeft className="mr-1.5 size-3.5 text-blue-700" /> Single Column
               </>
             ) : (
               <>
-                <Columns2 className="mr-1.5 size-3.5 text-primary" /> Two Column
+                <Columns2 className="mr-1.5 size-3.5 text-blue-700" /> Two Column
               </>
             )}
           </Button>
@@ -124,7 +124,7 @@ export function AcademicPaperView({ paper, onSwitchToPdf, onSwitchToExecutive }:
       </div>
 
       {/* Authentic Academic Paper Sheet */}
-      <article className="mx-auto max-w-4xl rounded-sm border border-slate-300/80 bg-white p-8 md:p-14 text-slate-900 shadow-2xl font-serif dark:border-slate-800 dark:bg-[#fafaf9] dark:text-[#0f172a]">
+      <article className="mx-auto max-w-4xl rounded-sm border border-slate-300/80 bg-white p-8 md:p-14 text-slate-900 shadow-xl font-serif">
         {/* Top Header Watermark (arXiv standard) */}
         <div className="border-b border-slate-300 pb-3 mb-8 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-slate-600">
           <span>{paper.arxivId} [{paper.category}]</span>

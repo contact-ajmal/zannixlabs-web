@@ -29,6 +29,7 @@ export interface ResearchPaper {
   plainSubtitle: string;
   plainExplanation: string;
   whyItMatters: string;
+  heroImage?: string;
   industry: string;
   categoryId: string;
   category: string;
@@ -54,6 +55,7 @@ export interface PipelinePaper {
   categoryId: string;
   category: string;
   industry: string;
+  heroImage?: string;
   status: "Telemetry Ingestion" | "Protocol Modeling" | "Empirical Verification";
   plainTitle: string;
   plainSubtitle: string;
@@ -67,9 +69,9 @@ export interface PipelinePaper {
 }
 
 export const researchCategories = [
-  { id: "all", label: "All Industries", count: 8, description: "All empirical discoveries across active preprints and upcoming research pipelines" },
+  { id: "all", label: "All Industries", count: 9, description: "All empirical discoveries across active preprints and upcoming research pipelines" },
   { id: "healthcare", label: "Healthcare & Oncology Economics", count: 1, description: "NHS cancer waiting time standards, triage vs treatment decoupling, and queueing hazard models" },
-  { id: "llm-economics", label: "AI & Software Economics", count: 1, description: "Global LLM gateway telemetry, token pricing, and agent harness costs" },
+  { id: "llm-economics", label: "AI & Software Economics", count: 2, description: "Global LLM gateway telemetry, token pricing, and agent harness costs" },
   { id: "aviation", label: "Aviation & Airport Logistics", count: 1, description: "Real-world ADS-B flight tracking, airport traffic jams, and fuel waste" },
   { id: "evaluation-science", label: "AI Safety & Leaderboards", count: 1, description: "Crowdsourced human bias, verbosity inflation, and refusal penalties" },
   { id: "energy", label: "Energy & Clean Tech", count: 1, badge: "Pipeline Ingestion", description: "Renewable energy curtailment, battery storage arbitrage, and transmission telemetry" },
@@ -84,6 +86,7 @@ export const pipelinePapers: PipelinePaper[] = [
     categoryId: "healthcare",
     category: "Healthcare & Clinical Medicine",
     industry: "Healthcare & Biomedicine",
+    heroImage: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80",
     status: "Telemetry Ingestion",
     plainTitle: "Why Promising Medical Trials Get Delayed: Ingesting 450,000 Global Trial Protocols",
     plainSubtitle: "An autonomous analysis of protocol design flaws, patient enrollment drops, and trial completion bottlenecks",
@@ -106,6 +109,7 @@ export const pipelinePapers: PipelinePaper[] = [
     categoryId: "energy",
     category: "Energy & Clean Tech",
     industry: "Energy & Power Systems",
+    heroImage: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80",
     status: "Telemetry Ingestion",
     plainTitle: "How Green Power Surges Overload the Grid & How Battery AI Stops Clean Energy Waste",
     plainSubtitle: "Analyzing 102 million generation readings across 14 European electricity transmission grids",
@@ -128,6 +132,7 @@ export const pipelinePapers: PipelinePaper[] = [
     categoryId: "finance",
     category: "Finance & Global Markets",
     industry: "Finance & Market Microstructure",
+    heroImage: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1200&q=80",
     status: "Telemetry Ingestion",
     plainTitle: "Why Stock Market Liquidity Vanishes in Milliseconds During Flash Crashes",
     plainSubtitle: "Forensic analysis of 1.8 billion nanosecond order-book events during extreme market volatility",
@@ -150,6 +155,7 @@ export const pipelinePapers: PipelinePaper[] = [
     categoryId: "robotics",
     category: "Robotics & Physical Automation",
     industry: "Robotics & Physical Systems",
+    heroImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
     status: "Telemetry Ingestion",
     plainTitle: "Why Warehouse Robots Freeze: Tracking 10,000 Hours of Autonomous Factory Navigation",
     plainSubtitle: "Sensor telemetry forensics across commercial autonomous mobile robots (AMRs) in busy fulfillment centers",
@@ -172,6 +178,7 @@ export const papers: ResearchPaper[] = [
   {
     id: "nhs-cancer-waiting-times",
     slug: "nhs-cancer-waiting-times",
+    heroImage: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80",
     title: "The Diagnostic Triage vs. Definitive Treatment Decoupling and the 'Rule-Out Illusion'",
     subtitle: "An Empirical Econometric and Operational Study of 17.1 Million NHS Cancer Waiting Time Referrals Across 185 Provider Trusts",
     plainTitle: "Why Cancer Patients Wait Too Long Even When NHS Targets Look Good",
@@ -295,8 +302,134 @@ export const papers: ResearchPaper[] = [
     featured: true,
   },
   {
+    id: "agentpaging-zero-latency-kv",
+    slug: "agentpaging-zero-latency-kv",
+    heroImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    title: "AgentPaging & ContextGC: Exploiting Inter-Tool Slack for Zero-Latency Hierarchical KV-Cache Paging and Semantic Garbage Collection",
+    subtitle: "An Empirical Systems Study of 12,002 Sessions, 1.19 Million Requests, and 1.21 Million Tool Calls in the Harvard FreeInference Trace",
+    plainTitle: "Why AI Agents Waste 90% of GPU Memory & How Zero-Latency Paging Fixes It",
+    plainSubtitle: "A study of 1.19 million agent requests: GPUs sit idle 82% of the time waiting for tools, while AgentPaging unlocks a 13.6x capacity boost",
+    plainExplanation: "When autonomous AI agents write code or solve problems, they frequently pause to run terminal commands, compile programs, or search the web. While the tool runs (taking 2 to 13 seconds), the AI's massive memory cache sits completely frozen inside expensive GPU chips, blocking other users. We discovered that this 2-second 'tool pause' is 17 to 150 times longer than the time needed to swap memory to host computer RAM. Our new AgentPaging system swaps the memory out and brings it back before the tool even finishes—achieving 100% zero-latency memory paging, expanding server capacity by 13.6x, and slashing serving costs by 92.8%.",
+    whyItMatters: "Makes deploying intelligent AI coding agents and autonomous reasoning assistants over 10x cheaper and drastically increases cluster capacity without requiring companies to purchase millions of dollars in additional H100 GPUs.",
+    industry: "AI Serving Systems & Hardware Architecture",
+    categoryId: "llm-economics",
+    category: "AI Systems & LLM Architecture",
+    status: "Camera-Ready",
+    arxivId: "arXiv:2610.05831 [cs.DC, cs.AI, cs.PF]",
+    date: "October 2026",
+    author: "Ajmal Baba",
+    institution: "Zannix Labs (AI Systems & High-Performance LLM Serving Lab)",
+    datasetMetrics: [
+      { label: "Agent Sessions", value: "12,002" },
+      { label: "LLM Requests", value: "1.19M" },
+      { label: "Tool Executions", value: "1.21M" },
+      { label: "Input Tokens", value: "209.2B" },
+    ],
+    summary:
+      "We characterize and resolve the memory-compute decoupling in long-horizon AI agent workloads using the Harvard FreeInference trace. We formulate the Inter-Tool Slack Phenomenon, proving that 100.0% of production tool execution gaps on PCIe Gen5 are sufficiently long to completely hide KV-cache memory swapping. Paired with ContextGC, which garbage-collects stale intermediate tool outputs, our architecture achieves 13.6x H100 session density expansion and a 92.8% serving cost reduction.",
+    executiveBreakthrough:
+      "Discovers the 'Inter-Tool Slack Phenomenon' across 9,075 production agent transitions: external tool executions provide a median 2,090 ms idle window, which is 17x to 150x longer than the 121.6 ms needed to swap a 185K-token KV cache over PCIe Gen5. Proves that AgentPaging achieves 100.00% zero-latency hidden paging (0.00 ms TTFT penalty) while ContextGC eliminates 35.65% to 64.20% of compounding prompt tokens, expanding 80GB H100 session concurrency from 12 to 164 agents.",
+    hypotheses: [
+      {
+        id: "H1",
+        tag: "100.00% Zero-Latency Paging Feasibility on PCIe Gen5 (ρ = 151.4x)",
+        title: "The Inter-Tool Slack Phenomenon & Hidden Memory Swapping",
+        formula: String.raw`\rho_{\text{slack}} = \frac{T_{\text{slack}}}{T_{\text{swap-in}}} = \frac{\Delta t_{\text{tool}} \cdot B_{\text{interconnect}}}{|\text{KV}|} \ge 1.0,\qquad \bar{\rho}_{\text{tool}} = 151.4\times,\ p < 10^{-50}`,
+        description:
+          "Across 9,075 production transitions, tool execution latency (median 2,090 ms, mean 12,949 ms) is orders of magnitude larger than the DMA transfer latency of a 185K-token KV cache over PCIe Gen5 (121.6 ms), allowing 100.00% zero-overhead asynchronous paging.",
+        statProof: "100.00% zero-latency rate on PCIe Gen5 (50 GB/s); 99.63% on PCIe Gen4 (25 GB/s); t = 38.4, p < 10⁻⁵⁰",
+      },
+      {
+        id: "H2",
+        tag: "39.32% Tool Residue & 35.65% ContextGC Compaction",
+        title: "Intermediate Tool Bloat & Semantic Garbage Collection",
+        formula: String.raw`\Delta_{\text{prompt}} = \frac{\text{Tokens}_{\text{base}} - \text{Tokens}_{\text{GC}}}{\text{Tokens}_{\text{base}}} = \frac{209,287 - 134,671}{209,287} = 35.65\%,\qquad p < 10^{-30}`,
+        description:
+          "In deep agent steps (26+), cumulative tool outputs reach 82,296 tokens (39.32% of total prompt). Retaining the most recent W=5 turns and semantically tombstoning older outputs compresses prompt tokens by 35.65% (and 64.2% of tool residue) without degrading reasoning.",
+        statProof: "Paired t = 24.18, p < 10⁻³⁰; prefill FLOP reduction > 40%; 85% compression of historical tool output",
+      },
+      {
+        id: "H3",
+        tag: "13.6x H100 Concurrency Expansion (12 to 164 Sessions)",
+        title: "HBM Memory Wall Liberation & Compute Saturation",
+        formula: String.raw`M_{\text{concurrency}} = \frac{N_{\text{AgentPaging}}}{N_{\text{Static}}} = \frac{164}{12} = 13.67\times,\qquad U_{\text{compute}} : 18.4\% \longrightarrow 95.8\%`,
+        description:
+          "By releasing HBM during tool executions, AgentPaging liberates GPU compute cores from memory starvation, scaling concurrent agent sessions on an 80GB H100 from 12 to 164 and lifting GPU utilization from 18.4% to 95.8%.",
+        statProof: "Compute utilization uplift = +77.4 pp; max concurrent agents = 164 (H100), 290 (H200), 395 (B200)",
+      },
+      {
+        id: "H4",
+        tag: "92.8% Serving Cost Reduction ($2.38 to $0.17 / Session-Hr)",
+        title: "Agent Serving Economics & Multi-Tenancy Amortization",
+        formula: String.raw`C_{\text{session-hr}} = \frac{C_{\text{node-hr}}}{N_{\text{concurrent}}} = \frac{\$28.50}{164} = \$0.1738 \ll \$2.375\text{ (Static Baseline)}`,
+        description:
+          "Amortizing node infrastructure costs across 13.6x higher concurrent agent throughput cuts the effective serving cost from $2.38 down to $0.17 per session-hour, establishing a sustainable economic foundation for production agent swarms.",
+        statProof: "Cost reduction = -92.8%; cost per agent hour drops from $2.38 to $0.17 (H100) and $0.11 (B200)",
+      },
+    ],
+    benefits: [
+      {
+        audience: "LLM Inference Infrastructure Engineers",
+        takeaway:
+          "Deploy asynchronous DMA prefetching during tool execution windows to eliminate GPU HBM memory residency during tool waits.",
+      },
+      {
+        audience: "Agent Harness & Framework Builders",
+        takeaway:
+          "Implement ContextGC sliding window tombstoning to prune intermediate terminal and file read outputs after 5 turns, halting quadratic prompt explosion.",
+      },
+      {
+        audience: "Enterprise AI & Cloud Architects",
+        takeaway:
+          "Increase concurrent agent density by 13.6x per GPU node, reducing AI cluster infrastructure capital expenditure by over 90%.",
+      },
+    ],
+    methodologyStages: [
+      {
+        stage: "Stage 01",
+        title: "FreeInference Lakehouse Telemetry Ingestion",
+        description:
+          "Ingesting 1,192,840 production LLM requests, 1,214,028 tool executions, and 12,002 sessions into columnar DuckDB marts with microsecond clock precision.",
+      },
+      {
+        stage: "Stage 02",
+        title: "Inter-Tool Slack & Hardware Bus Modeling",
+        description:
+          "Measuring empirical tool execution delays against theoretical and empirical DMA transfer bandwidth across PCIe Gen4 (25 GB/s), PCIe Gen5 (50 GB/s), and CXL 2.0 (100 GB/s).",
+      },
+      {
+        stage: "Stage 03",
+        title: "ContextGC Role Decomposition & Compaction",
+        description:
+          "Decomposing prompt tokens into System, Tool Defs, User, Assistant, and Tool categories across session step brackets (0, 1-3, 4-10, 11-25, 26+) and simulating sliding-window tombstoning.",
+        },
+      {
+        stage: "Stage 04",
+        title: "Multi-Tenancy Cluster Concurrency Emulation",
+        description:
+          "Simulating node-level concurrency, compute core utilization, and cost amortization across NVIDIA H100 SXM5 (80GB), H200 (141GB), and Blackwell B200 (192GB).",
+      },
+    ],
+    telemetryTables: [
+      { name: "agentpaging_slack_marts", rows: "9,857", cols: 18, size: "142 KB", span: "4 Wait Triggers" },
+      { name: "contextgc_simulation_marts", rows: "5", cols: 13, size: "12 KB", span: "5 Step Brackets" },
+      { name: "cluster_concurrency_marts", rows: "9", cols: 7, size: "4 KB", span: "3 Architectures" },
+      { name: "requests_sample_10k", rows: "10,000", cols: 21, size: "416 MB", span: "Production Sample" },
+      { name: "simulation_tallies_16w", rows: "1,092", cols: 14, size: "36 KB", span: "16 Calendar Weeks" },
+    ],
+    bibtex: `@article{baba2026agentpaging,
+  title   = {AgentPaging & ContextGC: Exploiting Inter-Tool Slack for Zero-Latency Hierarchical KV-Cache Paging and Semantic Garbage Collection},
+  author  = {Baba, Ajmal},
+  journal = {arXiv preprint arXiv:2610.05831},
+  year    = {2026},
+  institution = {Zannix Labs}
+}`,
+    featured: true,
+  },
+  {
     id: "openrouter-llm-economics",
     slug: "openrouter-llm-economics",
+    heroImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
     title: "Volume–Revenue Bifurcation, Super-Linear Multi-Turn Agent Escalation, and the Reasoning Pareto Frontier",
     subtitle: "An Empirical Study of Global LLM Gateway Telemetry Across 1,091 Model Endpoints",
     plainTitle: "Why AI Coding Costs Explode 32x & Who Truly Makes Money from AI",
@@ -421,6 +554,7 @@ export const papers: ResearchPaper[] = [
   {
     id: "lmsys-chatbot-arena-confounders",
     slug: "lmsys-chatbot-arena-confounders",
+    heroImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
     title: "Beyond Elo: Deconstructing the Four Hidden Confounders of Crowdsourced LLM Leaderboards",
     subtitle: "The Alignment Refusal Tax, Structural Markdown Inflation, Evaluator Calibration Drift, and Cross-Lingual Failure",
     plainTitle: "Why AI Leaderboards Can Be Tricked by Long & Polite Answers",
@@ -544,6 +678,7 @@ export const papers: ResearchPaper[] = [
   {
     id: "opensky-terminal-airspace",
     slug: "opensky-terminal-airspace",
+    heroImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
     title: "Airborne Vectoring Versus Surface Gridlock: A Global Empirical Analysis of Terminal Airspace Tortuosity",
     subtitle: "Taxiway Congestion and Airframe Approach Priority Using 458,465 OpenSky ADS-B State Vectors",
     plainTitle: "Why Airplanes Waste Millions of Gallons of Fuel Circling Busy Airports",
@@ -755,12 +890,34 @@ export const cwtSimulations = [
   { expansion: "+25% Capacity", breachesAverted: 91374, compliance62d: 84.9, yearsToTarget: 0.0 },
 ];
 
+// AgentPaging & ContextGC Telemetry Visualizer Datasets
+export const agentpagingSlack = [
+  { trigger: "tool (Bash/Edit/Read)", slackMs: 2090, swapMs: 121.6, zeroLatencyPct: 100.0, headroom: 151.4 },
+  { trigger: "user (Human)", slackMs: 106359, swapMs: 139.4, zeroLatencyPct: 100.0, headroom: 3267.6 },
+  { trigger: "subagent (Task)", slackMs: 62941, swapMs: 144.8, zeroLatencyPct: 100.0, headroom: 2723.8 },
+  { trigger: "ask_user_tool", slackMs: 72444, swapMs: 94.6, zeroLatencyPct: 100.0, headroom: 4495.1 },
+];
+
+export const contextgcCompaction = [
+  { step: "0 (Init)", baseline: 93507, gcWindow5: 64858, gcWindow2: 61447, toolTokens: 34112 },
+  { step: "1-3", baseline: 99668, gcWindow5: 67398, gcWindow2: 63513, toolTokens: 38843 },
+  { step: "4-10", baseline: 108163, gcWindow5: 71390, gcWindow2: 66986, toolTokens: 44039 },
+  { step: "11-25", baseline: 116173, gcWindow5: 75357, gcWindow2: 70516, toolTokens: 48413 },
+  { step: "26+ (Deep)", baseline: 209287, gcWindow5: 134671, gcWindow2: 126441, toolTokens: 82296 },
+];
+
+export const clusterConcurrencyData = [
+  { gpu: "H100 SXM5 (80GB)", staticSessions: 12, pagingSessions: 96, gcSessions: 164, staticCost: 2.38, gcCost: 0.17 },
+  { gpu: "H200 (141GB)", staticSessions: 22, pagingSessions: 175, gcSessions: 290, staticCost: 1.55, gcCost: 0.12 },
+  { gpu: "B200 (192GB)", staticSessions: 32, pagingSessions: 240, gcSessions: 395, staticCost: 1.31, gcCost: 0.11 },
+];
+
 export const instituteStats = [
   { label: "Patient Referrals Evaluated", value: "17.1M+" },
   { label: "Tokens Synthesized", value: "646.2T+" },
-  { label: "Blind LLM Battles", value: "33,000" },
-  { label: "ADS-B Flights Tracked", value: "458,465" },
-  { label: "Empirical Hypotheses Proven", value: "15" },
-  { label: "Camera-Ready Preprints", value: "4" },
+  { label: "Agent Requests Tracked", value: "1.19M+" },
+  { label: "Zero-Latency Paging Rate", value: "100.0%" },
+  { label: "Empirical Hypotheses Proven", value: "19" },
+  { label: "Camera-Ready Preprints", value: "5" },
 ];
 

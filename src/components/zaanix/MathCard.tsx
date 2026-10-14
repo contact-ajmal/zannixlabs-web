@@ -16,31 +16,31 @@ export function MathCard({ hypothesis }: { hypothesis: Hypothesis }) {
   }
 
   return (
-    <div className="glass rounded-xl p-5 md:p-6 transition-all hover:border-primary/40 space-y-4">
+    <div className="rounded-xl border border-slate-200 bg-white p-5 md:p-6 shadow-xs hover:border-blue-300 transition-all space-y-4">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/60 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
         <div className="flex items-center gap-2">
-          <span className="grid size-6 place-items-center rounded-md bg-primary/20 font-mono text-xs font-bold text-primary">
+          <span className="grid size-6 place-items-center rounded-md bg-blue-100 font-mono text-xs font-bold text-blue-800">
             {hypothesis.id}
           </span>
-          <h4 className="font-display text-base font-semibold text-foreground">
+          <h4 className="font-display text-base font-semibold text-slate-900">
             {hypothesis.title}
           </h4>
         </div>
-        <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] text-primary">
+        <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 font-mono text-[11px] text-blue-800 font-medium">
           {hypothesis.tag}
         </span>
       </div>
 
       {/* Narrative Explanation */}
-      <p className="text-sm leading-relaxed text-muted-foreground">
+      <p className="text-sm leading-relaxed text-slate-600">
         {hypothesis.description}
       </p>
 
       {/* KaTeX Mathematical Formulation */}
-      <div className="rounded-lg border border-border/80 bg-background/70 px-4 py-3 overflow-x-auto text-foreground shadow-inner">
-        <div className="flex items-center gap-1.5 font-mono text-[10px] text-muted-foreground mb-1">
-          <Sigma className="size-3 text-primary" />
+      <div className="rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 overflow-x-auto text-slate-900 shadow-2xs">
+        <div className="flex items-center gap-1.5 font-mono text-[10.5px] text-slate-500 mb-1">
+          <Sigma className="size-3 text-blue-700" />
           <span>FORMAL MATHEMATICAL SPECIFICATION</span>
         </div>
         <div
@@ -50,10 +50,10 @@ export function MathCard({ hypothesis }: { hypothesis: Hypothesis }) {
       </div>
 
       {/* Empirical Statistical Proof */}
-      <div className="flex items-center gap-2 rounded-lg border border-success/30 bg-success/5 px-3 py-2 text-xs font-mono text-success">
-        <CheckCircle2 className="size-4 shrink-0 text-success" />
-        <span className="font-semibold text-foreground">Empirical Proof:</span>
-        <span className="truncate">{hypothesis.statProof}</span>
+      <div className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-mono text-emerald-800">
+        <CheckCircle2 className="size-4 shrink-0 text-emerald-600" />
+        <span className="font-semibold text-slate-900">Empirical Proof:</span>
+        <span className="truncate text-slate-700">{hypothesis.statProof}</span>
       </div>
     </div>
   );

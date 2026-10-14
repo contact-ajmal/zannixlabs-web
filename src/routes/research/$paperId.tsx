@@ -49,11 +49,11 @@ export const Route = createFileRoute("/research/$paperId")({
 
 function PaperNotFound() {
   return (
-    <div className="dark min-h-screen bg-background bg-mesh text-foreground">
+    <div className="min-h-screen bg-slate-50/50 text-slate-900 font-sans">
       <GlobalNav />
       <div className="mx-auto flex min-h-[60vh] max-w-md flex-col items-center justify-center px-4 text-center">
-        <h1 className="font-display text-4xl font-bold">Paper Not Found</h1>
-        <p className="mt-3 text-sm text-muted-foreground">
+        <h1 className="font-display text-4xl font-bold text-slate-900">Paper Not Found</h1>
+        <p className="mt-3 text-sm text-slate-600">
           The requested research preprint could not be located in our catalog.
         </p>
         <Button variant="glow" className="mt-6" asChild>
@@ -147,67 +147,67 @@ function PaperDetailPage() {
   };
 
   return (
-    <div className="dark min-h-screen bg-background bg-mesh text-foreground">
+    <div className="min-h-screen bg-white text-[#202124] font-sans">
       <GlobalNav />
 
       <main className="pt-24 pb-20">
         {/* Paper Header Section */}
-        <section className="mx-auto max-w-5xl px-5 py-10 md:py-14 space-y-6">
+        <section className="mx-auto max-w-5xl px-6 py-10 md:py-14 space-y-6">
           {/* Breadcrumb Back Link */}
           <Link
             to="/research"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-sans font-medium text-[#5f6368] hover:text-[#1a73e8] transition-colors"
           >
-            <ArrowLeft className="size-3.5" /> Back to Research Catalog
+            <ArrowLeft className="size-3.5" /> Back to Publications
           </Link>
 
           {/* Badges */}
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="outline" className="border-primary/40 bg-primary/10 text-primary font-mono text-xs">
+            <span className="rounded-full border border-[#dadce0] bg-[#f8f9fa] px-3.5 py-1 text-xs font-sans font-medium text-[#1a73e8]">
               {paper.industry || paper.category}
-            </Badge>
-            <span className="font-mono text-xs text-muted-foreground">
+            </span>
+            <span className="font-mono text-xs text-[#70757a]">
               {paper.arxivId}
             </span>
-            <span className="rounded-full border border-success/30 bg-success/10 px-2.5 py-0.5 font-mono text-[11px] text-success">
+            <span className="rounded-full border border-emerald-300 bg-emerald-50 px-3 py-0.5 font-sans text-xs font-medium text-emerald-800">
               ● {paper.status}
             </span>
-            <span className="font-mono text-xs text-muted-foreground">
+            <span className="font-sans text-xs text-[#5f6368]">
               {paper.date}
             </span>
-            <span className="rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] text-primary hidden sm:inline-flex items-center gap-1">
-              <Sparkles className="size-3" /> Plain English + Original arXiv Layout
+            <span className="rounded-full border border-[#dadce0] bg-[#f8f9fa] px-3 py-0.5 font-sans text-xs text-[#3c4043] hidden sm:inline-flex items-center gap-1">
+              <Sparkles className="size-3 text-[#1a73e8]" /> Plain English + Original arXiv Layout
             </span>
           </div>
 
           {/* Plain English Primary Headline Card */}
           <div className="space-y-4">
-            <div className="rounded-2xl border border-primary/30 bg-primary/5 p-6 md:p-8 space-y-3 relative overflow-hidden shadow-xs">
-              <div className="flex items-center gap-2 font-mono text-xs font-semibold text-primary uppercase">
-                <Sparkles className="size-4 text-primary" /> Plain English Explanation
+            <div className="rounded-2xl border border-[#d2e3fc] bg-[#f8fafd] p-6 md:p-8 space-y-3 relative overflow-hidden shadow-xs">
+              <div className="flex items-center gap-2 font-sans text-xs font-medium text-[#1967d2] uppercase tracking-wider">
+                <Sparkles className="size-4 text-[#1a73e8]" /> Plain English Explanation
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-[1.18]">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-normal tracking-tight text-[#202124] leading-[1.18]">
                 {paper.plainTitle || paper.title}
               </h1>
-              <p className="text-base sm:text-lg font-medium text-muted-foreground leading-relaxed">
+              <p className="text-base sm:text-lg font-normal text-[#5f6368] font-sans leading-relaxed">
                 {paper.plainSubtitle || paper.subtitle}
               </p>
 
-              <div className="grid gap-3 sm:grid-cols-2 pt-4 border-t border-primary/20">
-                <div className="rounded-xl border border-border/80 bg-background/70 p-4 space-y-1.5">
-                  <div className="font-mono text-[11px] font-semibold text-primary uppercase flex items-center gap-1.5">
+              <div className="grid gap-3 sm:grid-cols-2 pt-4 border-t border-[#d2e3fc]">
+                <div className="rounded-xl border border-[#e1e6ec] bg-white p-4 space-y-1.5 shadow-2xs">
+                  <div className="font-sans text-xs font-medium text-[#1a73e8] uppercase tracking-wide flex items-center gap-1.5">
                     <Sparkles className="size-3.5" /> What We Discovered In Simple Terms
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-[#3c4043] font-sans leading-relaxed">
                     {paper.plainExplanation || paper.summary}
                   </p>
                 </div>
 
-                <div className="rounded-xl border border-border/80 bg-background/70 p-4 space-y-1.5">
-                  <div className="font-mono text-[11px] font-semibold text-emerald-400 uppercase flex items-center gap-1.5">
-                    <CheckCircle2 className="size-3.5 text-emerald-400" /> Why This Matters To Everyday People
+                <div className="rounded-xl border border-[#e1e6ec] bg-white p-4 space-y-1.5 shadow-2xs">
+                  <div className="font-sans text-xs font-medium text-emerald-800 uppercase tracking-wide flex items-center gap-1.5">
+                    <CheckCircle2 className="size-3.5 text-emerald-600" /> Why This Matters To Everyday People
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
+                  <p className="text-xs text-[#3c4043] font-sans leading-relaxed">
                     {paper.whyItMatters || paper.executiveBreakthrough}
                   </p>
                 </div>
@@ -215,22 +215,22 @@ function PaperDetailPage() {
             </div>
 
             {/* Formal Academic Citation Title */}
-            <div className="rounded-xl border border-border/70 bg-secondary/30 p-4 space-y-1">
-              <div className="font-mono text-xs text-muted-foreground font-semibold flex items-center gap-1.5">
-                <FileText className="size-3.5 text-primary" /> Formal Academic Title (for Researchers & Citations):
+            <div className="rounded-xl border border-[#e1e6ec] bg-[#f8f9fa] p-4 space-y-1 shadow-2xs">
+              <div className="font-sans text-xs text-[#5f6368] font-medium flex items-center gap-1.5">
+                <FileText className="size-3.5 text-[#1a73e8]" /> Formal Academic Title (for Researchers &amp; Citations):
               </div>
-              <div className="font-serif text-base sm:text-lg font-semibold text-foreground italic">
+              <div className="font-serif text-base sm:text-lg font-semibold text-[#202124] italic">
                 {paper.title}
               </div>
-              <div className="text-xs font-serif text-muted-foreground italic">
+              <div className="text-xs font-serif text-[#5f6368] italic">
                 {paper.subtitle}
               </div>
             </div>
           </div>
 
           {/* Author & Lab */}
-          <div className="flex flex-wrap items-center gap-3 pt-1 text-sm text-muted-foreground font-mono">
-            <span className="text-foreground font-semibold">{paper.author}</span>
+          <div className="flex flex-wrap items-center gap-3 pt-1 text-sm text-[#5f6368] font-sans">
+            <span className="text-[#202124] font-medium">{paper.author}</span>
             <span>•</span>
             <span>{paper.institution}</span>
           </div>
@@ -238,47 +238,56 @@ function PaperDetailPage() {
           {/* Dataset Scale Strip */}
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 pt-4">
             {paper.datasetMetrics.map((m) => (
-              <div key={m.label} className="rounded-xl border border-border/80 bg-background/60 p-3.5 text-center">
-                <p className="font-display text-xl font-bold text-primary">{m.value}</p>
-                <p className="font-mono text-[11px] text-muted-foreground mt-0.5">{m.label}</p>
+              <div key={m.label} className="rounded-2xl border border-[#dadce0] bg-[#f8f9fa] p-3.5 text-center shadow-xs">
+                <p className="font-display text-xl font-medium text-[#1a73e8]">{m.value}</p>
+                <p className="font-sans text-xs text-[#5f6368] mt-0.5">{m.label}</p>
               </div>
             ))}
           </div>
 
           {/* Action CTAs: Direct Reader & Viewer Controls */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t border-border/60">
-            {/* Direct In-Browser View Mode Buttons */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t border-[#e1e6ec]">
+            {/* Direct In-Browser View Mode Buttons - Google Pills */}
             <div className="flex flex-wrap items-center gap-2">
               <Button
-                variant={viewMode === "original" ? "glow" : "glass"}
+                className={`rounded-full text-xs font-medium px-4 h-9 ${
+                  viewMode === "original"
+                    ? "bg-[#1a73e8] hover:bg-[#1557b0] text-white shadow-xs"
+                    : "border border-[#dadce0] bg-white text-[#3c4043] hover:bg-[#f1f3f4]"
+                }`}
                 onClick={() => handleSetViewMode("original")}
-                className="font-mono text-xs"
               >
-                <FileText className="mr-2 size-4" /> Original arXiv Paper Format
+                <FileText className="mr-2 size-3.5" /> arXiv Paper Format
               </Button>
               <Button
-                variant={viewMode === "pdf" ? "glow" : "glass"}
+                className={`rounded-full text-xs font-medium px-4 h-9 ${
+                  viewMode === "pdf"
+                    ? "bg-[#1a73e8] hover:bg-[#1557b0] text-white shadow-xs"
+                    : "border border-[#dadce0] bg-white text-[#3c4043] hover:bg-[#f1f3f4]"
+                }`}
                 onClick={() => handleSetViewMode("pdf")}
-                className="font-mono text-xs"
               >
-                <BookOpen className="mr-2 size-4" /> PDF Document Viewer
+                <BookOpen className="mr-2 size-3.5" /> PDF Document Viewer
               </Button>
               <Button
-                variant={viewMode === "executive" ? "glow" : "glass"}
+                className={`rounded-full text-xs font-medium px-4 h-9 ${
+                  viewMode === "executive"
+                    ? "bg-[#1a73e8] hover:bg-[#1557b0] text-white shadow-xs"
+                    : "border border-[#dadce0] bg-white text-[#3c4043] hover:bg-[#f1f3f4]"
+                }`}
                 onClick={() => handleSetViewMode("executive")}
-                className="font-mono text-xs"
               >
-                <Sparkles className="mr-2 size-4" /> Executive Lab
+                <Sparkles className="mr-2 size-3.5" /> Executive Lab
               </Button>
             </div>
 
             {/* Direct File & Tab Actions */}
             <div className="flex flex-wrap items-center gap-2">
               <Button
-                variant="glass"
+                variant="outline"
                 size="sm"
                 asChild
-                className="font-mono text-xs h-9"
+                className="rounded-full border-[#dadce0] bg-white text-[#3c4043] hover:bg-[#f1f3f4] font-sans text-xs h-9 px-3.5"
                 title="Open camera-ready PDF directly in a new browser tab without save-as popup"
               >
                 <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
@@ -286,28 +295,28 @@ function PaperDetailPage() {
                 </a>
               </Button>
               <Button
-                variant="glass"
+                variant="outline"
                 size="sm"
                 onClick={handleDownloadPdf}
-                className="font-mono text-xs h-9 text-primary hover:text-primary"
+                className="rounded-full border-[#dadce0] bg-white text-[#1a73e8] hover:bg-[#f1f3f4] font-sans text-xs h-9 px-3.5"
                 title="Save camera-ready PDF file to your computer"
               >
                 <Download className="mr-1.5 size-3.5" /> Save PDF
               </Button>
               <Button
-                variant="glass"
+                variant="outline"
                 size="sm"
                 onClick={handleDownloadTar}
-                className="font-mono text-xs h-9"
+                className="rounded-full border-[#dadce0] bg-white text-[#3c4043] hover:bg-[#f1f3f4] font-sans text-xs h-9 px-3"
                 title="Download arXiv TeX reproducibility package"
               >
                 <Package className="mr-1.5 size-3.5" /> .tar.gz
               </Button>
               <Button
-                variant="glass"
+                variant="outline"
                 size="sm"
                 onClick={handleCopyBibtex}
-                className="font-mono text-xs h-9"
+                className="rounded-full border-[#dadce0] bg-white text-[#3c4043] hover:bg-[#f1f3f4] font-sans text-xs h-9 px-3"
                 title="Copy BibTeX Citation"
               >
                 <Copy className="mr-1.5 size-3.5" /> {copied ? "Copied" : "BibTeX"}
@@ -316,28 +325,28 @@ function PaperDetailPage() {
           </div>
         </section>
 
-        {/* Paper Format Switcher Tabs */}
-        <section id="paper-content-view" className="mx-auto max-w-5xl px-5 pb-4 scroll-mt-24">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/70 pb-4">
-            <div className="flex flex-wrap rounded-xl bg-secondary/40 p-1 border border-border">
+        {/* Paper Format Switcher Tabs - Google Research Segmented Pill Style */}
+        <section id="paper-content-view" className="mx-auto max-w-5xl px-6 pb-4 scroll-mt-24">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e1e6ec] pb-4">
+            <div className="flex flex-wrap rounded-full bg-[#f1f3f4] p-1 border border-[#dadce0]">
               <button
                 type="button"
                 onClick={() => handleSetViewMode("original")}
-                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
+                className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-sans transition-all ${
                   viewMode === "original"
-                    ? "bg-primary text-primary-foreground font-semibold shadow-glow"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-white text-[#1a73e8] font-medium shadow-xs"
+                    : "text-[#5f6368] hover:text-[#202124]"
                 }`}
               >
-                <FileText className="size-3.5" /> Original arXiv Paper Format
+                <FileText className="size-3.5" /> arXiv Paper Format
               </button>
               <button
                 type="button"
                 onClick={() => handleSetViewMode("pdf")}
-                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
+                className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-sans transition-all ${
                   viewMode === "pdf"
-                    ? "bg-primary text-primary-foreground font-semibold shadow-glow"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-white text-[#1a73e8] font-medium shadow-xs"
+                    : "text-[#5f6368] hover:text-[#202124]"
                 }`}
               >
                 <BookOpen className="size-3.5" /> PDF Document Viewer
@@ -345,19 +354,19 @@ function PaperDetailPage() {
               <button
                 type="button"
                 onClick={() => handleSetViewMode("executive")}
-                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
+                className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-sans transition-all ${
                   viewMode === "executive"
-                    ? "bg-primary text-primary-foreground font-semibold shadow-glow"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-white text-[#1a73e8] font-medium shadow-xs"
+                    : "text-[#5f6368] hover:text-[#202124]"
                 }`}
               >
                 <Sparkles className="size-3.5" /> Executive &amp; Telemetry
               </button>
             </div>
 
-            <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-muted-foreground">
+            <div className="hidden sm:flex items-center gap-2 font-sans text-xs text-[#5f6368]">
               <span>Active View:</span>
-              <span className="text-primary font-semibold">
+              <span className="text-[#1a73e8] font-medium">
                 {viewMode === "original" && "Two-Column LaTeX Typeset"}
                 {viewMode === "pdf" && "Camera-Ready PDF Embed"}
                 {viewMode === "executive" && "Interactive Telemetry Lab"}
@@ -393,174 +402,174 @@ function PaperDetailPage() {
           <div className="animate-in fade-in duration-300">
             {/* Section 1: Executive Synthesis & Key Findings */}
             <section className="mx-auto max-w-5xl px-5 py-8">
-          <div className="glass rounded-2xl p-6 md:p-8 space-y-4 border-primary/30 bg-primary/5">
-            <div className="flex items-center gap-2 text-primary font-mono text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="size-4" />
-              <span>EXECUTIVE BREAKTHROUGH &amp; DISCOVERY</span>
-            </div>
-            <h2 className="font-display text-2xl font-bold text-foreground">
-              What This Research Proves
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-              {paper.executiveBreakthrough}
-            </p>
-            <p className="text-sm leading-relaxed text-muted-foreground/80 pt-2 border-t border-border/60">
-              <strong className="text-foreground font-semibold">Abstract:</strong> {paper.summary}
-            </p>
-          </div>
-        </section>
-
-        {/* Section 2: Macro Hypotheses & KaTeX Mathematical Formulations */}
-        <section className="mx-auto max-w-5xl px-5 py-10 space-y-6">
-          <div className="space-y-2">
-            <span className="font-mono text-xs text-primary font-semibold uppercase tracking-widest">
-              // EMPIRICAL RIGOR
-            </span>
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-              Macro Hypotheses &amp; Mathematical Specifications
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Each hypothesis was formulated into formal mathematical notation and validated via automated Welch two-sample t-tests and regression fits.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {paper.hypotheses.map((h) => (
-              <MathCard key={h.id} hypothesis={h} />
-            ))}
-          </div>
-        </section>
-
-        {/* Section 3: Agentic Methodology Workflow */}
-        <section className="mx-auto max-w-5xl px-5 py-10 space-y-6">
-          <div className="space-y-2">
-            <span className="font-mono text-xs text-primary font-semibold uppercase tracking-widest">
-              // AGENTIC PROCESS
-            </span>
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-              How the Autonomous Pipeline Conducted This Study
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Trace the end-to-end autonomous research methodology used by ZannixLabs to ingest, clean, verify, and author this paper.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {paper.methodologyStages.map((st) => (
-              <div key={st.stage} className="glass rounded-xl p-5 space-y-2 hover:border-primary/40 transition-colors">
-                <span className="font-mono text-xs text-primary font-semibold">{st.stage}</span>
-                <h3 className="font-display text-base font-semibold text-foreground">{st.title}</h3>
-                <p className="text-xs leading-relaxed text-muted-foreground">{st.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 4: Industry Benefits & Practical Takeaways */}
-        <section className="mx-auto max-w-5xl px-5 py-10 space-y-6">
-          <div className="space-y-2">
-            <span className="font-mono text-xs text-primary font-semibold uppercase tracking-widest">
-              // REAL-WORLD IMPACT
-            </span>
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-              Practical Benefits &amp; Strategic Applications
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              How engineering teams, researchers, and domain leaders can apply these empirical findings today.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-3">
-            {paper.benefits.map((b, i) => (
-              <div key={i} className="glass rounded-xl p-5 space-y-3 border-l-2 border-l-primary">
-                <p className="font-mono text-xs font-semibold text-primary uppercase">
-                  {b.audience}
+              <div className="rounded-2xl border border-blue-200 bg-blue-50/50 p-6 md:p-8 space-y-4 shadow-xs">
+                <div className="flex items-center gap-2 text-blue-700 font-mono text-xs font-semibold uppercase tracking-wider">
+                  <Sparkles className="size-4" />
+                  <span>EXECUTIVE BREAKTHROUGH &amp; DISCOVERY</span>
+                </div>
+                <h2 className="font-display text-2xl font-bold text-slate-900">
+                  What This Research Proves
+                </h2>
+                <p className="text-base md:text-lg leading-relaxed text-slate-700">
+                  {paper.executiveBreakthrough}
                 </p>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {b.takeaway}
+                <p className="text-sm leading-relaxed text-slate-600 pt-2 border-t border-blue-200/60">
+                  <strong className="text-slate-900 font-semibold">Abstract:</strong> {paper.summary}
                 </p>
               </div>
-            ))}
-          </div>
-        </section>
+            </section>
 
-        {/* Section 5: Lakehouse Telemetry Data Tables */}
-        <section className="mx-auto max-w-5xl px-5 py-10 space-y-6">
-          <div className="space-y-2">
-            <span className="font-mono text-xs text-primary font-semibold uppercase tracking-widest">
-              // LAKEHOUSE ARTIFACTS
-            </span>
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-              Data Governance &amp; Lakehouse Tables
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Underlying analytical tables stored in the Zannix DuckDB lakehouse supporting 100% empirical reproducibility.
-            </p>
-          </div>
+            {/* Section 2: Macro Hypotheses & KaTeX Mathematical Formulations */}
+            <section className="mx-auto max-w-5xl px-5 py-10 space-y-6">
+              <div className="space-y-2">
+                <span className="font-mono text-xs text-blue-700 font-semibold uppercase tracking-widest">
+                  // EMPIRICAL RIGOR
+                </span>
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-slate-900">
+                  Macro Hypotheses &amp; Mathematical Specifications
+                </h2>
+                <p className="text-sm text-slate-600">
+                  Each hypothesis was formulated into formal mathematical notation and validated via automated Welch two-sample t-tests and regression fits.
+                </p>
+              </div>
 
-          <div className="overflow-x-auto rounded-xl border border-border bg-background/60">
-            <div className="flex items-center gap-2 border-b border-border px-4 py-3 font-mono text-xs text-primary bg-background/90">
-              <TableIcon className="size-3.5" />
-              <span>duckdb&gt; SELECT * FROM zannix_lakehouse_catalog WHERE paper_id = &apos;{paper.id}&apos;;</span>
-            </div>
-            <Table className="font-mono text-xs">
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Table Name</TableHead>
-                  <TableHead className="text-right">Rows</TableHead>
-                  <TableHead className="text-right">Cols</TableHead>
-                  <TableHead className="text-right">Storage Size</TableHead>
-                  <TableHead>Temporal Span / Cohort</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {paper.telemetryTables.map((t) => (
-                  <TableRow key={t.name}>
-                    <TableCell className="font-semibold text-primary">{t.name}</TableCell>
-                    <TableCell className="text-right">{t.rows}</TableCell>
-                    <TableCell className="text-right">{t.cols}</TableCell>
-                    <TableCell className="text-right">{t.size}</TableCell>
-                    <TableCell className="text-muted-foreground">{t.span}</TableCell>
-                  </TableRow>
+              <div className="grid gap-6 md:grid-cols-2">
+                {paper.hypotheses.map((h) => (
+                  <MathCard key={h.id} hypothesis={h} />
                 ))}
-              </TableBody>
-            </Table>
-          </div>
-        </section>
+              </div>
+            </section>
 
-        {/* Section 6: BibTeX Citation */}
-        <section className="mx-auto max-w-5xl px-5 py-8">
-          <div className="relative rounded-2xl border border-border bg-background/80 p-6">
-            <div className="flex items-center justify-between pb-3 border-b border-border/60">
-              <span className="font-mono text-xs text-primary font-semibold">
-                BibTeX Citation
-              </span>
-              <Button variant="glass" size="sm" onClick={handleCopyBibtex}>
-                <Copy className="mr-1.5 size-3.5" />
-                {copied ? "Copied" : "Copy Citation"}
-              </Button>
-            </div>
-            <pre className="mt-4 overflow-x-auto font-mono text-xs leading-relaxed text-muted-foreground">
-              <code>{paper.bibtex}</code>
-            </pre>
+            {/* Section 3: Agentic Methodology Workflow */}
+            <section className="mx-auto max-w-5xl px-5 py-10 space-y-6">
+              <div className="space-y-2">
+                <span className="font-mono text-xs text-blue-700 font-semibold uppercase tracking-widest">
+                  // AGENTIC PROCESS
+                </span>
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-slate-900">
+                  How the Autonomous Pipeline Conducted This Study
+                </h2>
+                <p className="text-sm text-slate-600">
+                  Trace the end-to-end autonomous research methodology used by ZannixLabs to ingest, clean, verify, and author this paper.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {paper.methodologyStages.map((st) => (
+                  <div key={st.stage} className="rounded-xl border border-slate-200 bg-white p-5 space-y-2 hover:border-blue-300 shadow-xs transition-colors">
+                    <span className="font-mono text-xs text-blue-700 font-semibold">{st.stage}</span>
+                    <h3 className="font-display text-base font-semibold text-slate-900">{st.title}</h3>
+                    <p className="text-xs leading-relaxed text-slate-600">{st.description}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Section 4: Industry Benefits & Practical Takeaways */}
+            <section className="mx-auto max-w-5xl px-5 py-10 space-y-6">
+              <div className="space-y-2">
+                <span className="font-mono text-xs text-blue-700 font-semibold uppercase tracking-widest">
+                  // REAL-WORLD IMPACT
+                </span>
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-slate-900">
+                  Practical Benefits &amp; Strategic Applications
+                </h2>
+                <p className="text-sm text-slate-600">
+                  How engineering teams, researchers, and domain leaders can apply these empirical findings today.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                {paper.benefits.map((b, i) => (
+                  <div key={i} className="rounded-xl border border-slate-200 bg-white p-5 space-y-3 border-l-4 border-l-blue-600 shadow-xs">
+                    <p className="font-mono text-xs font-semibold text-blue-700 uppercase">
+                      {b.audience}
+                    </p>
+                    <p className="text-sm leading-relaxed text-slate-600">
+                      {b.takeaway}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Section 5: Lakehouse Telemetry Data Tables */}
+            <section className="mx-auto max-w-5xl px-5 py-10 space-y-6">
+              <div className="space-y-2">
+                <span className="font-mono text-xs text-blue-700 font-semibold uppercase tracking-widest">
+                  // LAKEHOUSE ARTIFACTS
+                </span>
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-slate-900">
+                  Data Governance &amp; Lakehouse Tables
+                </h2>
+                <p className="text-sm text-slate-600">
+                  Underlying analytical tables stored in the Zannix DuckDB lakehouse supporting 100% empirical reproducibility.
+                </p>
+              </div>
+
+              <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-xs">
+                <div className="flex items-center gap-2 border-b border-slate-200 px-4 py-3 font-mono text-xs text-blue-700 bg-slate-50">
+                  <TableIcon className="size-3.5" />
+                  <span>duckdb&gt; SELECT * FROM zannix_lakehouse_catalog WHERE paper_id = &apos;{paper.id}&apos;;</span>
+                </div>
+                <Table className="font-mono text-xs">
+                  <TableHeader className="bg-slate-50/70">
+                    <TableRow className="border-b border-slate-200">
+                      <TableHead className="text-slate-700">Table Name</TableHead>
+                      <TableHead className="text-right text-slate-700">Rows</TableHead>
+                      <TableHead className="text-right text-slate-700">Cols</TableHead>
+                      <TableHead className="text-right text-slate-700">Storage Size</TableHead>
+                      <TableHead className="text-slate-700">Temporal Span / Cohort</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {paper.telemetryTables.map((t) => (
+                      <TableRow key={t.name} className="border-b border-slate-100 hover:bg-slate-50/60">
+                        <TableCell className="font-semibold text-blue-700">{t.name}</TableCell>
+                        <TableCell className="text-right text-slate-700">{t.rows}</TableCell>
+                        <TableCell className="text-right text-slate-700">{t.cols}</TableCell>
+                        <TableCell className="text-right text-slate-700">{t.size}</TableCell>
+                        <TableCell className="text-slate-600">{t.span}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </section>
+
+            {/* Section 6: BibTeX Citation */}
+            <section className="mx-auto max-w-5xl px-5 py-8">
+              <div className="relative rounded-2xl border border-slate-200 bg-white p-6 shadow-xs">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+                  <span className="font-mono text-xs text-blue-700 font-semibold">
+                    BibTeX Citation
+                  </span>
+                  <Button variant="glass" size="sm" onClick={handleCopyBibtex}>
+                    <Copy className="mr-1.5 size-3.5" />
+                    {copied ? "Copied" : "Copy Citation"}
+                  </Button>
+                </div>
+                <pre className="mt-4 overflow-x-auto font-mono text-xs leading-relaxed text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                  <code>{paper.bibtex}</code>
+                </pre>
+              </div>
+            </section>
           </div>
-        </section>
-      </div>
-    )}
+        )}
 
         {/* Section 7: Next / Previous Paper Navigation */}
         <section className="mx-auto max-w-5xl px-5 pt-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border pt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 pt-8">
             {prevPaper ? (
               <Link
                 to="/research/$paperId"
                 params={{ paperId: prevPaper.slug }}
-                className="glass rounded-xl p-4 flex items-center gap-3 max-w-sm hover:border-primary/50 transition-colors"
+                className="rounded-xl border border-slate-200 bg-white p-4 flex items-center gap-3 max-w-sm hover:border-blue-400 hover:shadow-xs shadow-2xs transition-all"
               >
-                <ArrowLeft className="size-4 text-primary shrink-0" />
+                <ArrowLeft className="size-4 text-blue-700 shrink-0" />
                 <div>
-                  <span className="font-mono text-[10px] text-muted-foreground uppercase">Previous Preprint</span>
-                  <p className="font-display text-sm font-semibold text-foreground line-clamp-1">{prevPaper.title}</p>
+                  <span className="font-mono text-[10px] text-slate-500 uppercase">Previous Preprint</span>
+                  <p className="font-display text-sm font-semibold text-slate-900 line-clamp-1">{prevPaper.title}</p>
                 </div>
               </Link>
             ) : <div />}
@@ -569,13 +578,13 @@ function PaperDetailPage() {
               <Link
                 to="/research/$paperId"
                 params={{ paperId: nextPaper.slug }}
-                className="glass rounded-xl p-4 flex items-center gap-3 max-w-sm hover:border-primary/50 transition-colors text-right"
+                className="rounded-xl border border-slate-200 bg-white p-4 flex items-center gap-3 max-w-sm hover:border-blue-400 hover:shadow-xs shadow-2xs transition-all text-right"
               >
                 <div>
-                  <span className="font-mono text-[10px] text-muted-foreground uppercase">Next Preprint</span>
-                  <p className="font-display text-sm font-semibold text-foreground line-clamp-1">{nextPaper.title}</p>
+                  <span className="font-mono text-[10px] text-slate-500 uppercase">Next Preprint</span>
+                  <p className="font-display text-sm font-semibold text-slate-900 line-clamp-1">{nextPaper.title}</p>
                 </div>
-                <ArrowRight className="size-4 text-primary shrink-0" />
+                <ArrowRight className="size-4 text-blue-700 shrink-0" />
               </Link>
             )}
           </div>
