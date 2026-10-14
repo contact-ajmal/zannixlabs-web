@@ -192,17 +192,17 @@ export function AcademicPaperView({ paper }: AcademicPaperViewProps) {
             {paper.hypotheses.map((h, idx) => (
               <div key={h.id} className="rounded border border-slate-300 bg-slate-50/90 p-3 text-xs space-y-1.5 break-inside-avoid">
                 <div className="flex items-center justify-between font-sans text-[11px] font-bold text-slate-900">
-                  <span>Theorem {h.id}: {h.name}</span>
+                  <span>Theorem {h.id}: {h.title}</span>
                   <span className="font-mono text-teal-700">({idx + 1})</span>
                 </div>
                 <div className="font-mono text-center py-1.5 px-2 bg-white rounded border border-slate-200 text-slate-900 text-[11.5px] overflow-x-auto">
-                  {h.latex}
+                  {h.formula}
                 </div>
                 <p className="text-slate-700 italic text-[11.5px]">
                   {h.description}
                 </p>
                 <div className="pt-1 border-t border-slate-200 font-mono text-[10.5px] text-emerald-800 font-semibold">
-                  Statistical Validation: p = {h.empiricalPValue}, {h.effectSize}. {h.conclusion}
+                  Statistical Proof: {h.statProof}
                 </div>
               </div>
             ))}
@@ -217,10 +217,10 @@ export function AcademicPaperView({ paper }: AcademicPaperViewProps) {
               The autonomous AI research process executed through four deterministic stages:
             </p>
             <div className="space-y-2 text-xs">
-              {paper.methodology.map((m) => (
+              {paper.methodologyStages.map((m) => (
                 <div key={m.stage} className="border-l-2 border-teal-600 pl-2 space-y-0.5">
                   <span className="font-sans font-bold text-slate-900">
-                    Stage {m.stage}: {m.title}
+                    {m.stage}: {m.title}
                   </span>
                   <p className="text-slate-600 text-[11px]">{m.description}</p>
                 </div>
@@ -242,15 +242,17 @@ export function AcademicPaperView({ paper }: AcademicPaperViewProps) {
                   <tr className="border-b-2 border-slate-900 text-left">
                     <th className="py-1">Table</th>
                     <th className="py-1">Rows</th>
-                    <th className="py-1">Volume</th>
+                    <th className="py-1">Cols</th>
+                    <th className="py-1">Size</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200">
-                  {paper.lakehouseTables.map((t) => (
+                  {paper.telemetryTables.map((t) => (
                     <tr key={t.name}>
                       <td className="py-1 font-mono">{t.name}</td>
                       <td className="py-1">{t.rows}</td>
-                      <td className="py-1">{t.volume}</td>
+                      <td className="py-1">{t.cols}</td>
+                      <td className="py-1">{t.size}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -264,10 +266,10 @@ export function AcademicPaperView({ paper }: AcademicPaperViewProps) {
               6. Industry &amp; Scientific Takeaways
             </h2>
             <div className="space-y-2 text-xs">
-              {paper.audienceBenefits.map((b) => (
+              {paper.benefits.map((b) => (
                 <div key={b.audience} className="space-y-0.5">
                   <strong className="text-slate-950 font-sans">{b.audience}:</strong>
-                  <p className="text-slate-700 italic">{b.takeaway} (Impact factor: {b.impact})</p>
+                  <p className="text-slate-700 italic">{b.takeaway}</p>
                 </div>
               ))}
             </div>
