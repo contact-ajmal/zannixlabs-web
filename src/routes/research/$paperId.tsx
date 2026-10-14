@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Copy, Download, FileText, Layers, Package, Sparkles, Table as TableIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Copy, Download, ExternalLink, FileText, Layers, Package, Sparkles, Table as TableIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { GlobalNav } from "@/components/zaanix/GlobalNav";
 import { GlobalFooter } from "@/components/zaanix/GlobalFooter";
 import { MathCard } from "@/components/zaanix/MathCard";
+import { AcademicPaperView } from "@/components/zaanix/AcademicPaperView";
 import { papers } from "@/components/zaanix/researchData";
 
 export const Route = createFileRoute("/research/$paperId")({
@@ -54,9 +55,13 @@ function PaperNotFound() {
   );
 }
 
+type ViewMode = "executive" | "original" | "pdf";
+
 function PaperDetailPage() {
   const { paper } = Route.useLoaderData();
   const [copied, setCopied] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>("executive");
+  const slug = paper.slug || paper.id;
 
   // Find previous and next papers for bottom navigation
   const currentIndex = papers.findIndex((p) => p.id === paper.id);
@@ -188,8 +193,102 @@ function PaperDetailPage() {
           </div>
         </section>
 
-        {/* Section 1: Executive Synthesis & Key Findings */}
-        <section className="mx-auto max-w-5xl px-5 py-8">
+        {/* Paper Format Switcher Tabs */}
+        <section className="mx-auto max-w-5xl px-5 pb-4">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/70 pb-4">
+            <div className="flex flex-wrap rounded-xl bg-secondary/40 p-1 border border-border">
+              <button
+                type="button"
+                onClick={() => setViewMode("executive")}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
+                  viewMode === "executive"
+                    ? "bg-primary text-primary-foreground font-semibold shadow-glow"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Sparkles className="size-3.5" /> Executive &amp; Telemetry
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode("original")}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
+                  viewMode === "original"
+                    ? "bg-primary text-primary-foreground font-semibold shadow-glow"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <FileText className="size-3.5" /> Original arXiv Paper Format
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode("pdf")}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
+                  viewMode === "pdf"
+                    ? "bg-primary text-primary-foreground font-semibold shadow-glow"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <BookOpen className="size-3.5" /> PDF Document Viewer
+              </button>
+            </div>
+
+            <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-muted-foreground">
+              <span>View Mode:</span>
+              <span className="text-primary font-semibold">
+                {viewMode === "executive" && "Interactive Telemetry Lab"}
+                {viewMode === "original" && "Two-Column LaTeX Typeset"}
+                {viewMode === "pdf" && "Native Camera-Ready PDF"}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* VIEW 1: Original arXiv Paper Format */}
+        {viewMode === "original" && (
+          <section className="mx-auto max-w-5xl px-5 py-6 animate-in fade-in duration-300">
+            <AcademicPaperView paper={paper} />
+          </section>
+        )}
+
+        {/* VIEW 2: Embedded PDF Document Viewer */}
+        {viewMode === "pdf" && (
+          <section className="mx-auto max-w-5xl px-5 py-6 space-y-4 animate-in fade-in duration-300">
+            <div className="glass rounded-xl p-3 px-4 flex flex-wrap items-center justify-between gap-3 border-border">
+              <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+                <BookOpen className="size-4 text-primary" />
+                <span className="text-foreground font-semibold">Camera-Ready PDF Embed</span>
+                <span>•</span>
+                <span>{paper.arxivId}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Button variant="glass" size="sm" asChild className="text-xs font-mono h-8">
+                  <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
+                    <ExternalLink className="mr-1.5 size-3.5" /> Fullscreen / New Tab
+                  </a>
+                </Button>
+                <Button variant="glow" size="sm" asChild className="text-xs font-mono h-8">
+                  <a href={`/papers/${slug}.pdf`} download={`${slug}.pdf`}>
+                    <Download className="mr-1.5 size-3.5" /> Download PDF
+                  </a>
+                </Button>
+              </div>
+            </div>
+
+            <div className="rounded-xl overflow-hidden border border-border shadow-2xl bg-white">
+              <iframe
+                src={`/papers/${slug}.pdf#view=FitH`}
+                title={paper.title}
+                className="w-full h-[950px] border-0"
+              />
+            </div>
+          </section>
+        )}
+
+        {/* VIEW 3: Interactive Executive & Telemetry Lab */}
+        {viewMode === "executive" && (
+          <div className="animate-in fade-in duration-300">
+            {/* Section 1: Executive Synthesis & Key Findings */}
+            <section className="mx-auto max-w-5xl px-5 py-8">
           <div className="glass rounded-2xl p-6 md:p-8 space-y-4 border-primary/30 bg-primary/5">
             <div className="flex items-center gap-2 text-primary font-mono text-xs font-semibold uppercase tracking-wider">
               <Sparkles className="size-4" />
@@ -342,6 +441,8 @@ function PaperDetailPage() {
             </pre>
           </div>
         </section>
+      </div>
+    )}
 
         {/* Section 7: Next / Previous Paper Navigation */}
         <section className="mx-auto max-w-5xl px-5 pt-8">
