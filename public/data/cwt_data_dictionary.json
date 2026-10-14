@@ -1,0 +1,54 @@
+{
+  "project": "NHS England Cancer Waiting Times Advanced Research Lakehouse",
+  "version": "2.0 (Post-October 2023 Three-Standard Reform)",
+  "coverage": "April 2021 - August 2026 (Monthly Panel), FY 2024-2026 (Provider Microdata)",
+  "workspaces": [
+    "76399c8f-81db-4db2-b277-652dcea8527e"
+  ],
+  "datasets": {
+    "nhs_cwt_national_timeseries.parquet": {
+      "description": "Monthly national time-series of the 3 CWT standards and suspected referral volumes.",
+      "fields": {
+        "period": "First day of the reporting month (DATE)",
+        "period_str": "Formatted year-month identifier (VARCHAR)",
+        "fds_compliance_pct": "Percentage of patients receiving diagnostic outcome within 28 days (DOUBLE, target: 80%)",
+        "wait62_compliance_pct": "Percentage of cancer patients commencing treatment within 62 days (DOUBLE, target: 85%)",
+        "wait31_compliance_pct": "Percentage of cancer patients commencing treatment within 31 days of DTT (DOUBLE, target: 96%)",
+        "decoupling_gap_pp": "Arithmetic difference: fds_compliance_pct - wait62_compliance_pct (DOUBLE)",
+        "total_urgent_referrals_seen": "Monthly volume of urgent suspected cancer referrals seen at first outpatient appointment (BIGINT)"
+      }
+    },
+    "nhs_cwt_trust_decoupling_mart.parquet": {
+      "description": "Institutional mart evaluating 137 NHS acute hospital trusts.",
+      "fields": {
+        "ORG_CODE": "NHS Provider Trust ODS code (VARCHAR)",
+        "TRUST_NAME": "Official legal name of NHS Trust (VARCHAR)",
+        "REGION": "NHS England administrative region (VARCHAR)",
+        "fds_compliance_pct": "Trust-level 28-day FDS compliance percentage (DOUBLE)",
+        "wait62_compliance_pct": "Trust-level 62-day referral-to-treatment compliance percentage (DOUBLE)",
+        "decoupling_gap_pp": "Trust-level decoupling gap (DOUBLE)",
+        "malignancy_triage_deficit_pp": "Rule-out compliance minus diagnosed compliance (DOUBLE)",
+        "operational_quadrant": "Classification: Resilient, Bottleneck Decoupled, Diagnostic Lag, Systemic Distress (VARCHAR)"
+      }
+    },
+    "nhs_cwt_modality_bottlenecks.parquet": {
+      "description": "Treatment modality throughput and breach volumes (Surgery, Anti-cancer drugs, Radiotherapy).",
+      "fields": {
+        "TREATMENT_MODALITY": "Clinical intervention class: Surgery, Anti-cancer drug regimen, Radiotherapy, Other (VARCHAR)",
+        "STANDARD": "CWT Standard evaluated (VARCHAR)",
+        "compliance_pct": "Operational compliance percentage within standard (DOUBLE)",
+        "breaches": "Cumulative patient breach count (DOUBLE)"
+      }
+    },
+    "nhs_cwt_queue_survival_distribution.parquet": {
+      "description": "Wait duration queueing distribution and survival probability S(t) across tumours.",
+      "fields": {
+        "Cancer_Type": "Clinical tumour pathway (VARCHAR)",
+        "pct_waiting_past_62d": "Empirical probability P(T > 62 days) (DOUBLE)",
+        "pct_waiting_past_76d": "Empirical probability P(T > 76 days) (DOUBLE)",
+        "pct_waiting_past_90d": "Empirical probability P(T > 90 days) (DOUBLE)",
+        "pct_waiting_past_104d": "Empirical probability P(T > 104 days) - Extreme backlog rate (DOUBLE)"
+      }
+    }
+  }
+}

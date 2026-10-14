@@ -38,13 +38,15 @@ export const Route = createFileRoute("/")({
 });
 
 const tickerMetrics = [
+  "17.1M+ Cancer Referrals Evaluated",
   "646.2T+ Tokens Synthesized",
   "33,000 Blind Battles Deconstructed",
   "458,465 ADS-B Vectors Tracked",
+  "185 Acute NHS Trusts Mapped",
   "1,091 Model Endpoints Tested",
-  "11 Empirical Hypotheses Proven",
+  "15 Empirical Hypotheses Proven",
   "100% Autonomous Lakehouse Telemetry",
-  "3 Camera-Ready Preprints",
+  "4 Camera-Ready Preprints",
 ];
 
 function HomePage() {

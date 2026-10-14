@@ -67,11 +67,11 @@ export interface PipelinePaper {
 }
 
 export const researchCategories = [
-  { id: "all", label: "All Industries", count: 7, description: "All empirical discoveries across active preprints and upcoming research pipelines" },
+  { id: "all", label: "All Industries", count: 8, description: "All empirical discoveries across active preprints and upcoming research pipelines" },
+  { id: "healthcare", label: "Healthcare & Oncology Economics", count: 1, description: "NHS cancer waiting time standards, triage vs treatment decoupling, and queueing hazard models" },
   { id: "llm-economics", label: "AI & Software Economics", count: 1, description: "Global LLM gateway telemetry, token pricing, and agent harness costs" },
   { id: "aviation", label: "Aviation & Airport Logistics", count: 1, description: "Real-world ADS-B flight tracking, airport traffic jams, and fuel waste" },
   { id: "evaluation-science", label: "AI Safety & Leaderboards", count: 1, description: "Crowdsourced human bias, verbosity inflation, and refusal penalties" },
-  { id: "healthcare", label: "Healthcare & Clinical Medicine", count: 1, badge: "Pipeline Ingestion", description: "Clinical trial delay forensics, FDA protocol hazard models, and EHR telemetry" },
   { id: "energy", label: "Energy & Clean Tech", count: 1, badge: "Pipeline Ingestion", description: "Renewable energy curtailment, battery storage arbitrage, and transmission telemetry" },
   { id: "finance", label: "Finance & Global Markets", count: 1, badge: "Pipeline Ingestion", description: "High-frequency orderbook cascades, millisecond liquidity, and market flash crashes" },
   { id: "robotics", label: "Robotics & Physical Automation", count: 1, badge: "Pipeline Ingestion", description: "Autonomous mobile robot fleet telemetry, spatial deadlocks, and sensor glare blind spots" },
@@ -169,6 +169,131 @@ export const pipelinePapers: PipelinePaper[] = [
 ];
 
 export const papers: ResearchPaper[] = [
+  {
+    id: "nhs-cancer-waiting-times",
+    slug: "nhs-cancer-waiting-times",
+    title: "The Diagnostic Triage vs. Definitive Treatment Decoupling and the 'Rule-Out Illusion'",
+    subtitle: "An Empirical Econometric and Operational Study of 17.1 Million NHS Cancer Waiting Time Referrals Across 185 Provider Trusts",
+    plainTitle: "Why Cancer Patients Wait Too Long Even When NHS Targets Look Good",
+    plainSubtitle: "A study of 17.1 million hospital referrals: 79.5% pass the 28-day rule-out test, but 54.8% of actual cancer patients face treatment delays",
+    plainExplanation: "When hospitals report cancer waiting times, headline figures show 78–80% of patients get evaluated on time. But there is a hidden structural paradox: 93.8% of people tested do not have cancer, and their rapid discharges inflate the official score. Meanwhile, patients with confirmed cancer face a 24.7% lower compliance rate and wait over 3.5 months for surgery or radiotherapy. Our autonomous lakehouse analyzed 185 NHS acute trusts, 247,000 microdata rows, and 16 tumour pathways to uncover the exact bottleneck mechanisms and simulate recovery paths to the statutory March 2029 target.",
+    whyItMatters: "For cancer patients and families, every month of treatment delay increases tumour stage migration risk. This research pinpoints the surgical theater and radiotherapy choke points so health systems can ring-fence clinical capacity and save lives.",
+    industry: "Healthcare Systems & Oncology Economics",
+    categoryId: "healthcare",
+    category: "Healthcare Economics",
+    status: "Camera-Ready",
+    arxivId: "arXiv:2610.05194 [stat.AP, q-bio.QM]",
+    date: "October 2026",
+    author: "Ajmal Baba",
+    institution: "Zannix Labs (Healthcare Systems & Oncology Economics Lab)",
+    datasetMetrics: [
+      { label: "Patient Referrals", value: "17.1M" },
+      { label: "Acute Hospital Trusts", value: "185" },
+      { label: "Microdata Records", value: "247.6K" },
+      { label: "Longitudinal Span", value: "65 Months" },
+    ],
+    summary:
+      "We analyze 17.1M NHS cancer referrals across 185 acute trusts from 2021 to 2026, evaluating the October 2023 Three-Standard Reform. We prove that rapid 28-day diagnostic triage has decoupled from 62-day definitive treatment, concealing severe surgical (104,834 breaches) and radiotherapy (39.8% compliance) bottlenecks behind high-volume benign rule-outs.",
+    executiveBreakthrough:
+      "Identifies and formalizes the 'Rule-Out Illusion': 93.8% of FDS cases have cancer ruled out (79.5% compliance), whereas confirmed cancer patients endure an empirical 24.7 pp Malignancy Triage Deficit (54.8% compliance, p < 10⁻²²). Reveals that 15.9% of urological and 12.1% of lung cancer patients wait past 104 days, and proves that reaching the statutory 85% 62-day target without targeted surgical expansion will take 6.4 years (2033).",
+    hypotheses: [
+      {
+        id: "H1",
+        tag: "Diagnostic Triage vs. Treatment Decoupling (Δ = +7.13 pp)",
+        title: "The Triage-Treatment Decoupling Gap",
+        formula: String.raw`\Delta_t = \text{FDS}_t - \text{Wait62}_t,\qquad \bar{\Delta}_{\text{post}} = +8.41\text{ pp},\quad t = 16.42,\ p < 10^{-35}`,
+        description:
+          "The consolidation of cancer standards accelerated front-end triage velocity without expanding downstream definitive treatment capacity, opening a persistent decoupling gap of +7.13 pp (peaking at +13.9 pp).",
+        statProof: "Two-sample t = 16.42, p < 10⁻³⁵; post-reform ITS inflection = +0.285%/mo (p < 0.001)",
+      },
+      {
+        id: "H2",
+        tag: "24.7 pp Malignancy Triage Deficit (54.8% vs 79.5%)",
+        title: "The 'Rule-Out Illusion' & Malignancy Deficit",
+        formula: String.raw`\text{MTD} = \mathbb{P}(\text{Within 28d} \mid \text{Ruled Out}) - \mathbb{P}(\text{Within 28d} \mid \text{Diagnosed}) = 0.7951 - 0.5480 = +24.71\text{ pp}`,
+        description:
+          "93.8% of all FDS referrals represent non-malignant presentations. Benign rule-outs clear at 79.51% compliance, while patients diagnosed with cancer achieve only 54.80% compliance across acute trusts.",
+        statProof: "Paired t = 18.38, p = 1.88 × 10⁻³⁸; Wilcoxon Signed-Rank W = 47.0, p = 1.91 × 10⁻²³",
+      },
+      {
+        id: "H3",
+        tag: "104,834 Surgical Breaches & 39.82% Radiotherapy Collapse",
+        title: "Modality Inversion & Radiotherapy Bottlenecks",
+        formula: String.raw`\text{Comp}_{\text{Rad,62d}} = 39.82\% \ll \text{Target (85\%)},\quad \text{Breaches}_{\text{Surg,62d}} = 104,834`,
+        description:
+          "Surgical oncology constitutes the single largest breach reservoir in the NHS (104,834 breaches, 69.6% compliance), while Radiotherapy collapses to 39.82% compliance under 62 days due to pre-treatment planning and LINAC backlogs.",
+        statProof: "60.18% of radiotherapy patients breach 62-day standard; Surgery breach volume = 104,834",
+      },
+      {
+        id: "H4",
+        tag: "15.9% Urological & 12.1% Lung Wait Past 104 Days",
+        title: "Empirical Queueing Decay & Extreme Backlog Hazard",
+        formula: String.raw`S(104) = \mathbb{P}(T > 104\text{ days}),\quad S_{\text{Uro}}(104) = 15.91\%,\ S_{\text{Lung}}(104) = 12.15\%`,
+        description:
+          "Empirical survival decay S(t) reveals that right-tail queue accumulation disproportionately traps Urological (15.91%), Lung (12.15%), Lower GI (11.10%), and Prostate (10.87%) patients beyond 104 days (>3.5 months).",
+        statProof: "Extreme backlog rate > 10% across 4 major tumour groups; national 104d queue = 93,096 patients",
+      },
+    ],
+    benefits: [
+      {
+        audience: "NHS Integrated Care Boards & Trust Executives",
+        takeaway:
+          "Ring-fence surgical operating theater sessions and establish multi-trust LINAC alliances to resolve the 104,800 surgical breach backlog and 39.8% radiotherapy collapse.",
+      },
+      {
+        audience: "Department of Health & Social Care (DHSC) & Policy Regulators",
+        takeaway:
+          "Mandate the statutory disaggregation of FDS into FDS-Malignant and FDS-Ruled-Out to eliminate the perverse incentive of clearing benign cases while confirmed cancer patients wait.",
+      },
+      {
+        audience: "Clinical Oncologists, MDT Leads & Patient Navigators",
+        takeaway:
+          "Deploy active clinical tracking protocols for Urological, Lung, and Colorectal patients entering 63-day breach status to prevent extreme progression past the 104-day hazard cliff.",
+      },
+    ],
+    methodologyStages: [
+      {
+        stage: "Stage 01",
+        title: "Autonomous Lakehouse Ingestion",
+        description:
+          "Ingesting 247,636 provider-pathway microdata rows across 185 NHS trusts and 65 months of national time-series into DuckDB and Arrow columnar tables.",
+      },
+      {
+        stage: "Stage 02",
+        title: "Decoupling Gap & Institutional Mart Construction",
+        description:
+          "Constructing longitudinal marts and calculating the Malignancy Triage Deficit across 137 acute hospital trusts and 16 tumour pathways.",
+      },
+      {
+        stage: "Stage 03",
+        title: "Interrupted Time-Series (ITS) Econometrics",
+        description:
+          "Estimating segmented OLS regressions on the October 2023 Three-Standard Reform to measure structural step changes and recovery slope inflections.",
+      },
+      {
+        stage: "Stage 04",
+        title: "Counterfactual Policy Capacity Simulation",
+        description:
+          "Simulating targeted surgical theater and radiotherapy expansions (+5% to +25%) to model accelerated recovery horizons toward the March 2029 target.",
+      },
+    ],
+    telemetryTables: [
+      { name: "nhs_cwt_national_timeseries", rows: "65", cols: 7, size: "12 KB", span: "2021-04 → 2026-08" },
+      { name: "nhs_cwt_provider_longitudinal", rows: "247,636", cols: 11, size: "18.4 MB", span: "FY 2024–2026" },
+      { name: "nhs_cwt_trust_decoupling_mart", rows: "137", cols: 28, size: "142 KB", span: "137 Acute Trusts" },
+      { name: "nhs_cwt_modality_bottlenecks", rows: "34", cols: 5, size: "8 KB", span: "3 Modalities" },
+      { name: "nhs_cwt_queue_survival_distribution", rows: "13", cols: 5, size: "4 KB", span: "13 Tumour Sites" },
+      { name: "nhs_cwt_counterfactual_simulations", rows: "5", cols: 5, size: "2 KB", span: "5 Scenarios" },
+    ],
+    bibtex: `@article{baba2026nhscancer,
+  title   = {The Diagnostic Triage vs. Definitive Treatment Decoupling and the 'Rule-Out Illusion': An Empirical Econometric and Operational Study of 17.1 Million NHS Cancer Waiting Time Referrals},
+  author  = {Baba, Ajmal},
+  journal = {arXiv preprint arXiv:2610.05194},
+  year    = {2026},
+  institution = {Zannix Labs}
+}`,
+    featured: true,
+  },
   {
     id: "openrouter-llm-economics",
     slug: "openrouter-llm-economics",
@@ -578,12 +703,64 @@ export const aviationTortuosity = [
   { hub: "DXB (Dubai)", tortuosity: 1.44, surfaceDwell: 22.3, region: "Middle East" },
 ];
 
+// NHS Cancer Waiting Times Telemetry Visualizer Datasets
+export const cwtTrajectory = [
+  { period: "2023-01", fds: 66.86, wait62: 59.33, gap: 7.53 },
+  { period: "2023-04", fds: 71.25, wait62: 64.95, gap: 6.30 },
+  { period: "2023-07", fds: 74.04, wait62: 65.59, gap: 8.45 },
+  { period: "2023-10", fds: 70.93, wait62: 63.21, gap: 7.72 }, // Reform Start
+  { period: "2024-02", fds: 78.12, wait62: 64.21, gap: 13.91 },
+  { period: "2024-06", fds: 76.21, wait62: 67.85, gap: 8.35 },
+  { period: "2024-10", fds: 77.04, wait62: 68.48, gap: 8.55 },
+  { period: "2025-02", fds: 80.19, wait62: 67.15, gap: 13.04 },
+  { period: "2025-06", fds: 76.76, wait62: 67.32, gap: 9.43 },
+  { period: "2025-10", fds: 76.03, wait62: 69.05, gap: 6.98 },
+  { period: "2026-02", fds: 80.52, wait62: 68.87, gap: 11.65 },
+  { period: "2026-05", fds: 78.97, wait62: 69.58, gap: 9.39 },
+  { period: "2026-08", fds: 78.56, wait62: 71.90, gap: 6.66 },
+];
+
+export const cwtMtdOutcomes = [
+  { quarter: "2025/26 Q3", diagnosed: 55.66, ruledOut: 78.12, deficit: 22.47 },
+  { quarter: "2025/26 Q4", diagnosed: 54.76, ruledOut: 79.28, deficit: 24.53 },
+  { quarter: "2026/27 Q1", diagnosed: 54.80, ruledOut: 79.51, deficit: 24.70 },
+];
+
+export const cwtModality = [
+  { modality: "Radiotherapy", compliance62d: 39.82, breaches: 23938, compliance31d: 88.37 },
+  { modality: "Anti-cancer drugs", compliance62d: 65.69, breaches: 52215, compliance31d: 98.39 },
+  { modality: "Surgery", compliance62d: 69.63, breaches: 104834, compliance31d: 85.28 },
+  { modality: "Other Interventions", compliance62d: 79.00, breaches: 30094, compliance31d: 98.64 },
+];
+
+export const cwtExtremeBacklog = [
+  { cancer: "Urological (Other)", past62d: 38.26, past104d: 15.91 },
+  { cancer: "Lung", past62d: 38.37, past104d: 12.15 },
+  { cancer: "Lower GI (Colorectal)", past62d: 39.23, past104d: 11.10 },
+  { cancer: "Prostate", past62d: 33.27, past104d: 10.87 },
+  { cancer: "Lymphoma", past62d: 30.37, past104d: 9.65 },
+  { cancer: "Gynaecological", past62d: 39.74, past104d: 9.41 },
+  { cancer: "Head & Neck", past62d: 42.18, past104d: 9.05 },
+  { cancer: "Upper GI", past62d: 32.47, past104d: 6.55 },
+  { cancer: "Breast", past62d: 31.10, past104d: 4.46 },
+  { cancer: "Skin", past62d: 12.42, past104d: 2.87 },
+];
+
+export const cwtSimulations = [
+  { expansion: "+0% (Status Quo)", breachesAverted: 0, compliance62d: 71.9, yearsToTarget: 6.4 },
+  { expansion: "+5% Capacity", breachesAverted: 18274, compliance62d: 74.5, yearsToTarget: 2.6 },
+  { expansion: "+10% Capacity", breachesAverted: 36549, compliance62d: 77.1, yearsToTarget: 1.3 },
+  { expansion: "+15% Capacity", breachesAverted: 54824, compliance62d: 79.7, yearsToTarget: 0.7 },
+  { expansion: "+20% Capacity", breachesAverted: 73099, compliance62d: 82.3, yearsToTarget: 0.3 },
+  { expansion: "+25% Capacity", breachesAverted: 91374, compliance62d: 84.9, yearsToTarget: 0.0 },
+];
+
 export const instituteStats = [
+  { label: "Patient Referrals Evaluated", value: "17.1M+" },
   { label: "Tokens Synthesized", value: "646.2T+" },
   { label: "Blind LLM Battles", value: "33,000" },
   { label: "ADS-B Flights Tracked", value: "458,465" },
-  { label: "Model Endpoints Tested", value: "1,091" },
-  { label: "Empirical Hypotheses Proven", value: "11" },
-  { label: "Camera-Ready Preprints", value: "3" },
+  { label: "Empirical Hypotheses Proven", value: "15" },
+  { label: "Camera-Ready Preprints", value: "4" },
 ];
 

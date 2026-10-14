@@ -76,14 +76,27 @@ function ObservatoryPage() {
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Link
+              to="/research/$paperId"
+              params={{ paperId: "nhs-cancer-waiting-times" }}
+              className="glass rounded-xl p-5 hover:border-primary/50 transition-all flex flex-col justify-between border-primary/30 bg-primary/5"
+            >
+              <div className="space-y-2">
+                <span className="font-mono text-[10px] text-primary uppercase">01 • Healthcare &amp; Oncology</span>
+                <h4 className="font-display text-sm font-semibold text-foreground">Triage vs. Treatment Decoupling &amp; Rule-Out Illusion</h4>
+                <p className="text-xs text-muted-foreground line-clamp-2">17.1M patient referrals, 185 acute trusts, 104k surgical breaches, and 24.7 pp triage deficit.</p>
+              </div>
+              <span className="mt-4 flex items-center gap-1 font-mono text-xs text-primary">Read Paper <ArrowRight className="size-3" /></span>
+            </Link>
+
             <Link
               to="/research/$paperId"
               params={{ paperId: "openrouter-llm-economics" }}
               className="glass rounded-xl p-5 hover:border-primary/50 transition-all flex flex-col justify-between"
             >
               <div className="space-y-2">
-                <span className="font-mono text-[10px] text-primary uppercase">01 • AI Economics</span>
+                <span className="font-mono text-[10px] text-primary uppercase">02 • AI Economics</span>
                 <h4 className="font-display text-sm font-semibold text-foreground">Volume–Revenue Bifurcation &amp; Agent Costs</h4>
                 <p className="text-xs text-muted-foreground line-clamp-2">646.2T tokens, 1,091 model endpoints, and 31.9x multi-turn escalation.</p>
               </div>
@@ -96,7 +109,7 @@ function ObservatoryPage() {
               className="glass rounded-xl p-5 hover:border-primary/50 transition-all flex flex-col justify-between"
             >
               <div className="space-y-2">
-                <span className="font-mono text-[10px] text-primary uppercase">02 • Evaluation Science</span>
+                <span className="font-mono text-[10px] text-primary uppercase">03 • Evaluation Science</span>
                 <h4 className="font-display text-sm font-semibold text-foreground">Beyond Elo: LMSYS Arena Confounders</h4>
                 <p className="text-xs text-muted-foreground line-clamp-2">Refusal tax, markdown inflation (+11.73 pp), and evaluator calibration.</p>
               </div>
@@ -109,7 +122,7 @@ function ObservatoryPage() {
               className="glass rounded-xl p-5 hover:border-primary/50 transition-all flex flex-col justify-between"
             >
               <div className="space-y-2">
-                <span className="font-mono text-[10px] text-primary uppercase">03 • Aerospace Telemetry</span>
+                <span className="font-mono text-[10px] text-primary uppercase">04 • Aerospace Telemetry</span>
                 <h4 className="font-display text-sm font-semibold text-foreground">Airborne Vectoring vs Surface Gridlock</h4>
                 <p className="text-xs text-muted-foreground line-clamp-2">458K ADS-B vectors across 104 hubs analyzing terminal airspace tortuosity.</p>
               </div>

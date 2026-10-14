@@ -11,6 +11,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://zannixlabs.com/research/nhs-cancer-waiting-times</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://zannixlabs.com/research/openrouter-llm-economics</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
