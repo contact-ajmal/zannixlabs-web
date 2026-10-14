@@ -1,4 +1,28 @@
+User-agent: Google-Extended
+Allow: /
+
 User-agent: Googlebot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
 Allow: /
 
 User-agent: Bingbot
@@ -12,3 +36,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://zannixlabs.com/sitemap.xml
