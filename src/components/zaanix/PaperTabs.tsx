@@ -52,7 +52,7 @@ export function PaperTabs({ onCopy }: { onCopy: () => void }) {
               <AccordionTrigger><span><span className="mr-2 font-mono text-primary">{h.id}</span>{h.title}</span></AccordionTrigger>
               <AccordionContent className="space-y-3 text-muted-foreground">
                 <p>{h.body}</p>
-                <Tex src={equations[h.id]} />
+                <Tex src={equations[h.id] ?? ""} />
               </AccordionContent>
             </AccordionItem>
           ))}
