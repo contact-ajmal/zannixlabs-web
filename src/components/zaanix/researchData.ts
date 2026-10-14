@@ -25,7 +25,7 @@ export interface ResearchPaper {
   slug: string;
   title: string;
   subtitle: string;
-  category: "LLM Economics" | "Evaluation Science" | "Aerospace Telemetry" | "Sports Biomechanics" | "Computational Biology";
+  category: "LLM Economics" | "Evaluation Science" | "Aerospace Telemetry" | "Computational Biology";
   status: "Preprint Released" | "Camera-Ready" | "Peer Review";
   arxivId: string;
   date: string;
@@ -43,12 +43,11 @@ export interface ResearchPaper {
 }
 
 export const researchCategories = [
-  { id: "all", label: "All Research", count: 4 },
+  { id: "all", label: "All Research", count: 3 },
   { id: "llm-economics", label: "LLM Economics & Gateways", count: 1 },
   { id: "evaluation-science", label: "LLM Evaluation Science", count: 1 },
   { id: "aerospace", label: "Aerospace & Airspace Telemetry", count: 1 },
-  { id: "sports-biomechanics", label: "Sports Biomechanics", count: 1 },
-  { id: "comp-biology", label: "Computational Biology", count: 0, badge: "Upcoming" },
+  { id: "comp-biology", label: "Computational Biology & Healthcare", count: 0, badge: "Upcoming" },
 ] as const;
 
 export const papers: ResearchPaper[] = [
@@ -395,123 +394,6 @@ export const papers: ResearchPaper[] = [
 }`,
     featured: true,
   },
-  {
-    id: "t20-cricket-biomechanics",
-    slug: "t20-cricket-biomechanics",
-    title: "Biomechanical Scoring Ceilings, Spin Platoon Asymmetry, and Visuomotor Adaptation Hazards in Twenty20 Cricket",
-    subtitle: "An Empirical Longitudinal Study of 278,205 Deliveries Across 18 IPL Seasons",
-    category: "Sports Biomechanics",
-    status: "Camera-Ready",
-    arxivId: "arXiv:2610.02109 [stat.AP, q-bio.NC]",
-    date: "October 2026",
-    author: "Zannix Sports Biomechanics Lab",
-    institution: "Zannix Labs (Sports Biomechanics & Quantitative Analytics)",
-    datasetMetrics: [
-      { label: "Deliveries Ingested", value: "278,205" },
-      { label: "Matches Analyzed", value: "1,169" },
-      { label: "Players Profiled", value: "768" },
-      { label: "IPL Seasons", value: "18 Seasons" },
-    ],
-    summary:
-      "Moving beyond smooth Duckworth–Lewis–Stern resource models, we construct a 70-column longitudinal ball-by-ball lakehouse across 18 IPL seasons, proving four empirical laws on scoring ceilings, spin platoon advantages, and visuomotor adaptation shocks.",
-    executiveBreakthrough:
-      "Identifies a strict Biomechanical Scoring Ceiling at 8.98 Required Run Rate (RRR), above which extra risk-taking surges dismissal hazard by 2.33x without accelerating run output. Proves that spin turning into the batter's arc provides a +9.26 Strike Rate advantage and set batters suffer an immediate -5.48 SR sighting reset upon bowler change.",
-    hypotheses: [
-      {
-        id: "H1",
-        tag: "Dismissal Hazard Surges from 4.16% to 9.71% Above 8.98 RPO",
-        title: "The 8.98 RPO Biomechanical Scoring Ceiling",
-        formula: String.raw`\text{RRR}_t = \frac{6 \cdot \max(T - R_t, \, 0)}{120 - B_t},\qquad t = +19.13, p < 10^{-80}`,
-        description:
-          "Above 8.98 RRR, aggressive risk-taking converts almost purely into dismissals (hazard surges from 4.16% to 9.71% per ball) rather than increased runs, proving a biomechanical execution ceiling under time pressure.",
-        statProof: "Welch t = +19.13, p < 10⁻⁸⁰, hazard ratio = 2.33x",
-      },
-      {
-        id: "H2",
-        tag: "+9.26 Strike Rate When Spin Turns into Hitting Arc",
-        title: "Spin Platoon Asymmetry",
-        formula: String.raw`\Phi = h_{\text{bat}} \cdot \omega_{\text{spin}},\quad \Delta \text{SR} = \mathbb{E}[\text{SR} \mid \Phi = +1] - \mathbb{E}[\text{SR} \mid \Phi = -1] = +9.26\text{ SR}`,
-        description:
-          "Batters score +9.26 Strike Rate when spin turns into their hitting arc versus away from the outside edge, peaking at +20.00 SR for Left-Arm Orthodox bowlers against Right-Handed Batters.",
-        statProof: "Welch t = +8.78, p = 1.68 × 10⁻¹⁸, ΔSR = +9.26 SR",
-      },
-      {
-        id: "H3",
-        tag: "+11.7% Bowler Line Errors Under LHB-RHB Alternation",
-        title: "Left-Right Strike-Rotation Disruption Effect",
-        formula: String.raw`\Delta \text{Wide} = +11.7\% (p = 0.00298),\qquad \Delta \text{Hazard} = -9.2\% (p = 0.00073)`,
-        description:
-          "Continuous strike rotation between left-handed and right-handed batters destabilizes bowler release calibration, increasing wide-ball line errors by +11.7% while suppressing wicket hazard.",
-        statProof: "Line error t = +2.97, p = 0.00298; dismissal hazard t = -3.38, p = 0.00073",
-      },
-      {
-        id: "H4",
-        tag: "-5.48 SR Sighting Suppression Shock on Bowler Change",
-        title: "Visuomotor Adaptation & Sighting Reset",
-        formula: String.raw`\Delta \text{SR}_{\text{sighting}} = \mathbb{E}[\text{SR} \mid b \ge 8, S=1] - \mathbb{E}[\text{SR} \mid b \ge 8, S=0] = -5.48\text{ SR}`,
-        description:
-          "Even well-set batters (b ≥ 8 balls) suffer a statistically significant -5.48 SR sighting reset on the very first delivery faced from a newly introduced bowler as their ocular tracking system recalibrates.",
-        statProof: "Welch t = -6.03, p = 1.64 × 10⁻⁹, ΔSR = -5.48 SR",
-      },
-    ],
-    benefits: [
-      {
-        audience: "Cricket Franchises & Head Coaches",
-        takeaway:
-          "Anchor run chases below the 8.98 RRR threshold early; once the required rate crosses 9.0, boundary hunting yields rapidly diminishing returns relative to catastrophic wicket loss.",
-      },
-      {
-        audience: "Bowling Tacticians & Captains",
-        takeaway:
-          "Deploy one-over bowling rotation bursts against set batters to systematically trigger the -5.48 SR sighting reset and induce false shots.",
-      },
-      {
-        audience: "Quantitative Sports Modeling & Betting Markets",
-        takeaway:
-          "Replace smooth DLS exponential tables with non-linear regime-switching hazard models that capture discrete physical scoring ceilings.",
-      },
-    ],
-    methodologyStages: [
-      {
-        stage: "Stage 01",
-        title: "18-Season Ball-by-Ball Lakehouse Ingestion",
-        description:
-          "Harmonizing 278,205 deliveries across 1,169 matches from Cricsheet and ESPNcricinfo into a unified 70-column DuckDB schema.",
-      },
-      {
-        stage: "Stage 02",
-        title: "100% Biomechanical Player Entity Resolution",
-        description:
-          "Mapping 768 unique batters and bowlers against global handedness, bowling style, and release arm biomechanical registries.",
-      },
-      {
-        stage: "Stage 03",
-        title: "Non-Linear Scoring Ceiling Derivation",
-        description:
-          "Evaluating empirical scoring hazards across RRR bins from 4.0 to 18.0 using piecewise survival hazard regression.",
-      },
-      {
-        stage: "Stage 04",
-        title: "Visuomotor Sighting Shock Verification",
-        description:
-          "Isolating delivery-level batter history (b_t) and bowler-transition indicators (S_t) across 36 geocoded venues with dew metadata.",
-      },
-    ],
-    telemetryTables: [
-      { name: "ipl_deliveries_longitudinal", rows: "278,205", cols: 70, size: "112 MB", span: "2008 → 2025" },
-      { name: "player_biomechanics_registry", rows: "768", cols: 15, size: "1.1 MB", span: "Handedness & Bowling" },
-      { name: "rrr_scoring_hazard_binned", rows: "28", cols: 8, size: "48 KB", span: "Regime Curves" },
-      { name: "sighting_reset_transitions", rows: "42,190", cols: 12, size: "18 MB", span: "Bowler Shifts" },
-    ],
-    bibtex: `@article{baba2026cricket,
-  title   = {Biomechanical Scoring Ceilings, Spin Platoon Asymmetry, and Visuomotor Adaptation Hazards in Twenty20 Cricket: An Empirical Study of 278,205 Deliveries},
-  author  = {Zannix Sports Biomechanics Lab},
-  journal = {arXiv preprint arXiv:2610.02109},
-  year    = {2026},
-  institution = {Zannix Labs}
-}`,
-    featured: true,
-  },
 ];
 
 // Telemetry visualizer datasets for the Observatory & Paper Explorers
@@ -560,20 +442,12 @@ export const aviationTortuosity = [
   { hub: "DXB (Dubai)", tortuosity: 1.44, surfaceDwell: 22.3, region: "Middle East" },
 ];
 
-export const cricketScoringHazard = [
-  { rrr: "4.0-5.9", hazardPct: 3.8, runRateAchieved: 5.4 },
-  { rrr: "6.0-7.4", hazardPct: 4.1, runRateAchieved: 6.9 },
-  { rrr: "7.5-8.9", hazardPct: 4.3, runRateAchieved: 8.2 },
-  { rrr: "9.0-10.4", hazardPct: 7.8, runRateAchieved: 8.7 },
-  { rrr: "10.5-11.9", hazardPct: 8.9, runRateAchieved: 9.1 },
-  { rrr: "12.0+", hazardPct: 10.4, runRateAchieved: 9.3 },
-];
-
 export const instituteStats = [
   { label: "Tokens Synthesized", value: "646.2T+" },
   { label: "Blind LLM Battles", value: "33,000" },
   { label: "ADS-B Flights Tracked", value: "458,465" },
-  { label: "Sport Deliveries Analyzed", value: "278,205" },
-  { label: "Empirical Hypotheses Proven", value: "15" },
-  { label: "Camera-Ready Preprints", value: "4" },
+  { label: "Model Endpoints Tested", value: "1,091" },
+  { label: "Empirical Hypotheses Proven", value: "11" },
+  { label: "Camera-Ready Preprints", value: "3" },
 ];
+

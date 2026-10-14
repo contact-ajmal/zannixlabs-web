@@ -16,7 +16,7 @@ export const Route = createFileRoute("/research/")({
       {
         name: "description",
         content:
-          "Browse camera-ready empirical research preprints from ZannixLabs spanning LLM Economics, Leaderboard Evaluation Confounders, Aviation ADS-B Telemetry, and Sports Biomechanics.",
+          "Browse camera-ready empirical research preprints from ZannixLabs spanning LLM Economics, Leaderboard Evaluation Confounders, and Aviation ADS-B Telemetry.",
       },
     ],
   }),
@@ -34,8 +34,7 @@ function ResearchCatalogPage() {
         selectedCategory === "all" ||
         (selectedCategory === "llm-economics" && paper.category === "LLM Economics") ||
         (selectedCategory === "evaluation-science" && paper.category === "Evaluation Science") ||
-        (selectedCategory === "aerospace" && paper.category === "Aerospace Telemetry") ||
-        (selectedCategory === "sports-biomechanics" && paper.category === "Sports Biomechanics");
+        (selectedCategory === "aerospace" && paper.category === "Aerospace Telemetry");
 
       if (!categoryMatch) return false;
 

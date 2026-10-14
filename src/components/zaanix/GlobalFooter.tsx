@@ -13,7 +13,6 @@ const researchLinks = [
   { label: "LLM Gateway Economics", to: "/research/openrouter-llm-economics" },
   { label: "LMSYS Leaderboard Confounders", to: "/research/lmsys-chatbot-arena-confounders" },
   { label: "OpenSky Terminal Airspace Telemetry", to: "/research/opensky-terminal-airspace" },
-  { label: "T20 Cricket Sports Biomechanics", to: "/research/t20-cricket-biomechanics" },
 ];
 
 const instituteLinks = [

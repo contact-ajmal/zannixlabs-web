@@ -14,7 +14,7 @@ export const Route = createFileRoute("/observatory")({
       {
         name: "description",
         content:
-          "Interact with real-world telemetry datasets across AI Gateway Economics, LMSYS Chatbot Arena Biases, OpenSky Aviation Airspace, and IPL Cricket Biomechanics.",
+          "Interact with real-world telemetry datasets across AI Gateway Economics, LMSYS Chatbot Arena Biases, and OpenSky Aviation Airspace.",
       },
     ],
   }),
@@ -43,7 +43,7 @@ function ObservatoryPage() {
           </h1>
 
           <p className="max-w-3xl text-base md:text-lg text-muted-foreground leading-relaxed">
-            Science should be tactile and verifiable. Explore live interactive previews of the empirical datasets underpinning our research preprints. Manipulate parameters, inspect distributions, and evaluate non-linear regimes across four major research domains.
+            Science should be tactile and verifiable. Explore live interactive previews of the empirical datasets underpinning our research preprints. Manipulate parameters, inspect distributions, and evaluate non-linear regimes across three major research domains.
           </p>
 
           {/* Quick Metrics Bar */}
@@ -76,7 +76,7 @@ function ObservatoryPage() {
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-3">
             <Link
               to="/research/$paperId"
               params={{ paperId: "openrouter-llm-economics" }}
@@ -112,19 +112,6 @@ function ObservatoryPage() {
                 <span className="font-mono text-[10px] text-primary uppercase">03 • Aerospace Telemetry</span>
                 <h4 className="font-display text-sm font-semibold text-foreground">Airborne Vectoring vs Surface Gridlock</h4>
                 <p className="text-xs text-muted-foreground line-clamp-2">458K ADS-B vectors across 104 hubs analyzing terminal airspace tortuosity.</p>
-              </div>
-              <span className="mt-4 flex items-center gap-1 font-mono text-xs text-primary">Read Paper <ArrowRight className="size-3" /></span>
-            </Link>
-
-            <Link
-              to="/research/$paperId"
-              params={{ paperId: "t20-cricket-biomechanics" }}
-              className="glass rounded-xl p-5 hover:border-primary/50 transition-all flex flex-col justify-between"
-            >
-              <div className="space-y-2">
-                <span className="font-mono text-[10px] text-primary uppercase">04 • Sports Biomechanics</span>
-                <h4 className="font-display text-sm font-semibold text-foreground">Biomechanical Scoring Ceilings</h4>
-                <p className="text-xs text-muted-foreground line-clamp-2">278,205 deliveries proving the 8.98 RPO hazard cliff and spin platoon asymmetry.</p>
               </div>
               <span className="mt-4 flex items-center gap-1 font-mono text-xs text-primary">Read Paper <ArrowRight className="size-3" /></span>
             </Link>

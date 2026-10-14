@@ -23,7 +23,7 @@ const workflowSteps = [
     icon: Sigma,
     tech: "Mathematical Formalization",
     summary:
-      "AI research agents interrogate data distributions, identify non-linear inflection points (such as the 8.98 RPO cricket scoring ceiling or the 31.9x agent multi-turn cost escalation), and formalize them into rigorous LaTeX hypotheses.",
+      "AI research agents interrogate data distributions, identify non-linear inflection points (such as the 31.9x agent multi-turn cost cliff or terminal airspace delay coupling), and formalize them into rigorous LaTeX hypotheses.",
     details: [
       "Conversion of qualitative anomalies into testable mathematical equations",
       "Formal definition of null and alternative hypotheses (H1–H4)",

@@ -23,13 +23,10 @@ import {
   pareto,
   arenaCalibration,
   aviationTortuosity,
-  cricketScoringHazard,
 } from "./researchData";
 
 const CYAN = "#00F2FE";
 const VIOLET = "#7B2CBF";
-const SUCCESS = "#10B981";
-const AMBER = "#F59E0B";
 
 const tooltipStyle = {
   contentStyle: {
@@ -71,7 +68,7 @@ export function InteractiveObservatoryStudio() {
 
       <Tabs defaultValue="gateway" className="w-full">
         {/* Domain Tabs */}
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-secondary/60 h-auto p-1.5 gap-1">
+        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 bg-secondary/60 h-auto p-1.5 gap-1">
           <TabsTrigger value="gateway" className="text-xs md:text-sm py-2">
             01. AI Gateway Economics
           </TabsTrigger>
@@ -80,9 +77,6 @@ export function InteractiveObservatoryStudio() {
           </TabsTrigger>
           <TabsTrigger value="aviation" className="text-xs md:text-sm py-2">
             03. Terminal Airspace ADS-B
-          </TabsTrigger>
-          <TabsTrigger value="cricket" className="text-xs md:text-sm py-2">
-            04. Sports Biomechanics
           </TabsTrigger>
         </TabsList>
 
@@ -245,36 +239,6 @@ export function InteractiveObservatoryStudio() {
           </div>
           <p className="font-mono text-xs text-muted-foreground text-center">
             Figure 3: Global TMA taxonomy • Western hubs decouple airborne vectoring from taxi dwell; Asian mega-hubs compound both delays simultaneously.
-          </p>
-        </TabsContent>
-
-        {/* Tab 4: Sports Biomechanics */}
-        <TabsContent value="cricket" className="mt-6 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <p className="text-sm text-muted-foreground">
-              Empirical scoring ceiling across <strong>278,205 deliveries</strong>: Dismissal Hazard surges non-linearly above <strong>8.98 RPO</strong>.
-            </p>
-            <span className="font-mono text-xs text-destructive bg-destructive/10 px-2.5 py-1 rounded-md border border-destructive/30">
-              Hazard Surges 2.33x Above 8.98 RPO
-            </span>
-          </div>
-
-          <div className="h-[360px] w-full pt-2">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={cricketScoringHazard} barGap={8}>
-                <CartesianGrid stroke="rgba(255,255,255,.06)" vertical={false} />
-                <XAxis dataKey="rrr" {...axisStyle} label={{ value: "Required Run Rate (RRR)", position: "insideBottom", offset: -2, fill: "#888", fontSize: 11 }} />
-                <YAxis yAxisId="left" orientation="left" unit="%" {...axisStyle} domain={[0, 14]} label={{ value: "Wicket Dismissal Hazard (%)", angle: -90, position: "insideLeft", fill: "#888", fontSize: 11 }} />
-                <YAxis yAxisId="right" orientation="right" {...axisStyle} domain={[4, 12]} label={{ value: "Actual Run Rate Achieved", angle: 90, position: "insideRight", fill: "#888", fontSize: 11 }} />
-                <RTooltip {...tooltipStyle} />
-                <Legend />
-                <Bar yAxisId="left" dataKey="hazardPct" name="Dismissal Hazard per Delivery (%)" fill="#EF4444" radius={[6, 6, 0, 0]} />
-                <Bar yAxisId="right" dataKey="runRateAchieved" name="Actual Run Rate Output (RPO)" fill={SUCCESS} radius={[6, 6, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-          <p className="font-mono text-xs text-muted-foreground text-center">
-            Figure 4: Biomechanical Scoring Ceiling • Beyond 8.98 RPO, aggressive stroke-making converts purely into wickets without accelerating scoring velocity.
           </p>
         </TabsContent>
       </Tabs>

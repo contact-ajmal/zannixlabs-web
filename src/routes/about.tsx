@@ -50,8 +50,7 @@ const researchDomains = [
   { title: "LLM Infrastructure & Gateway Economics", status: "Active Preprints Released", count: "646.2T Tokens" },
   { title: "Crowdsourced LLM Evaluation & Leaderboard Confounders", status: "Active Preprints Released", count: "33,000 Battles" },
   { title: "Aviation Terminal Airspace & Trajectory Tortuosity", status: "Active Preprints Released", count: "458,465 Flights" },
-  { title: "Sports Biomechanics & Visuomotor Adaptation", status: "Active Preprints Released", count: "278,205 Deliveries" },
-  { title: "Computational Biology & Genomics Impact", status: "Pipeline Development", count: "Upcoming 2026" },
+  { title: "Computational Biology & Healthcare Intelligence", status: "Pipeline Development", count: "Upcoming 2026" },
 ];
 
 function AboutPage() {
@@ -107,7 +106,7 @@ function AboutPage() {
                 Ajmal Baba established ZannixLabs as an independent empirical research institute dedicated to proving that autonomous AI agents, guided by human strategic inquiry, can conduct rigorous scientific discovery faster, deeper, and more objectively than traditional institutional setups.
               </p>
               <p>
-                From authoring camera-ready preprints on global LLM gateway economics and crowdsourced leaderboard confounders to decoding aviation airspace tortuosity and high-performance cricket biomechanics, Ajmal directs the institute&apos;s research agendas and verifies mathematical integrity across every study.
+                From authoring camera-ready preprints on global LLM gateway economics and crowdsourced leaderboard confounders to decoding aviation terminal airspace tortuosity, Ajmal directs the institute&apos;s research agendas and verifies mathematical integrity across every study.
               </p>
             </div>
           </div>

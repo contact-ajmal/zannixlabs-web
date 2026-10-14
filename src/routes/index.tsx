@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Independent empirical science institute pioneering the AI Agentic Research Process across LLM Economics, Evaluation Science, Aerospace, and Sports Biomechanics. Founded by Ajmal Baba.",
+          "Independent empirical science institute pioneering the AI Agentic Research Process across LLM Economics, Evaluation Science, and Aerospace Telemetry. Founded by Ajmal Baba.",
       },
       { property: "og:title", content: "ZannixLabs — Autonomous Empirical Research" },
       {
@@ -41,10 +41,10 @@ const tickerMetrics = [
   "646.2T+ Tokens Synthesized",
   "33,000 Blind Battles Deconstructed",
   "458,465 ADS-B Vectors Tracked",
-  "278,205 Deliveries Analyzed",
-  "15 Empirical Hypotheses Proven",
+  "1,091 Model Endpoints Tested",
+  "11 Empirical Hypotheses Proven",
   "100% Autonomous Lakehouse Telemetry",
-  "4 Camera-Ready Preprints",
+  "3 Camera-Ready Preprints",
 ];
 
 function HomePage() {
@@ -154,7 +154,7 @@ function HomePage() {
               Peer-Ready Preprints
             </h2>
             <p className="text-base text-muted-foreground">
-              Four camera-ready studies spanning AI Economics, Leaderboard Biases, Airspace Telemetry, and Sports Biomechanics.
+              Three camera-ready studies spanning AI Gateway Economics, Leaderboard Biases, and Aerospace Airspace Telemetry.
             </p>
           </div>
           <Button variant="glow" asChild>
