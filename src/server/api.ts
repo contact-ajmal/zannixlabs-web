@@ -30,7 +30,7 @@ function jsonResponse(data: any, status = 200): Response {
 
 export async function handleApiRequest(request: Request, env: unknown): Promise<Response | null> {
   const url = new URL(request.url);
-  const cfEnv = (env || {}) as CloudflareEnv;
+  const cfEnv = ((env || (globalThis as any).__env__ || {}) as CloudflareEnv);
 
   // Handle CORS Preflight
   if (request.method === "OPTIONS") {
