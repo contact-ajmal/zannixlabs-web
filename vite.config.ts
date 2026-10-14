@@ -12,4 +12,14 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    // Pre-bundle heavy client deps at startup so Vite never re-optimizes mid-session
+    // (mid-session re-optimization loads two React copies and blanks the preview).
+    optimizeDeps: {
+      include: [
+        "three", "@react-three/fiber", "@react-three/drei", "framer-motion", "canvas-confetti",
+        "recharts", "sonner", "lucide-react", "katex",
+      ],
+    },
+  },
 });

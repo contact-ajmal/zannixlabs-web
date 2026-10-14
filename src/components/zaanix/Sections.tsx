@@ -19,6 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
+import { PaperTabs } from "./PaperTabs";
 import { volumeSpend, escalation, pareto, hypotheses, bibtex } from "./data";
 
 const HeroCanvas = lazy(() => import("./HeroCanvas"));
@@ -182,28 +183,14 @@ export function Research() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Dialog>
                 <DialogTrigger asChild><Button variant="glow"><BookOpen /> Read Paper Abstract &amp; Key Claims</Button></DialogTrigger>
-                <DialogContent className="max-h-[85vh] max-w-2xl overflow-y-auto border-border bg-popover">
+                <DialogContent className="max-h-[85vh] max-w-3xl overflow-y-auto border-border bg-popover">
                   <DialogHeader>
                     <DialogTitle className="font-display text-xl">Abstract &amp; Key Claims</DialogTitle>
                     <DialogDescription>
                       We analyse 646.2T tokens of global LLM gateway telemetry across 1,091 model endpoints, testing four macro hypotheses on market structure, agent cost dynamics and the price–intelligence frontier.
                     </DialogDescription>
                   </DialogHeader>
-                  <Accordion type="single" collapsible defaultValue="H1">
-                    {hypotheses.map((h) => (
-                      <AccordionItem key={h.id} value={h.id}>
-                        <AccordionTrigger><span><span className="mr-2 font-mono text-primary">{h.id}</span>{h.title}</span></AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground">{h.body}</AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                  <div className="rounded-xl border border-border bg-background/60 p-4 font-mono text-xs leading-relaxed">
-                    <p className="mb-2 text-primary">// Formulation</p>
-                    <p>C(n) = Σ<sub>k=1..n</sub> (p₀ + k·Δ) ≈ p₀n + ½Δn²  → O(n²)</p>
-                    <p>HHI = Σ s<sub>i</sub>²  ;  t = (x̄₁ − x̄₂) / √(s₁²/n₁ + s₂²/n₂)</p>
-                    <p>Pareto(m) ⇔ ∄ m′: price(m′) ≤ price(m) ∧ IQ(m′) &gt; IQ(m)</p>
-                  </div>
-                  <p className="text-sm text-muted-foreground"><strong className="text-foreground">Methodology.</strong> Hourly DuckDB/Arrow lakehouse snapshots; Welch two-sample t-tests at α = 0.01; HHI concentration; non-dominated frontier scoring against the Artificial Analysis Intelligence Index.</p>
+                  <PaperTabs onCopy={copy} />
                 </DialogContent>
               </Dialog>
               <Button variant="glass" onClick={copy}><Copy /> Copy BibTeX Citation</Button>
