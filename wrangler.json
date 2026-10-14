@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "zannixlabs-web",
+  "workers_dev": true,
   "main": ".output/server/index.mjs",
   "compatibility_date": "2025-02-14",
   "compatibility_flags": [
@@ -10,6 +11,16 @@
     "binding": "ASSETS",
     "directory": ".output/public"
   },
+  "routes": [
+    {
+      "pattern": "zannixlabs.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.zannixlabs.com",
+      "custom_domain": true
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",
