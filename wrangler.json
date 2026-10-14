@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zannixlabs-web",
+  "main": ".output/server/index.mjs",
+  "compatibility_date": "2025-02-14",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".output/public"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "zannixlabs-db",
+      "database_id": "3b46eacc-d164-4ddb-99f1-b5c18078bec7"
+    }
+  ]
+}

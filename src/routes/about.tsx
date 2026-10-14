@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { GlobalNav } from "@/components/zaanix/GlobalNav";
 import { GlobalFooter } from "@/components/zaanix/GlobalFooter";
+import { InquiryDialog } from "@/components/zaanix/InquiryDialog";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -193,12 +194,17 @@ function AboutPage() {
               Are you an academic lab, university department, or enterprise research team with large-scale telemetry datasets? We welcome collaborative inquiries to apply our autonomous agentic research pipeline.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button variant="glow" size="lg" asChild>
+              <InquiryDialog>
+                <Button variant="glow" size="lg">
+                  Submit Academic Inquiry <Sparkles className="ml-2 size-4" />
+                </Button>
+              </InquiryDialog>
+              <Button variant="glass" size="lg" asChild>
                 <Link to="/research">
                   Inspect Our Research Catalog <ArrowRight className="ml-2 size-4" />
                 </Link>
               </Button>
-              <Button variant="glass" size="lg" asChild>
+              <Button variant="ghost" size="lg" asChild>
                 <Link to="/paradigm">
                   Explore the Agentic Paradigm
                 </Link>

@@ -74,16 +74,133 @@ function PaperDetailPage() {
     }
   };
 
-  const handleDownloadPdf = () => {
-    toast.info("Downloading camera-ready PDF", {
-      description: `Accessing camera-ready preprint for ${paper.arxivId}.`,
-    });
+  const recordDownloadTelemetry = async (type: "pdf" | "tar_gz") => {
+    try {
+      await fetch("/api/download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paperId: paper.id, downloadType: type }),
+      });
+    } catch (err) {
+      console.warn("Failed to record download telemetry:", err);
+    }
   };
 
-  const handleDownloadTar = () => {
-    toast.info("Downloading reproducible LaTeX bundle (.tar.gz)", {
-      description: "Includes main.tex, figures, and bibliography.",
+  const handleDownloadPdf = async () => {
+    recordDownloadTelemetry("pdf");
+    toast.info("Preparing Camera-Ready Preprint", {
+      description: `Downloading research specification package for ${paper.arxivId}.`,
     });
+
+    const preprintSummary = `================================================================================
+ZANNIXLABS FRONTIER EMPIRICAL RESEARCH PREPRINT
+${paper.arxivId} • ${paper.date}
+================================================================================
+
+TITLE:
+${paper.title}
+
+SUBTITLE:
+${paper.subtitle}
+
+AUTHOR & INSTITUTION:
+${paper.author}
+${paper.institution}
+
+EXECUTIVE BREAKTHROUGH:
+${paper.executiveBreakthrough}
+
+ABSTRACT:
+${paper.summary}
+
+EMPIRICAL METHODOLOGY:
+${paper.methodology.map((m) => `[Stage ${m.stage}: ${m.title}]\n- Description: ${m.description}\n- Automated Output: ${m.output}`).join("\n\n")}
+
+FORMAL MATHEMATICAL HYPOTHESES:
+${paper.hypotheses.map((h) => `[${h.name} (${h.id})]\nFormula: ${h.latex}\nEmpirical p-value: ${h.empiricalPValue}\nEffect Size / R2: ${h.effectSize}\nConclusion: ${h.conclusion}`).join("\n\n")}
+
+KEY TAKEAWAYS FOR RESEARCH & INDUSTRY:
+${paper.audienceBenefits.map((b) => `• For ${b.audience}: ${b.takeaway} (Impact: ${b.impact})`).join("\n")}
+
+LAKEHOUSE TELEMETRY SCHEMA:
+${paper.lakehouseTables.map((t) => `Table [${t.name}]: ${t.description} (${t.volume})`).join("\n")}
+
+BIBTEX CITATION:
+${paper.bibtex}
+
+================================================================================
+Published by ZannixLabs (https://zannixlabs.com)
+Autonomous AI Agentic Research Institute • Founded by Ajmal Baba
+================================================================================`;
+
+    const blob = new Blob([preprintSummary], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `zannixlabs-${paper.id}-preprint.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDownloadTar = async () => {
+    recordDownloadTelemetry("tar_gz");
+    toast.info("Preparing LaTeX Bundle", {
+      description: "Downloading LaTeX source template and BibTeX bibliography bundle.",
+    });
+
+    const latexSource = `% ZannixLabs Camera-Ready Preprint LaTeX Source
+% Paper ID: ${paper.id}
+% Archive: ${paper.arxivId}
+\\documentclass[10pt,twocolumn,letterpaper]{article}
+\\usepackage{amsmath,amssymb,amsfonts}
+\\usepackage{hyperref}
+\\usepackage{booktabs}
+
+\\title{${paper.title}:\\\\ \\large ${paper.subtitle}}
+\\author{${paper.author}\\\\ \\textit{${paper.institution}}}
+\\date{${paper.date}}
+
+\\begin{document}
+\\maketitle
+
+\\begin{abstract}
+${paper.summary}
+\\end{abstract}
+
+\\section{Introduction & Executive Breakthrough}
+${paper.executiveBreakthrough}
+
+\\section{Methodology & Agentic Telemetry Pipeline}
+\\begin{itemize}
+${paper.methodology.map((m) => `  \\item \\textbf{Stage ${m.stage} (${m.title}):} ${m.description}`).join("\n")}
+\\end{itemize}
+
+\\section{Formal Hypotheses}
+${paper.hypotheses.map((h) => `\\subsection{${h.name}}
+\\[
+${h.latex}
+\\]
+Empirical Validation: $p = ${h.empiricalPValue}$, Effect Size: ${h.effectSize}. ${h.conclusion}`).join("\n\n")}
+
+\\section{Citation}
+\\begin{verbatim}
+${paper.bibtex}
+\\end{verbatim}
+
+\\end{document}
+`;
+
+    const blob = new Blob([latexSource], { type: "text/x-tex;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `zannixlabs-${paper.id}-latex.tex`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (

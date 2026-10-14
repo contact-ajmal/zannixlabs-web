@@ -32,23 +32,43 @@ const socials = [
 
 export function GlobalFooter() {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubscribe = (e: FormEvent) => {
+  const handleSubscribe = async (e: FormEvent) => {
     e.preventDefault();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) {
+    const trimmed = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(trimmed)) {
       toast.error("Please enter a valid academic or professional email address");
       return;
     }
-    confetti({
-      particleCount: 140,
-      spread: 80,
-      origin: { y: 0.85 },
-      colors: [CYAN, VIOLET, "#ffffff"],
-    });
-    toast.success("Subscribed to ZannixLabs preprint announcements", {
-      description: "You will receive early camera-ready preprints directly in your inbox.",
-    });
-    setEmail("");
+
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmed, source: "footer_dispatch" }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Subscription could not be processed");
+      }
+
+      confetti({
+        particleCount: 140,
+        spread: 80,
+        origin: { y: 0.85 },
+        colors: [CYAN, VIOLET, "#ffffff"],
+      });
+      toast.success("Subscribed to ZannixLabs Preprint Dispatches", {
+        description: data.message || "You will receive early camera-ready preprints directly in your inbox.",
+      });
+      setEmail("");
+    } catch (err: any) {
+      toast.error(err.message || "Failed to subscribe. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -144,13 +164,23 @@ export function GlobalFooter() {
               <Input
                 type="email"
                 maxLength={255}
+                disabled={isSubmitting}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="researcher@institute.edu"
                 className="h-10 bg-glass text-sm"
               />
-              <Button variant="glow" type="submit" className="w-full h-10 text-xs">
-                Subscribe for Preprints <ArrowRight className="ml-1 size-3.5" />
+              <Button
+                variant="glow"
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full h-10 text-xs"
+              >
+                {isSubmitting ? "Registering..." : (
+                  <>
+                    Subscribe for Preprints <ArrowRight className="ml-1 size-3.5" />
+                  </>
+                )}
               </Button>
             </form>
           </div>
