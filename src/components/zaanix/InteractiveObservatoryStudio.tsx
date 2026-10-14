@@ -182,7 +182,7 @@ export function InteractiveObservatoryStudio() {
         <TabsContent value="arena" className="mt-6 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm text-muted-foreground">
-              Evaluator Calibration Curve across <strong>13,383 human judges</strong> sequenced chronologically from $k=1$ to $k \ge 11$.
+              Evaluator Calibration Curve across <strong>13,383 human judges</strong> sequenced chronologically from novice (k = 1) to veteran (k ≥ 11).
             </p>
             <span className="font-mono text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/30">
               Unlearning Verbosity Bias: -8.54 pp
@@ -216,7 +216,7 @@ export function InteractiveObservatoryStudio() {
         <TabsContent value="aviation" className="mt-6 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-sm text-muted-foreground">
-              Four-Quadrant Delay Absorption: Horizontal Tortuosity ($TI = D_{flown} / D_{net}$) vs. Taxiway Ground Dwell across global mega-hubs.
+              Four-Quadrant Delay Absorption: Horizontal Tortuosity (TI = D_flown / D_net) vs. Taxiway Ground Dwell across global mega-hubs.
             </p>
             <span className="font-mono text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/30">
               Asian Hubs Delay Coupling: r = 0.548
