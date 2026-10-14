@@ -19,6 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
+import { PaperTabs } from "./PaperTabs";
 import { volumeSpend, escalation, pareto, hypotheses, bibtex } from "./data";
 
 const HeroCanvas = lazy(() => import("./HeroCanvas"));
@@ -182,7 +183,7 @@ export function Research() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Dialog>
                 <DialogTrigger asChild><Button variant="glow"><BookOpen /> Read Paper Abstract &amp; Key Claims</Button></DialogTrigger>
-                <DialogContent className="max-h-[85vh] max-w-2xl overflow-y-auto border-border bg-popover">
+                <DialogContent className="max-h-[85vh] max-w-3xl overflow-y-auto border-border bg-popover">
                   <DialogHeader>
                     <DialogTitle className="font-display text-xl">Abstract &amp; Key Claims</DialogTitle>
                     <DialogDescription>
