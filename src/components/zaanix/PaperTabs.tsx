@@ -17,7 +17,7 @@ const equations: Record<string, string> = {
 function Tex({ src }: { src: string }) {
   return (
     <div
-      className="overflow-x-auto rounded-lg border border-border bg-background/60 px-3 py-3 text-sm"
+      className="overflow-x-auto rounded-lg border border-border bg-background/60 px-3 py-3 text-sm text-foreground"
       dangerouslySetInnerHTML={{ __html: katex.renderToString(src, { displayMode: true, throwOnError: false }) }}
     />
   );
