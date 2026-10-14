@@ -17,10 +17,26 @@ export function PaperCard({ paper }: { paper: ResearchPaper }) {
     }
   };
 
-  const handleDownloadPdf = () => {
-    toast.info("Downloading preprint package", {
-      description: `Accessing camera-ready preprint for ${paper.arxivId}.`,
+  const handleDownloadPdf = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      fetch("/api/download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paperId: paper.slug, downloadType: "pdf" }),
+      }).catch(console.error);
+    } catch {}
+
+    toast.success("Downloading Camera-Ready Preprint PDF", {
+      description: `${paper.arxivId} (${paper.title.slice(0, 36)}...)`,
     });
+
+    const link = document.createElement("a");
+    link.href = `/papers/${paper.slug}.pdf`;
+    link.download = `${paper.slug}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
