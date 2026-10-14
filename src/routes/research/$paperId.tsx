@@ -9,6 +9,7 @@ import { GlobalNav } from "@/components/zaanix/GlobalNav";
 import { GlobalFooter } from "@/components/zaanix/GlobalFooter";
 import { MathCard } from "@/components/zaanix/MathCard";
 import { AcademicPaperView } from "@/components/zaanix/AcademicPaperView";
+import { PdfDocumentViewer } from "@/components/zaanix/PdfDocumentViewer";
 import { papers } from "@/components/zaanix/researchData";
 
 type ViewMode = "executive" | "original" | "pdf";
@@ -335,79 +336,14 @@ function PaperDetailPage() {
           </section>
         )}
 
-        {/* VIEW 2: Embedded PDF Document Viewer */}
+        {/* VIEW 2: Interactive Camera-Ready PDF Document Viewer */}
         {viewMode === "pdf" && (
-          <section className="mx-auto max-w-5xl px-5 py-6 space-y-4 animate-in fade-in duration-300">
-            {/* Helper Banner for browsers with download-only PDF plugins */}
-            <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
-              <div className="space-y-1">
-                <span className="font-bold text-foreground flex items-center gap-1.5">
-                  <Sparkles className="size-3.5 text-primary" /> Camera-Ready Preprint PDF Active
-                </span>
-                <p className="text-muted-foreground text-[11.5px]">
-                  Viewing embedded PDF. If your browser downloads PDFs instead of previewing, click &quot;Fullscreen Tab&quot; or switch to &quot;arXiv Format&quot; to read directly.
-                </p>
-              </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <Button variant="glow" size="sm" asChild className="text-xs font-mono h-8">
-                  <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
-                    <ExternalLink className="mr-1.5 size-3.5" /> Fullscreen Tab
-                  </a>
-                </Button>
-                <Button variant="glass" size="sm" onClick={() => handleSetViewMode("original")} className="text-xs font-mono h-8">
-                  <FileText className="mr-1.5 size-3.5" /> arXiv Format
-                </Button>
-              </div>
-            </div>
-
-            <div className="glass rounded-xl p-3 px-4 flex flex-wrap items-center justify-between gap-3 border-border">
-              <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-                <BookOpen className="size-4 text-primary" />
-                <span className="text-foreground font-semibold">Camera-Ready PDF Embed</span>
-                <span>•</span>
-                <span>{paper.arxivId}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button variant="glass" size="sm" asChild className="text-xs font-mono h-8">
-                  <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
-                    <ExternalLink className="mr-1.5 size-3.5" /> Fullscreen Tab
-                  </a>
-                </Button>
-                <Button variant="glass" size="sm" onClick={handleDownloadPdf} className="text-xs font-mono h-8 text-primary">
-                  <Download className="mr-1.5 size-3.5" /> Save PDF
-                </Button>
-              </div>
-            </div>
-
-            <div className="rounded-xl overflow-hidden border border-border shadow-2xl bg-white relative min-h-[750px]">
-              <object
-                data={`/papers/${slug}.pdf#view=FitH`}
-                type="application/pdf"
-                className="w-full h-[950px] border-0 block"
-              >
-                <iframe
-                  src={`/papers/${slug}.pdf#view=FitH`}
-                  title={paper.title}
-                  className="w-full h-[950px] border-0"
-                >
-                  <div className="p-8 text-center space-y-4 bg-slate-900 text-slate-100">
-                    <p className="font-mono text-sm text-amber-400">
-                      Your browser does not support inline PDF embeds.
-                    </p>
-                    <div className="flex justify-center gap-3">
-                      <Button variant="glow" asChild>
-                        <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
-                          <ExternalLink className="mr-2 size-4" /> Open Fullscreen PDF
-                        </a>
-                      </Button>
-                      <Button variant="glass" onClick={() => handleSetViewMode("original")}>
-                        <FileText className="mr-2 size-4" /> Switch to Two-Column LaTeX Format
-                      </Button>
-                    </div>
-                  </div>
-                </iframe>
-              </object>
-            </div>
+          <section className="mx-auto max-w-5xl px-5 py-6 animate-in fade-in duration-300">
+            <PdfDocumentViewer
+              paper={paper}
+              onSwitchToOriginal={() => handleSetViewMode("original")}
+              pageCount={2}
+            />
           </section>
         )}
 
