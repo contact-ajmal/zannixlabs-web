@@ -1,15 +1,30 @@
 import { useState } from "react";
-import { Download, ExternalLink, FileText, Maximize2, Minimize2, Printer, Sparkles, Copy, Columns2, AlignLeft } from "lucide-react";
+import { Download, ExternalLink, FileText, Sparkles, Copy, Columns2, AlignLeft, BookOpen } from "lucide-react";
 import { toast } from "sonner";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { ResearchPaper } from "./researchData";
 
 interface AcademicPaperViewProps {
   paper: ResearchPaper;
+  onSwitchToPdf?: () => void;
+  onSwitchToExecutive?: () => void;
 }
 
-export function AcademicPaperView({ paper }: AcademicPaperViewProps) {
+function renderMath(formula: string): string {
+  try {
+    return katex.renderToString(formula, {
+      displayMode: true,
+      throwOnError: false,
+    });
+  } catch (err) {
+    return `<code>${formula}</code>`;
+  }
+}
+
+export function AcademicPaperView({ paper, onSwitchToPdf, onSwitchToExecutive }: AcademicPaperViewProps) {
   const [twoColumn, setTwoColumn] = useState(true);
   const slug = paper.slug || paper.id;
   const pdfUrl = `/papers/${slug}.pdf`;
@@ -43,6 +58,18 @@ export function AcademicPaperView({ paper }: AcademicPaperViewProps) {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
+          {onSwitchToPdf && (
+            <Button
+              variant="glow"
+              size="sm"
+              onClick={onSwitchToPdf}
+              className="text-xs font-mono h-8"
+              title="Switch to Camera-Ready PDF Viewer"
+            >
+              <BookOpen className="mr-1.5 size-3.5" /> PDF Document Viewer
+            </Button>
+          )}
+
           <Button
             variant="glass"
             size="sm"
@@ -64,30 +91,34 @@ export function AcademicPaperView({ paper }: AcademicPaperViewProps) {
           <Button
             variant="glass"
             size="sm"
-            onClick={handleCopyCitation}
+            asChild
             className="text-xs font-mono h-8"
+            title="Open camera-ready PDF in new browser tab"
           >
-            <Copy className="mr-1.5 size-3.5" /> BibTeX
+            <a href={pdfUrl} target="_blank" rel="noreferrer">
+              <ExternalLink className="mr-1.5 size-3.5" /> Fullscreen PDF
+            </a>
           </Button>
 
           <Button
             variant="glass"
             size="sm"
-            onClick={handleOpenPdf}
+            asChild
             className="text-xs font-mono h-8"
+            title="Download PDF file to computer"
           >
-            <ExternalLink className="mr-1.5 size-3.5" /> Open PDF
+            <a href={pdfUrl} download={`${slug}.pdf`}>
+              <Download className="mr-1.5 size-3.5" /> Save PDF
+            </a>
           </Button>
 
           <Button
-            variant="glow"
+            variant="glass"
             size="sm"
-            asChild
+            onClick={handleCopyCitation}
             className="text-xs font-mono h-8"
           >
-            <a href={pdfUrl} download={`${slug}.pdf`}>
-              <Download className="mr-1.5 size-3.5" /> Download PDF
-            </a>
+            <Copy className="mr-1.5 size-3.5" /> BibTeX
           </Button>
         </div>
       </div>
@@ -195,9 +226,10 @@ export function AcademicPaperView({ paper }: AcademicPaperViewProps) {
                   <span>Theorem {h.id}: {h.title}</span>
                   <span className="font-mono text-teal-700">({idx + 1})</span>
                 </div>
-                <div className="font-mono text-center py-1.5 px-2 bg-white rounded border border-slate-200 text-slate-900 text-[11.5px] overflow-x-auto">
-                  {h.formula}
-                </div>
+                <div
+                  className="py-2 px-3 bg-white rounded border border-slate-200 text-slate-950 text-xs overflow-x-auto text-center font-serif shadow-xs"
+                  dangerouslySetInnerHTML={{ __html: renderMath(h.formula) }}
+                />
                 <p className="text-slate-700 italic text-[11.5px]">
                   {h.description}
                 </p>

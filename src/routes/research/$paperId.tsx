@@ -11,7 +11,16 @@ import { MathCard } from "@/components/zaanix/MathCard";
 import { AcademicPaperView } from "@/components/zaanix/AcademicPaperView";
 import { papers } from "@/components/zaanix/researchData";
 
+type ViewMode = "executive" | "original" | "pdf";
+
 export const Route = createFileRoute("/research/$paperId")({
+  validateSearch: (search: Record<string, unknown>): { view?: ViewMode } => {
+    const v = search.view as ViewMode | undefined;
+    if (v === "original" || v === "pdf" || v === "executive") {
+      return { view: v };
+    }
+    return {};
+  },
   loader: ({ params }) => {
     const paper = papers.find((p) => p.slug === params.paperId || p.id === params.paperId);
     if (!paper) {
@@ -55,13 +64,28 @@ function PaperNotFound() {
   );
 }
 
-type ViewMode = "executive" | "original" | "pdf";
-
 function PaperDetailPage() {
   const { paper } = Route.useLoaderData();
+  const search = Route.useSearch();
   const [copied, setCopied] = useState(false);
-  const [viewMode, setViewMode] = useState<ViewMode>("executive");
+  // Default to "original" (Authentic arXiv paper format) unless specified in search params
+  const [viewMode, setViewMode] = useState<ViewMode>(() => {
+    return search?.view || "original";
+  });
   const slug = paper.slug || paper.id;
+
+  const handleSetViewMode = (mode: ViewMode) => {
+    setViewMode(mode);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("view", mode);
+      window.history.replaceState(null, "", url.toString());
+      const el = document.getElementById("paper-content-view");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   // Find previous and next papers for bottom navigation
   const currentIndex = papers.findIndex((p) => p.id === paper.id);
@@ -179,38 +203,84 @@ function PaperDetailPage() {
             ))}
           </div>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-border/60">
-            <Button variant="glow" onClick={handleDownloadPdf}>
-              <Download className="mr-2 size-4" /> Download Camera-Ready PDF
-            </Button>
-            <Button variant="glass" onClick={handleDownloadTar}>
-              <Package className="mr-2 size-4" /> arXiv Package (.tar.gz)
-            </Button>
-            <Button variant="glass" onClick={handleCopyBibtex}>
-              <Copy className="mr-2 size-4" /> {copied ? "Copied!" : "Copy BibTeX Citation"}
-            </Button>
+          {/* Action CTAs: Direct Reader & Viewer Controls */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t border-border/60">
+            {/* Direct In-Browser View Mode Buttons */}
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                variant={viewMode === "original" ? "glow" : "glass"}
+                onClick={() => handleSetViewMode("original")}
+                className="font-mono text-xs"
+              >
+                <FileText className="mr-2 size-4" /> Original arXiv Paper Format
+              </Button>
+              <Button
+                variant={viewMode === "pdf" ? "glow" : "glass"}
+                onClick={() => handleSetViewMode("pdf")}
+                className="font-mono text-xs"
+              >
+                <BookOpen className="mr-2 size-4" /> PDF Document Viewer
+              </Button>
+              <Button
+                variant={viewMode === "executive" ? "glow" : "glass"}
+                onClick={() => handleSetViewMode("executive")}
+                className="font-mono text-xs"
+              >
+                <Sparkles className="mr-2 size-4" /> Executive Lab
+              </Button>
+            </div>
+
+            {/* Direct File & Tab Actions */}
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                variant="glass"
+                size="sm"
+                asChild
+                className="font-mono text-xs h-9"
+                title="Open camera-ready PDF directly in a new browser tab without save-as popup"
+              >
+                <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
+                  <ExternalLink className="mr-1.5 size-3.5" /> Fullscreen PDF
+                </a>
+              </Button>
+              <Button
+                variant="glass"
+                size="sm"
+                onClick={handleDownloadPdf}
+                className="font-mono text-xs h-9 text-primary hover:text-primary"
+                title="Save camera-ready PDF file to your computer"
+              >
+                <Download className="mr-1.5 size-3.5" /> Save PDF
+              </Button>
+              <Button
+                variant="glass"
+                size="sm"
+                onClick={handleDownloadTar}
+                className="font-mono text-xs h-9"
+                title="Download arXiv TeX reproducibility package"
+              >
+                <Package className="mr-1.5 size-3.5" /> .tar.gz
+              </Button>
+              <Button
+                variant="glass"
+                size="sm"
+                onClick={handleCopyBibtex}
+                className="font-mono text-xs h-9"
+                title="Copy BibTeX Citation"
+              >
+                <Copy className="mr-1.5 size-3.5" /> {copied ? "Copied" : "BibTeX"}
+              </Button>
+            </div>
           </div>
         </section>
 
         {/* Paper Format Switcher Tabs */}
-        <section className="mx-auto max-w-5xl px-5 pb-4">
+        <section id="paper-content-view" className="mx-auto max-w-5xl px-5 pb-4 scroll-mt-24">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/70 pb-4">
             <div className="flex flex-wrap rounded-xl bg-secondary/40 p-1 border border-border">
               <button
                 type="button"
-                onClick={() => setViewMode("executive")}
-                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
-                  viewMode === "executive"
-                    ? "bg-primary text-primary-foreground font-semibold shadow-glow"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                <Sparkles className="size-3.5" /> Executive &amp; Telemetry
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode("original")}
+                onClick={() => handleSetViewMode("original")}
                 className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
                   viewMode === "original"
                     ? "bg-primary text-primary-foreground font-semibold shadow-glow"
@@ -221,7 +291,7 @@ function PaperDetailPage() {
               </button>
               <button
                 type="button"
-                onClick={() => setViewMode("pdf")}
+                onClick={() => handleSetViewMode("pdf")}
                 className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
                   viewMode === "pdf"
                     ? "bg-primary text-primary-foreground font-semibold shadow-glow"
@@ -230,14 +300,25 @@ function PaperDetailPage() {
               >
                 <BookOpen className="size-3.5" /> PDF Document Viewer
               </button>
+              <button
+                type="button"
+                onClick={() => handleSetViewMode("executive")}
+                className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-mono transition-all ${
+                  viewMode === "executive"
+                    ? "bg-primary text-primary-foreground font-semibold shadow-glow"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Sparkles className="size-3.5" /> Executive &amp; Telemetry
+              </button>
             </div>
 
             <div className="hidden sm:flex items-center gap-2 font-mono text-xs text-muted-foreground">
-              <span>View Mode:</span>
+              <span>Active View:</span>
               <span className="text-primary font-semibold">
-                {viewMode === "executive" && "Interactive Telemetry Lab"}
                 {viewMode === "original" && "Two-Column LaTeX Typeset"}
-                {viewMode === "pdf" && "Native Camera-Ready PDF"}
+                {viewMode === "pdf" && "Camera-Ready PDF Embed"}
+                {viewMode === "executive" && "Interactive Telemetry Lab"}
               </span>
             </div>
           </div>
@@ -246,13 +327,39 @@ function PaperDetailPage() {
         {/* VIEW 1: Original arXiv Paper Format */}
         {viewMode === "original" && (
           <section className="mx-auto max-w-5xl px-5 py-6 animate-in fade-in duration-300">
-            <AcademicPaperView paper={paper} />
+            <AcademicPaperView
+              paper={paper}
+              onSwitchToPdf={() => handleSetViewMode("pdf")}
+              onSwitchToExecutive={() => handleSetViewMode("executive")}
+            />
           </section>
         )}
 
         {/* VIEW 2: Embedded PDF Document Viewer */}
         {viewMode === "pdf" && (
           <section className="mx-auto max-w-5xl px-5 py-6 space-y-4 animate-in fade-in duration-300">
+            {/* Helper Banner for browsers with download-only PDF plugins */}
+            <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono">
+              <div className="space-y-1">
+                <span className="font-bold text-foreground flex items-center gap-1.5">
+                  <Sparkles className="size-3.5 text-primary" /> Camera-Ready Preprint PDF Active
+                </span>
+                <p className="text-muted-foreground text-[11.5px]">
+                  Viewing embedded PDF. If your browser downloads PDFs instead of previewing, click &quot;Fullscreen Tab&quot; or switch to &quot;arXiv Format&quot; to read directly.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <Button variant="glow" size="sm" asChild className="text-xs font-mono h-8">
+                  <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
+                    <ExternalLink className="mr-1.5 size-3.5" /> Fullscreen Tab
+                  </a>
+                </Button>
+                <Button variant="glass" size="sm" onClick={() => handleSetViewMode("original")} className="text-xs font-mono h-8">
+                  <FileText className="mr-1.5 size-3.5" /> arXiv Format
+                </Button>
+              </div>
+            </div>
+
             <div className="glass rounded-xl p-3 px-4 flex flex-wrap items-center justify-between gap-3 border-border">
               <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
                 <BookOpen className="size-4 text-primary" />
@@ -263,23 +370,43 @@ function PaperDetailPage() {
               <div className="flex items-center gap-2">
                 <Button variant="glass" size="sm" asChild className="text-xs font-mono h-8">
                   <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
-                    <ExternalLink className="mr-1.5 size-3.5" /> Fullscreen / New Tab
+                    <ExternalLink className="mr-1.5 size-3.5" /> Fullscreen Tab
                   </a>
                 </Button>
-                <Button variant="glow" size="sm" asChild className="text-xs font-mono h-8">
-                  <a href={`/papers/${slug}.pdf`} download={`${slug}.pdf`}>
-                    <Download className="mr-1.5 size-3.5" /> Download PDF
-                  </a>
+                <Button variant="glass" size="sm" onClick={handleDownloadPdf} className="text-xs font-mono h-8 text-primary">
+                  <Download className="mr-1.5 size-3.5" /> Save PDF
                 </Button>
               </div>
             </div>
 
-            <div className="rounded-xl overflow-hidden border border-border shadow-2xl bg-white">
-              <iframe
-                src={`/papers/${slug}.pdf#view=FitH`}
-                title={paper.title}
-                className="w-full h-[950px] border-0"
-              />
+            <div className="rounded-xl overflow-hidden border border-border shadow-2xl bg-white relative min-h-[750px]">
+              <object
+                data={`/papers/${slug}.pdf#view=FitH`}
+                type="application/pdf"
+                className="w-full h-[950px] border-0 block"
+              >
+                <iframe
+                  src={`/papers/${slug}.pdf#view=FitH`}
+                  title={paper.title}
+                  className="w-full h-[950px] border-0"
+                >
+                  <div className="p-8 text-center space-y-4 bg-slate-900 text-slate-100">
+                    <p className="font-mono text-sm text-amber-400">
+                      Your browser does not support inline PDF embeds.
+                    </p>
+                    <div className="flex justify-center gap-3">
+                      <Button variant="glow" asChild>
+                        <a href={`/papers/${slug}.pdf`} target="_blank" rel="noreferrer">
+                          <ExternalLink className="mr-2 size-4" /> Open Fullscreen PDF
+                        </a>
+                      </Button>
+                      <Button variant="glass" onClick={() => handleSetViewMode("original")}>
+                        <FileText className="mr-2 size-4" /> Switch to Two-Column LaTeX Format
+                      </Button>
+                    </div>
+                  </div>
+                </iframe>
+              </object>
             </div>
           </section>
         )}

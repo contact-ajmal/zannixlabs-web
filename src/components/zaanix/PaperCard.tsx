@@ -123,32 +123,53 @@ export function PaperCard({ paper }: { paper: ResearchPaper }) {
       </div>
 
       {/* Action Footer */}
-      <div className="mt-6 pt-5 border-t border-border/60 flex flex-wrap items-center justify-between gap-3">
-        <Button variant="glow" size="sm" asChild>
-          <Link to="/research/$paperId" params={{ paperId: paper.slug }}>
-            Explore Research &amp; Methodology <ArrowRight className="ml-1.5 size-3.5" />
-          </Link>
-        </Button>
+      <div className="mt-6 pt-5 border-t border-border/60 flex flex-col gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <Button variant="glow" size="sm" asChild>
+              <Link
+                to="/research/$paperId"
+                params={{ paperId: paper.slug }}
+                // @ts-expect-error search view param
+                search={{ view: "original" }}
+              >
+                <FileText className="mr-1.5 size-3.5" /> Read arXiv Paper
+              </Link>
+            </Button>
+            <Button variant="glass" size="sm" asChild>
+              <Link
+                to="/research/$paperId"
+                params={{ paperId: paper.slug }}
+                // @ts-expect-error search view param
+                search={{ view: "pdf" }}
+              >
+                <BookOpen className="mr-1.5 size-3.5" /> PDF Viewer
+              </Link>
+            </Button>
+          </div>
 
-        <div className="flex items-center gap-2">
-          <Button
-            variant="glass"
-            size="sm"
-            onClick={handleCopyBibtex}
-            title="Copy BibTeX Citation"
-          >
-            <Copy className="size-3.5" />
-            <span className="hidden sm:inline ml-1 text-xs">BibTeX</span>
-          </Button>
-          <Button
-            variant="glass"
-            size="sm"
-            onClick={handleDownloadPdf}
-            title="Download Preprint PDF"
-          >
-            <Download className="size-3.5" />
-            <span className="hidden sm:inline ml-1 text-xs">PDF</span>
-          </Button>
+          <div className="flex items-center gap-1.5">
+            <Button
+              variant="glass"
+              size="sm"
+              onClick={handleCopyBibtex}
+              title="Copy BibTeX Citation"
+              className="h-8 px-2.5 font-mono text-xs"
+            >
+              <Copy className="size-3.5" />
+              <span className="hidden sm:inline ml-1">BibTeX</span>
+            </Button>
+            <Button
+              variant="glass"
+              size="sm"
+              onClick={handleDownloadPdf}
+              title="Download Camera-Ready PDF to your computer"
+              className="h-8 px-2.5 font-mono text-xs text-primary hover:text-primary"
+            >
+              <Download className="size-3.5 mr-1" />
+              <span>Save PDF</span>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
