@@ -47,6 +47,9 @@ import {
   agentpagingSlack,
   contextgcCompaction,
   clusterConcurrencyData,
+  aeiMajorGroups,
+  aeiInteractionModes,
+  aeiThinkingQuartiles,
 } from "./researchData";
 
 const CYAN = "#0284c7";
@@ -78,31 +81,32 @@ export function InteractiveObservatoryStudio() {
   const [subTab, setSubTab] = useState<"vol" | "esc" | "pareto">("vol");
   const [cwtSubTab, setCwtSubTab] = useState<"trajectory" | "mtd" | "modality" | "backlog" | "sim">("trajectory");
   const [pagingSubTab, setPagingSubTab] = useState<"slack" | "gc" | "concurrency">("slack");
+  const [aeiSubTab, setAeiSubTab] = useState<"occupations" | "modes" | "thinking">("occupations");
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6 md:p-8 shadow-xs space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-5">
+    <div className="rounded-2xl border border-[#e1e6ec] bg-white p-6 md:p-8 shadow-xs space-y-6">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e1e6ec] pb-5">
         <div>
-          <span className="font-mono text-xs tracking-wider text-blue-800 font-semibold">
+          <span className="font-sans text-xs tracking-wider text-[#1a73e8] font-semibold uppercase">
             LIVE TELEMETRY STUDIO
           </span>
-          <h3 className="font-display text-2xl font-bold text-slate-900">
+          <h3 className="font-display text-2xl md:text-3xl font-normal tracking-tight text-[#202124] mt-1">
             Cross-Domain Empirical Observatories
           </h3>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-[#5f6368] font-sans">
             Real-world data ingested, modeled, and synthesized directly through Zannix analytical pipelines.
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="outline" className="border-blue-200 bg-blue-50 text-blue-800 font-mono text-xs">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#dadce0] bg-[#f8f9fa] px-3.5 py-1 text-xs font-medium text-[#1a73e8] font-sans">
             Interactive Analytical Engine
-          </Badge>
+          </span>
         </div>
       </div>
 
       <Tabs value={domainTab} onValueChange={setDomainTab} className="w-full">
         {/* Domain Tabs */}
-        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 bg-slate-100 h-auto p-1.5 gap-1 border border-slate-200">
+        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 bg-slate-100 h-auto p-1.5 gap-1 border border-slate-200">
           <TabsTrigger value="agentpaging" className="text-xs md:text-sm py-2">
             01. AI Agent Paging (FreeInference)
           </TabsTrigger>
@@ -117,6 +121,9 @@ export function InteractiveObservatoryStudio() {
           </TabsTrigger>
           <TabsTrigger value="aviation" className="text-xs md:text-sm py-2">
             05. Terminal Airspace ADS-B
+          </TabsTrigger>
+          <TabsTrigger value="aei" className="text-xs md:text-sm py-2">
+            06. Anthropic Economic Index
           </TabsTrigger>
         </TabsList>
 
@@ -659,6 +666,159 @@ export function InteractiveObservatoryStudio() {
           <p className="font-mono text-xs text-slate-500 text-center">
             Figure 3: Global TMA taxonomy • Western hubs decouple airborne vectoring from taxi dwell; Asian mega-hubs compound both delays simultaneously.
           </p>
+        </TabsContent>
+
+        {/* Tab 6: Anthropic Economic Index */}
+        <TabsContent value="aei" className="mt-6 space-y-5">
+          {/* Action Bar */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <Link
+              to="/research/anthropic-economic-index-decoupling"
+              className="flex items-center gap-2 p-2 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-all text-xs font-mono text-blue-700 font-semibold shadow-2xs"
+            >
+              <FileText className="size-3.5 text-blue-700" />
+              <span>Full Investigation</span>
+            </Link>
+            <a
+              href="/papers/anthropic-economic-index-decoupling.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 p-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 transition-all text-xs font-mono text-slate-700 font-medium shadow-2xs"
+            >
+              <Download className="size-3.5 text-blue-600" />
+              <span>Preprint PDF</span>
+            </a>
+            <a
+              href="/papers/anthropic-economic-index-decoupling.tar.gz"
+              download
+              className="flex items-center gap-2 p-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 transition-all text-xs font-mono text-slate-700 font-medium shadow-2xs"
+            >
+              <Download className="size-3.5 text-emerald-600" />
+              <span>Reproducibility Bundle</span>
+            </a>
+            <a
+              href="/notebooks/anthropic-economic-index-decoupling.ipynb"
+              download
+              className="flex items-center gap-2 p-2 rounded-lg bg-white hover:bg-slate-100 border border-slate-200 transition-all text-xs font-mono text-slate-700 font-medium shadow-2xs"
+            >
+              <BookOpen className="size-3.5 text-indigo-600" />
+              <span>Jupyter Notebook</span>
+            </a>
+          </div>
+
+          {/* Sub-tabs header */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setAeiSubTab("occupations")}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  aeiSubTab === "occupations"
+                    ? "bg-blue-600 text-white shadow-xs"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
+              >
+                Occupational Exposure vs Robotics
+              </button>
+              <button
+                type="button"
+                onClick={() => setAeiSubTab("modes")}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  aeiSubTab === "modes"
+                    ? "bg-blue-600 text-white shadow-xs"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
+              >
+                Augmentation vs Automation Modes
+              </button>
+              <button
+                type="button"
+                onClick={() => setAeiSubTab("thinking")}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  aeiSubTab === "thinking"
+                    ? "bg-blue-600 text-white shadow-xs"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
+              >
+                Extended Thinking Feedback Surge
+              </button>
+            </div>
+            <div className="flex items-center gap-2">
+              <Badge variant="outline" className="text-xs font-mono bg-blue-50 text-blue-700 border-blue-200">
+                1,411 Occupations Modeled
+              </Badge>
+              <Badge variant="outline" className="text-xs font-mono bg-emerald-50 text-emerald-700 border-emerald-200">
+                66.2% Augmentation
+              </Badge>
+            </div>
+          </div>
+
+          {/* Sub-tabs Content */}
+          {aeiSubTab === "occupations" && (
+            <div className="space-y-3">
+              <div className="h-[360px] w-full pt-2">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={aeiMajorGroups} barGap={4}>
+                    <CartesianGrid stroke="#e2e8f0" vertical={false} />
+                    <XAxis dataKey="group" {...axisStyle} angle={-25} textAnchor="end" height={60} />
+                    <YAxis {...axisStyle} unit="%" domain={[0, 100]} label={{ value: "Exposure Rate (%)", angle: -90, position: "insideLeft", fill: "#64748b", fontSize: 11 }} />
+                    <RTooltip {...tooltipStyle} />
+                    <Legend verticalAlign="top" height={36} />
+                    <Bar dataKey="exposure" name="Observed Claude Exposure (%)" fill={BLUE} radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="robot" name="Physical Robotics Exposure (%)" fill={GREEN} radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="freyOsborne" name="Frey-Osborne Automation Risk (%)" fill={AMBER} radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="font-mono text-xs text-slate-500 text-center">
+                Figure 1: Macro labor bifurcation • Cognitive tasks concentrate in Computer & Math (34.3%), while physical robotics risk dominates Transportation (92.7%) and Production (90.2%).
+              </p>
+            </div>
+          )}
+
+          {aeiSubTab === "modes" && (
+            <div className="space-y-3">
+              <div className="h-[340px] w-full pt-2">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={aeiInteractionModes} barGap={8}>
+                    <CartesianGrid stroke="#e2e8f0" vertical={false} />
+                    <XAxis dataKey="mode" {...axisStyle} />
+                    <YAxis {...axisStyle} unit="%" domain={[0, 45]} label={{ value: "Share of Conversations (%)", angle: -90, position: "insideLeft", fill: "#64748b", fontSize: 11 }} />
+                    <RTooltip {...tooltipStyle} />
+                    <Bar dataKey="share" name="Conversation Share (%)" fill={CYAN} radius={[6, 6, 0, 0]}>
+                      {aeiInteractionModes.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.type === "Automation" ? RED : BLUE} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="font-mono text-xs text-slate-500 text-center">
+                Figure 2: Interaction Archetypes across 3,364 tasks • Pure directive automation is only 33.8%; collaborative augmentation dominates at 66.2%.
+              </p>
+            </div>
+          )}
+
+          {aeiSubTab === "thinking" && (
+            <div className="space-y-3">
+              <div className="h-[340px] w-full pt-2">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={aeiThinkingQuartiles} barGap={8}>
+                    <CartesianGrid stroke="#e2e8f0" vertical={false} />
+                    <XAxis dataKey="quartile" {...axisStyle} />
+                    <YAxis {...axisStyle} unit="%" domain={[0, 80]} label={{ value: "Percentage (%)", angle: -90, position: "insideLeft", fill: "#64748b", fontSize: 11 }} />
+                    <RTooltip {...tooltipStyle} />
+                    <Legend verticalAlign="top" height={36} />
+                    <Bar dataKey="totalAugmentation" name="Total Augmentation Share (%)" fill={VIOLET} radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="feedbackShare" name="Feedback Loop Share (%)" fill={BLUE} radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="font-mono text-xs text-slate-500 text-center">
+                Figure 3: Extended Reasoning Impact • As tasks require deep test-time thinking, human feedback loops surge significantly (Welch t = 3.7785, p &lt; 0.001).
+              </p>
+            </div>
+          )}
         </TabsContent>
       </Tabs>
     </div>

@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const navLinks = [
   { label: "Home", to: "/" },
   { label: "Research", to: "/research" },
+  { label: "Published Blogs", to: "/blogs" },
   { label: "The Agentic Paradigm", to: "/paradigm" },
   { label: "Observatory", to: "/observatory" },
   { label: "About Lab", to: "/about" },
@@ -21,15 +22,14 @@ export function GlobalNav() {
         {/* Brand Logo - Google Research style */}
         <div className="flex items-center gap-4">
           <Link to="/" className="flex items-center gap-2.5 transition-opacity hover:opacity-90">
-            <span className="grid size-8 place-items-center rounded-full bg-[#1a73e8] font-display text-base font-bold text-white shadow-xs">
-              Z
-            </span>
+            <img
+              src="/images/zannix-emblem.png"
+              alt="ZannixLabs Logo"
+              className="h-9 w-auto object-contain"
+            />
             <div className="flex items-baseline">
-              <span className="font-display text-lg font-medium text-[#202124] tracking-tight">
-                Zannix
-              </span>
-              <span className="font-sans text-lg font-normal text-[#5f6368] ml-1.5 tracking-tight">
-                Research
+              <span className="font-display text-xl font-bold text-[#202124] tracking-tight">
+                Zannix<span className="text-[#1a73e8]">Labs</span>
               </span>
             </div>
           </Link>
@@ -105,12 +105,15 @@ export function GlobalNav() {
           </SheetTrigger>
           <SheetContent side="right" className="flex flex-col gap-6 border-[#e1e6ec] bg-white pt-12 text-[#202124]">
             <div className="flex items-center gap-2.5 pb-4 border-b border-[#e1e6ec]">
-              <span className="grid size-8 place-items-center rounded-full bg-[#1a73e8] font-display text-base font-bold text-white shadow-xs">
-                Z
-              </span>
+              <img
+                src="/images/zannix-emblem.png"
+                alt="ZannixLabs Logo"
+                className="h-8 w-auto object-contain"
+              />
               <div className="flex items-baseline">
-                <span className="font-display text-base font-medium text-[#202124]">Zannix</span>
-                <span className="font-sans text-base font-normal text-[#5f6368] ml-1">Research</span>
+                <span className="font-display text-lg font-bold text-[#202124]">
+                  Zannix<span className="text-[#1a73e8]">Labs</span>
+                </span>
               </div>
             </div>
 

@@ -287,6 +287,17 @@ function PaperDetailPage() {
                 variant="outline"
                 size="sm"
                 asChild
+                className="rounded-full border-[#1a73e8]/30 bg-[#e8f0fe] text-[#1967d2] hover:bg-[#d2e3fc] font-sans text-xs h-9 px-3.5 shadow-2xs"
+                title="Read published blog post with interactive dashboard, charts, and code"
+              >
+                <Link to="/blogs/$slug" params={{ slug }}>
+                  <Sparkles className="mr-1.5 size-3.5 text-[#1a73e8]" /> Published Blog Post
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
                 className="rounded-full border-[#dadce0] bg-white text-[#3c4043] hover:bg-[#f1f3f4] font-sans text-xs h-9 px-3.5"
                 title="Open camera-ready PDF directly in a new browser tab without save-as popup"
               >

@@ -69,9 +69,9 @@ export interface PipelinePaper {
 }
 
 export const researchCategories = [
-  { id: "all", label: "All Industries", count: 9, description: "All empirical discoveries across active preprints and upcoming research pipelines" },
+  { id: "all", label: "All Industries", count: 10, description: "All empirical discoveries across active preprints and upcoming research pipelines" },
   { id: "healthcare", label: "Healthcare & Oncology Economics", count: 1, description: "NHS cancer waiting time standards, triage vs treatment decoupling, and queueing hazard models" },
-  { id: "llm-economics", label: "AI & Software Economics", count: 2, description: "Global LLM gateway telemetry, token pricing, and agent harness costs" },
+  { id: "llm-economics", label: "AI & Labor Economics", count: 3, description: "Anthropic Economic Index telemetry, labor exposure decoupling, token pricing, and agent harness costs" },
   { id: "aviation", label: "Aviation & Airport Logistics", count: 1, description: "Real-world ADS-B flight tracking, airport traffic jams, and fuel waste" },
   { id: "evaluation-science", label: "AI Safety & Leaderboards", count: 1, description: "Crowdsourced human bias, verbosity inflation, and refusal penalties" },
   { id: "energy", label: "Energy & Clean Tech", count: 1, badge: "Pipeline Ingestion", description: "Renewable energy curtailment, battery storage arbitrage, and transmission telemetry" },
@@ -175,6 +175,136 @@ export const pipelinePapers: PipelinePaper[] = [
 ];
 
 export const papers: ResearchPaper[] = [
+  {
+    id: "anthropic-economic-index-decoupling",
+    slug: "anthropic-economic-index-decoupling",
+    heroImage: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
+    title: "The Theoretical Exposure vs. Empirical Utilization Decoupling in Labor Economics",
+    subtitle: "An Econometric and Task-Level Evaluation of the Anthropic Economic Index Across 1,411 Occupations and 3,364 Work Tasks",
+    plainTitle: "Why AI Doesn't Take the Jobs We Predicted: Studying Millions of Production Claude Interactions",
+    plainSubtitle: "Analyzing the Anthropic Economic Index: AI adoption concentrates in high-wage cognitive jobs, while 66.2% of real use is collaborative augmentation, not pure automation",
+    plainExplanation: "For years, economists warned that automation would strike routine manual and clerical workers first. But when we examine actual production telemetry from the Anthropic Economic Index across millions of user conversations, real-world adoption tells the opposite story. Real AI exposure is negatively correlated with classic automation indices (r = -0.1024), concentrates in high-earning cognitive fields like software engineering and law, and accelerates with wages. Furthermore, 66.2% of production interactions represent human augmentation, and extended test-time reasoning surges multi-turn feedback loops by 26.7%. Our lakehouse models 1,411 occupations and 3,364 tasks to provide the definitive empirical map of how AI is really changing work.",
+    whyItMatters: "Understanding actual workplace AI adoption prevents governments and universities from misallocating billions in workforce training. Instead of preparing for mass routine displacement, organizations must build collaborative verification workflows for high-cognition knowledge workers.",
+    industry: "Labor Economics & Applied AI Systems",
+    categoryId: "llm-economics",
+    category: "AI Labor Economics",
+    status: "Camera-Ready",
+    arxivId: "arXiv:2503.04761 [econ.GN, cs.AI]",
+    date: "October 2026",
+    author: "Ajmal Baba & Zannix Data Agent",
+    institution: "ZannixLabs Applied AI Research Collective (Lead Empirical Research Engine)",
+    datasetMetrics: [
+      { label: "Analyzed Occupations", value: "1,411" },
+      { label: "O*NET Work Tasks", value: "3,364" },
+      { label: "Augmentation Share", value: "66.2%" },
+      { label: "Statistical Significance", value: "p < 0.0001" },
+    ],
+    summary:
+      "We evaluate the multi-release empirical telemetry of the Anthropic Economic Index (AEI), combining millions of Claude conversations with BLS May 2023 wages and O*NET 29.3 tasks. We prove that real-world AI adoption completely decouples from Frey-Osborne automation risk (r = -0.1024, p = 1.17 × 10⁻⁴), exhibits convex wage-exposure elasticity (t = 3.593, p < 0.001), and that extended test-time reasoning surges human feedback loops from 64.58% to 69.61% (t = 3.7785, p < 0.001).",
+    executiveBreakthrough:
+      "Disproves the classical automation paradigm: observed workplace AI exposure is inversely correlated with historical computerisation risk. Uncovers the 'Augmentation Frontier' showing that extended reasoning deepens human oversight rather than replacing it.",
+    hypotheses: [
+      {
+        id: "H1",
+        tag: "Classic Automation Inversion (r = -0.1024, p < 0.0001)",
+        title: "The Automation Risk Inversion",
+        formula: String.raw`r(\text{ObservedExposure}, \text{FreyOsborne}) = -0.1024,\quad p = 1.17 \times 10^{-4},\quad \rho_{\text{spearman}} = -0.1287`,
+        description:
+          "Observed workplace deployment of LLMs is inversely correlated with 2013-era computerisation scores. Transportation, production, and food service exhibit < 0.8% Claude exposure despite > 50% predicted automation risk.",
+        statProof: "Pearson r = -0.1024 (p = 1.17e-4), Spearman rho = -0.1287 (p = 1.19e-6) across 1,411 occupations",
+      },
+      {
+        id: "H2",
+        tag: "Convex Wage Elasticity (t = 3.593, p < 0.001)",
+        title: "Super-Linear Cognitive Wage Concentration",
+        formula: String.raw`\text{Exposure}_i = 0.1286 - 0.0513 \ln(\text{Wage}_i) + 0.0042 [\ln(\text{Wage}_i)]^2,\quad t_{\text{quad}} = 3.593,\ p = 0.0003`,
+        description:
+          "AI workplace exposure accelerates super-linearly with salary, concentrating in Computer & Math (34.3% mean exposure) and Legal (21.6%) rather than routine wage brackets.",
+        statProof: "OLS F = 20.51, p = 1.66e-9; quadratic coefficient t = 3.593, p = 0.0003",
+      },
+      {
+        id: "H3",
+        tag: "Reasoning Feedback Surge (t = 3.7785, p < 0.001)",
+        title: "Extended Test-Time Reasoning Intensifies Augmentation",
+        formula: String.raw`\bar{Y}_{\text{High-Thinking}} = 69.61\% \quad \text{vs.} \quad \bar{Y}_{\text{Low-Thinking}} = 64.58\%,\quad t = 3.7785,\ p = 1.84 \times 10^{-4}`,
+        description:
+          "Extended thinking mode does not automate away human judgment; it shifts human interaction toward iterative feedback loops and critical verification.",
+        statProof: "Welch two-sample t = 3.7785, p = 1.84e-4; feedback correlation r = 0.2667, p = 3.60e-8",
+      },
+    ],
+    benefits: [
+      {
+        audience: "Workforce & Education Policymakers",
+        takeaway: "Discontinue 2010s-era routine displacement subsidies; redirect transition funding toward collaborative verification tools for knowledge workers.",
+      },
+      {
+        audience: "Chief Technology & Operations Officers",
+        takeaway: "Structure enterprise AI workflows around multi-turn iteration and human validation to unlock multi-fold productivity dividends.",
+      },
+      {
+        audience: "Labor Economists & Empirical Researchers",
+        takeaway: "Access deterministic DuckDB Parquet marts, O*NET task crosswalks, and interactive Mosaic visualizers.",
+      },
+    ],
+    methodologyStages: [
+      {
+        stage: "Stage 01",
+        title: "Multi-Release Ingestion & Lakehouse Mart Construction",
+        description: "Vectorised DuckDB ingestion of millions of Claude interactions, O*NET 29.3 tasks, BLS wages, and robot exposure indices.",
+      },
+      {
+        stage: "Stage 02",
+        title: "Econometric Wage Elasticity & Inversion Modeling",
+        description: "Quadratic regression modeling wage non-linearities and testing Frey & Osborne automation correlations.",
+      },
+      {
+        stage: "Stage 03",
+        title: "Task-Level Augmentation & Reasoning Mode Decomposition",
+        description: "Deconstructing directive execution vs feedback loops and testing Welch t-test shifts under extended thinking.",
+      },
+      {
+        stage: "Stage 04",
+        title: "Deterministic Reproducibility Packaging & Live Deployment",
+        description: "Compiling ReportLab publication PDF, executable Jupyter Notebook, and signed SHA256 tar.gz archive.",
+      },
+    ],
+    telemetryTables: [
+      {
+        name: "aei_occupational_exposure_mart",
+        rows: "1,411",
+        cols: 9,
+        size: "184 KB",
+        span: "Full US Standard Occupational Classification",
+      },
+      {
+        name: "aei_task_thinking_mart",
+        rows: "414",
+        cols: 9,
+        size: "48 KB",
+        span: "Granular O*NET Tasks with Thinking Metrics",
+      },
+      {
+        name: "aei_major_group_mart",
+        rows: "22",
+        cols: 8,
+        size: "12 KB",
+        span: "22 Major SOC Occupational Families",
+      },
+    ],
+    bibtex: `@article{zannixlabs2026aei,
+  author = {Baba, Ajmal and Zannix Data Agent and Zannix Research Collective},
+  title = {The Theoretical Exposure vs. Empirical Utilization Decoupling in Labor Economics: An Econometric, Task-Level, and Behavioral Evaluation of the Anthropic Economic Index Across 1,411 Occupations and 3,364 Work Tasks},
+  journal = {ZannixLabs Applied AI Preprints},
+  year = {2026},
+  volume = {1},
+  number = {2},
+  pages = {1--8},
+  doi = {10.5281/zenodo.ZL-2026-AEI-001},
+  contact = {ajmalbaba@zannixlabs.com},
+  url = {https://www.zannixlabs.com/research/anthropic-economic-index-decoupling}
+}`,
+    featured: true,
+  },
   {
     id: "nhs-cancer-waiting-times",
     slug: "nhs-cancer-waiting-times",
@@ -914,10 +1044,40 @@ export const clusterConcurrencyData = [
 
 export const instituteStats = [
   { label: "Patient Referrals Evaluated", value: "17.1M+" },
+  { label: "Occupations Modeled", value: "1,411" },
   { label: "Tokens Synthesized", value: "646.2T+" },
   { label: "Agent Requests Tracked", value: "1.19M+" },
   { label: "Zero-Latency Paging Rate", value: "100.0%" },
-  { label: "Empirical Hypotheses Proven", value: "19" },
-  { label: "Camera-Ready Preprints", value: "5" },
+  { label: "Empirical Hypotheses Proven", value: "22" },
+  { label: "Camera-Ready Preprints", value: "6" },
+];
+
+export const aeiMajorGroups = [
+  { group: "Computer & Math", exposure: 34.29, robot: 1.35, salary: 88389, freyOsborne: 12.24 },
+  { group: "Sales & Related", exposure: 26.38, robot: 26.50, salary: 51143, freyOsborne: 44.96 },
+  { group: "Legal", exposure: 21.58, robot: 0.15, salary: 81223, freyOsborne: 49.71 },
+  { group: "Office & Admin", exposure: 18.80, robot: 29.55, salary: 39200, freyOsborne: 65.98 },
+  { group: "Business & Financial", exposure: 16.46, robot: 6.64, salary: 68722, freyOsborne: 11.65 },
+  { group: "Education & Library", exposure: 13.05, robot: 3.51, salary: 68595, freyOsborne: 4.76 },
+  { group: "Arts & Media", exposure: 12.52, robot: 7.30, salary: 55710, freyOsborne: 10.18 },
+  { group: "Management", exposure: 7.59, robot: 6.03, salary: 107422, freyOsborne: 3.61 },
+  { group: "Production", exposure: 0.62, robot: 90.21, salary: 39636, freyOsborne: 53.58 },
+  { group: "Transportation", exposure: 0.48, robot: 92.66, salary: 55579, freyOsborne: 54.78 },
+  { group: "Farming & Forestry", exposure: 0.36, robot: 94.98, salary: 36554, freyOsborne: 36.29 },
+];
+
+export const aeiInteractionModes = [
+  { mode: "Directive (Automation)", share: 33.8, type: "Automation" },
+  { mode: "Task Iteration (Augmentation)", share: 28.9, type: "Augmentation" },
+  { mode: "Feedback Loop (Augmentation)", share: 22.4, type: "Augmentation" },
+  { mode: "Validation (Augmentation)", share: 8.2, type: "Augmentation" },
+  { mode: "Learning (Augmentation)", share: 6.7, type: "Augmentation" },
+];
+
+export const aeiThinkingQuartiles = [
+  { quartile: "Q1 (Low Thinking)", feedbackShare: 19.8, totalAugmentation: 64.58 },
+  { quartile: "Q2 (Med-Low)", feedbackShare: 21.6, totalAugmentation: 65.92 },
+  { quartile: "Q3 (Med-High)", feedbackShare: 24.3, totalAugmentation: 67.84 },
+  { quartile: "Q4 (High Thinking)", feedbackShare: 28.1, totalAugmentation: 69.61 },
 ];
 

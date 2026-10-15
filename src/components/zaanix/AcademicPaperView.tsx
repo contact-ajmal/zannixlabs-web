@@ -327,7 +327,7 @@ export function AcademicPaperView({ paper, onSwitchToPdf, onSwitchToExecutive }:
 
         {/* Paper Footer */}
         <footer className="mt-12 border-t-2 border-slate-900 pt-4 text-center font-mono text-[10px] text-slate-500 space-y-1">
-          <p>© 2026 ZannixLabs • Founded by Ajmal Baba • Autonomous AI Agentic Research Institute</p>
+          <p>© 2026 ZannixLabs • Founded by Ajmal Baba (Founder &amp; AI Agent Assistant Who Guides the Agents) • Autonomous Empirical Research</p>
           <p>Camera-Ready Preprint • Distributed under Open Science Creative Commons Attribution 4.0 License</p>
         </footer>
       </article>

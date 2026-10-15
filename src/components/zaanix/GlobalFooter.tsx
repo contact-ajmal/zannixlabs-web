@@ -17,6 +17,7 @@ const researchLinks = [
 ];
 
 const instituteLinks = [
+  { label: "Published Blogs", to: "/blogs" },
   { label: "The Agentic Research Paradigm", to: "/paradigm" },
   { label: "Research Catalog", to: "/research" },
   { label: "Interactive Observatory", to: "/observatory" },
@@ -95,15 +96,14 @@ export function GlobalFooter() {
           {/* Col 1: Institute Identity & Mission */}
           <div className="space-y-4 lg:col-span-4">
             <Link to="/" className="flex items-center gap-2.5">
-              <span className="grid size-8 place-items-center rounded-full bg-[#1a73e8] font-display text-base font-bold text-white shadow-xs">
-                Z
-              </span>
+              <img
+                src="/images/zannix-emblem.png"
+                alt="ZannixLabs Logo"
+                className="h-8 w-auto object-contain"
+              />
               <div className="flex items-baseline">
-                <span className="font-display text-base font-medium text-[#202124]">
-                  Zannix
-                </span>
-                <span className="font-sans text-base font-normal text-[#5f6368] ml-1">
-                  Research
+                <span className="font-display text-lg font-bold text-[#202124]">
+                  Zannix<span className="text-[#1a73e8]">Labs</span>
                 </span>
               </div>
             </Link>
@@ -194,7 +194,7 @@ export function GlobalFooter() {
         {/* Bottom Bar */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-[#e1e6ec] pt-8 text-center sm:flex-row sm:text-left font-sans text-xs text-[#70757a]">
           <p>
-            © 2026 Zannix Research • Founded by Ajmal Baba • Autonomous Empirical Science
+            © 2026 ZannixLabs • Founded by Ajmal Baba (Founder &amp; AI Agent Assistant Who Guides the Agents) • Autonomous Empirical Research
           </p>
           <div className="flex gap-6">
             <Link to="/paradigm" className="hover:text-[#1a73e8] transition-colors">

@@ -11,8 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as ObservatoryRouteImport } from './routes/observatory'
 import { Route as ParadigmRouteImport } from './routes/paradigm'
+import { Route as BlogsIndexRouteImport } from './routes/blogs/index'
+import { Route as BlogsSlugRouteImport } from './routes/blogs/$slug'
 import { Route as ResearchIndexRouteImport } from './routes/research/index'
 import { Route as ResearchPaperIdRouteImport } from './routes/research/$paperId'
 
@@ -26,6 +29,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ObservatoryRoute = ObservatoryRouteImport.update({
   id: '/observatory',
   path: '/observatory',
@@ -34,6 +42,16 @@ const ObservatoryRoute = ObservatoryRouteImport.update({
 const ParadigmRoute = ParadigmRouteImport.update({
   id: '/paradigm',
   path: '/paradigm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsIndexRoute = BlogsIndexRouteImport.update({
+  id: '/blogs/',
+  path: '/blogs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsSlugRoute = BlogsSlugRouteImport.update({
+  id: '/blogs/$slug',
+  path: '/blogs/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResearchIndexRoute = ResearchIndexRouteImport.update({
@@ -50,26 +68,35 @@ const ResearchPaperIdRoute = ResearchPaperIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/observatory': typeof ObservatoryRoute
   '/paradigm': typeof ParadigmRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/research/$paperId': typeof ResearchPaperIdRoute
+  '/blogs/': typeof BlogsIndexRoute
   '/research/': typeof ResearchIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/observatory': typeof ObservatoryRoute
   '/paradigm': typeof ParadigmRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/research/$paperId': typeof ResearchPaperIdRoute
+  '/blogs': typeof BlogsIndexRoute
   '/research': typeof ResearchIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/observatory': typeof ObservatoryRoute
   '/paradigm': typeof ParadigmRoute
+  '/blogs/$slug': typeof BlogsSlugRoute
   '/research/$paperId': typeof ResearchPaperIdRoute
+  '/blogs/': typeof BlogsIndexRoute
   '/research/': typeof ResearchIndexRoute
 }
 export interface FileRouteTypes {
@@ -77,34 +104,46 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/blog'
     | '/observatory'
     | '/paradigm'
+    | '/blogs/$slug'
     | '/research/$paperId'
+    | '/blogs/'
     | '/research/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/blog'
     | '/observatory'
     | '/paradigm'
+    | '/blogs/$slug'
     | '/research/$paperId'
+    | '/blogs'
     | '/research'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/blog'
     | '/observatory'
     | '/paradigm'
+    | '/blogs/$slug'
     | '/research/$paperId'
+    | '/blogs/'
     | '/research/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BlogRoute: typeof BlogRoute
   ObservatoryRoute: typeof ObservatoryRoute
   ParadigmRoute: typeof ParadigmRoute
+  BlogsSlugRoute: typeof BlogsSlugRoute
   ResearchPaperIdRoute: typeof ResearchPaperIdRoute
+  BlogsIndexRoute: typeof BlogsIndexRoute
   ResearchIndexRoute: typeof ResearchIndexRoute
 }
 
@@ -124,6 +163,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/observatory': {
       id: '/observatory'
       path: '/observatory'
@@ -136,6 +182,20 @@ declare module '@tanstack/react-router' {
       path: '/paradigm'
       fullPath: '/paradigm'
       preLoaderRoute: typeof ParadigmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/': {
+      id: '/blogs/'
+      path: '/blogs'
+      fullPath: '/blogs/'
+      preLoaderRoute: typeof BlogsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/$slug': {
+      id: '/blogs/$slug'
+      path: '/blogs/$slug'
+      fullPath: '/blogs/$slug'
+      preLoaderRoute: typeof BlogsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/research/': {
@@ -158,9 +218,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BlogRoute: BlogRoute,
   ObservatoryRoute: ObservatoryRoute,
   ParadigmRoute: ParadigmRoute,
+  BlogsSlugRoute: BlogsSlugRoute,
   ResearchPaperIdRoute: ResearchPaperIdRoute,
+  BlogsIndexRoute: BlogsIndexRoute,
   ResearchIndexRoute: ResearchIndexRoute,
 }
 export const routeTree = rootRouteImport

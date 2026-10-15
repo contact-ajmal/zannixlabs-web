@@ -1,10 +1,15 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
+# ZannixLabs Engineering & Architecture Guidelines
+
+> Applied AI Research Lab & Platform — https://www.zannixlabs.com
+
+## Repository Overview
+This repository contains the web application and interactive research platform for ZannixLabs.
+- **Framework**: TanStack Start (React 19 + Vite + Nitro SSR for Cloudflare Pages / Workers)
+- **Styling**: Tailwind CSS v4, Lucide React, Google Research design system tokens
+- **Data Visualizations**: Recharts, KaTeX mathematical typesetting, Canvas Confetti
+- **Research Engine**: Zannix Data Agent coordinating analytical lakehouses, DuckDB telemetry, and camera-ready preprint publishing
+
+## Development Workflow
+- `npm run dev`: Launch local Vite dev server on port 8081
+- `npm test`: Run Vitest unit and integration test suites
+- `npm run build`: Compile client and Nitro server production bundles

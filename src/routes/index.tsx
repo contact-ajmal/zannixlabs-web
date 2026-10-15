@@ -10,21 +10,23 @@ import { PaperCard } from "@/components/zaanix/PaperCard";
 import { InteractiveObservatoryStudio } from "@/components/zaanix/InteractiveObservatoryStudio";
 import { AgentWorkflowDiagram } from "@/components/zaanix/AgentWorkflowDiagram";
 import { papers, instituteStats } from "@/components/zaanix/researchData";
+import { blogPosts } from "@/components/zaanix/blogData";
+import { BlogCard } from "@/components/zaanix/BlogCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ZannixLabs — Autonomous Empirical AI & Data Research Institute" },
+      { title: "ZannixLabs — Agentic Research Across Industries" },
       {
         name: "description",
         content:
-          "Independent empirical science institute pioneering the AI Agentic Research Process across LLM Economics, Evaluation Science, and Aerospace Telemetry. Founded by Ajmal Baba.",
+          "Accelerate discovery. Bring your questions. Discover the possibilities. ZannixLabs pioneers agentic AI research across healthcare, finance, AI economics, and aerospace.",
       },
-      { property: "og:title", content: "ZannixLabs — Autonomous Empirical Research" },
+      { property: "og:title", content: "ZannixLabs — Agentic Research Across Industries" },
       {
         property: "og:description",
         content:
-          "Empirical science at the velocity of AI intelligence. Transforming continuous telemetry into peer-ready preprints and mathematical proofs.",
+          "Accelerate discovery. Bring your questions. Discover the possibilities. Transforming real-world data into verified empirical evidence.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -52,9 +54,21 @@ function HomePage() {
     <div className="min-h-screen bg-white text-[#202124]">
       <GlobalNav />
 
-      {/* Hero Section - Google Research style */}
-      <section id="top" className="relative border-b border-[#e1e6ec] bg-white pt-28 pb-20">
-        <div className="mx-auto w-full max-w-7xl px-6">
+      {/* Hero Section with Uploaded Background Graphic */}
+      <section id="top" className="relative border-b border-[#e1e6ec] bg-[#f8fafd] pt-28 pb-20 overflow-hidden">
+        {/* Background Image Layer */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <img
+            src="/images/hero-bg.png"
+            alt=""
+            className="w-full h-full object-cover object-right-top opacity-35 md:opacity-45"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white" />
+        </div>
+
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             {/* Left Column: Mission & Core Actions */}
             <motion.div
@@ -64,18 +78,19 @@ function HomePage() {
               className="space-y-6 lg:col-span-7"
             >
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-2 rounded-full border border-[#dadce0] bg-[#f8f9fa] px-3.5 py-1 text-xs font-medium text-[#3c4043] font-sans">
-                  <span className="size-2 rounded-full bg-[#1a73e8]" />
-                  Independent Empirical Science Institute • Est. 2026
+                <span className="inline-flex items-center gap-2 rounded-full border border-[#d2e3fc] bg-white/90 backdrop-blur-xs px-3.5 py-1 text-xs font-semibold text-[#1a73e8] font-sans shadow-2xs">
+                  <span className="size-2 rounded-full bg-[#1a73e8] animate-pulse" />
+                  Agentic Research • Across Industries
                 </span>
               </div>
 
               <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-normal leading-[1.06] tracking-tight text-[#202124]">
-                Empirical Research, <span className="text-[#1a73e8]">to reality.</span>
+                Accelerate <span className="text-[#1a73e8]">discovery.</span>
               </h1>
 
-              <p className="max-w-2xl text-lg sm:text-xl text-[#5f6368] font-sans font-normal leading-relaxed">
-                ZannixLabs pioneers an autonomous agentic research paradigm—transforming massive real-world telemetry lakehouses into peer-ready preprints, mathematical proofs, and open-science observatories.
+              <p className="max-w-2xl text-lg sm:text-xl text-[#3c4043] font-sans font-normal leading-relaxed">
+                <strong className="font-medium text-[#202124]">Bring your questions. Discover the possibilities.</strong>{" "}
+                ZannixLabs pioneers an autonomous agentic research paradigm—transforming complex datasets into verified empirical evidence, simulations, dashboards, and practical outcomes.
               </p>
 
               <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -202,7 +217,7 @@ function HomePage() {
             <p className="font-sans text-xs font-medium uppercase tracking-wider text-[#1a73e8]">
               Publications
             </p>
-            <h2 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-[#202124]">
+            <h2 className="font-display text-3xl md:text-5xl font-normal tracking-tight text-[#202124]">
               Read the latest
             </h2>
             <p className="text-base text-[#5f6368] font-sans">
@@ -227,13 +242,45 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Section 1.5: Published Blogs & Editorial Dispatches */}
+      <section className="mx-auto max-w-7xl px-6 py-20 border-b border-[#e1e6ec]">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="max-w-2xl space-y-2">
+            <p className="font-sans text-xs font-medium uppercase tracking-wider text-[#1a73e8]">
+              Published Blogs
+            </p>
+            <h2 className="font-display text-3xl md:text-5xl font-normal tracking-tight text-[#202124]">
+              Interactive research dispatches
+            </h2>
+            <p className="text-base text-[#5f6368] font-sans">
+              Every research paper is accompanied by an in-depth blog post featuring live dashboards, executable code, and publication charts ready to share on any platform.
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            className="rounded-full border-[#dadce0] bg-white text-[#1a73e8] hover:bg-[#f1f3f4] text-xs font-medium px-5 h-10"
+            asChild
+          >
+            <Link to="/blogs">
+              Explore All Published Blogs <ArrowRight className="ml-2 size-3.5" />
+            </Link>
+          </Button>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {blogPosts.slice(0, 3).map((post) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
+        </div>
+      </section>
+
       {/* Section 2: Research Areas (Google Research Area Cards) */}
       <section className="mx-auto max-w-7xl px-6 py-20 border-b border-[#e1e6ec]">
         <div className="mb-12 max-w-2xl space-y-2">
           <p className="font-sans text-xs font-medium uppercase tracking-wider text-[#1a73e8]">
             Domains
           </p>
-          <h2 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-[#202124]">
+          <h2 className="font-display text-3xl md:text-5xl font-normal tracking-tight text-[#202124]">
             Research areas
           </h2>
           <p className="text-base text-[#5f6368] font-sans">
@@ -247,7 +294,7 @@ function HomePage() {
               <span className="inline-block rounded-full bg-[#e8f0fe] text-[#1967d2] px-3 py-1 font-sans text-xs font-medium">
                 Healthcare Economics
               </span>
-              <h3 className="font-display text-xl font-medium text-[#202124]">
+              <h3 className="font-display text-xl font-normal text-[#202124]">
                 Clinical Trials & Oncology Systems
               </h3>
               <p className="text-sm text-[#5f6368] font-sans leading-relaxed">
@@ -264,7 +311,7 @@ function HomePage() {
               <span className="inline-block rounded-full bg-[#e8f0fe] text-[#1967d2] px-3 py-1 font-sans text-xs font-medium">
                 Applied AI & Sciences
               </span>
-              <h3 className="font-display text-xl font-medium text-[#202124]">
+              <h3 className="font-display text-xl font-normal text-[#202124]">
                 LLM Economics & Evaluation Science
               </h3>
               <p className="text-sm text-[#5f6368] font-sans leading-relaxed">
@@ -281,7 +328,7 @@ function HomePage() {
               <span className="inline-block rounded-full bg-[#e8f0fe] text-[#1967d2] px-3 py-1 font-sans text-xs font-medium">
                 Autonomous Systems
               </span>
-              <h3 className="font-display text-xl font-medium text-[#202124]">
+              <h3 className="font-display text-xl font-normal text-[#202124]">
                 Aerospace & Grid Telemetry
               </h3>
               <p className="text-sm text-[#5f6368] font-sans leading-relaxed">
@@ -301,7 +348,7 @@ function HomePage() {
           <p className="font-sans text-xs font-medium uppercase tracking-wider text-[#1a73e8]">
             Process
           </p>
-          <h2 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-[#202124]">
+          <h2 className="font-display text-3xl md:text-5xl font-normal tracking-tight text-[#202124]">
             How autonomous agents conduct science
           </h2>
           <p className="text-base text-[#5f6368] font-sans leading-relaxed">
@@ -331,7 +378,7 @@ function HomePage() {
           <p className="font-sans text-xs font-medium uppercase tracking-wider text-[#1a73e8]">
             Interactive Telemetry
           </p>
-          <h2 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-[#202124]">
+          <h2 className="font-display text-3xl md:text-5xl font-normal tracking-tight text-[#202124]">
             Lab observatory
           </h2>
           <p className="text-base text-[#5f6368] font-sans leading-relaxed">
@@ -362,7 +409,7 @@ function HomePage() {
             <span className="font-sans text-xs font-medium uppercase tracking-wider text-[#1a73e8]">
               About
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-medium tracking-tight text-[#202124]">
+            <h2 className="font-display text-3xl md:text-5xl font-normal tracking-tight text-[#202124]">
               Autonomous science for the public good
             </h2>
             <p className="text-base leading-relaxed text-[#5f6368] font-sans">
@@ -370,13 +417,13 @@ function HomePage() {
             </p>
 
             <div className="rounded-2xl border border-[#e1e6ec] bg-white p-6 shadow-xs flex items-center gap-5">
-              <div className="grid size-16 shrink-0 place-items-center rounded-full bg-[#1a73e8] text-white font-display text-xl font-bold shadow-xs">
+              <div className="grid size-16 shrink-0 place-items-center rounded-full bg-[#1a73e8] text-white font-display text-xl font-normal shadow-xs">
                 AB
               </div>
               <div>
-                <p className="font-display text-lg font-medium text-[#202124]">Ajmal Baba</p>
-                <p className="font-sans text-xs text-[#1a73e8] font-medium">Founder &amp; Chief Scientist • Independent Quantitative Researcher</p>
-                <p className="text-xs text-[#5f6368] mt-1 font-sans">Leading autonomous agentic empirical research across AI, aerospace, and quantitative dynamics.</p>
+                <p className="font-display text-lg font-normal text-[#202124]">Ajmal Baba</p>
+                <p className="font-sans text-xs text-[#1a73e8] font-medium">Founder &amp; AI Agent Assistant Who Guides the Agents</p>
+                <p className="text-xs text-[#5f6368] mt-1 font-sans">Guiding autonomous AI research agents across empirical investigation, lakehouse synthesis, and reproducible discovery.</p>
               </div>
             </div>
 
@@ -395,7 +442,7 @@ function HomePage() {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-2xl border border-[#e1e6ec] bg-white p-6 shadow-xs space-y-3 hover:shadow-md transition-shadow">
               <Repeat className="size-6 text-[#1a73e8]" />
-              <h4 className="font-display font-medium text-[#202124]">100% Reproducibility</h4>
+              <h4 className="font-display font-normal text-[#202124]">100% Reproducibility</h4>
               <p className="text-xs leading-relaxed text-[#5f6368] font-sans">
                 Deterministic DuckDB schemas, executable SQL notebooks, and public telemetry.
               </p>
@@ -403,7 +450,7 @@ function HomePage() {
 
             <div className="rounded-2xl border border-[#e1e6ec] bg-white p-6 shadow-xs space-y-3 hover:shadow-md transition-shadow">
               <ShieldCheck className="size-6 text-[#1e8e3e]" />
-              <h4 className="font-display font-medium text-[#202124]">Zero Sponsor Bias</h4>
+              <h4 className="font-display font-normal text-[#202124]">Zero Sponsor Bias</h4>
               <p className="text-xs leading-relaxed text-[#5f6368] font-sans">
                 Complete institutional independence. No paid vendor endorsements.
               </p>
@@ -411,7 +458,7 @@ function HomePage() {
 
             <div className="rounded-2xl border border-[#e1e6ec] bg-white p-6 shadow-xs space-y-3 hover:shadow-md transition-shadow">
               <Microscope className="size-6 text-[#1a73e8]" />
-              <h4 className="font-display font-medium text-[#202124]">Empirical Rigor</h4>
+              <h4 className="font-display font-normal text-[#202124]">Empirical Rigor</h4>
               <p className="text-xs leading-relaxed text-[#5f6368] font-sans">
                 Formal LaTeX math, Welch two-sample t-tests, and Pareto frontiers.
               </p>
@@ -419,7 +466,7 @@ function HomePage() {
 
             <div className="rounded-2xl border border-[#e1e6ec] bg-white p-6 shadow-xs space-y-3 hover:shadow-md transition-shadow">
               <Database className="size-6 text-[#1a73e8]" />
-              <h4 className="font-display font-medium text-[#202124]">Continuous Ingestion</h4>
+              <h4 className="font-display font-normal text-[#202124]">Continuous Ingestion</h4>
               <p className="text-xs leading-relaxed text-[#5f6368] font-sans">
                 High-frequency data streaming directly into analytical lakehouse stores.
               </p>

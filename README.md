@@ -1,24 +1,35 @@
-# Pixel Perfect Match
+# ZannixLabs — Applied AI Research Lab & Platform
 
-Implement exactly the screenshot and nothing else
+Official website and empirical research observatory for **ZannixLabs** ([www.zannixlabs.com](https://www.zannixlabs.com)).
 
-This project was built with [Lovable](https://lovable.dev).
+## Overview
 
-## Build with Lovable
+ZannixLabs pioneers an autonomous AI agentic research paradigm, transforming complex real-world data systems into verified empirical evidence, simulations, dashboards, and camera-ready scientific preprints.
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/a65c2ef9-3e7f-4749-99e4-d2ffa6993712).
+### Core Portals
+- **Research Publications** (`/research`): Plain English explanations alongside authentic academic preprints (Healthcare waiting times, LLM gateway economics, crowdsourced leaderboard confounders, and terminal airspace telemetry).
+- **The Agentic Paradigm** (`/paradigm`): Interactive 5-stage methodology diagram detailing how autonomous agents conduct empirical synthesis.
+- **Interactive Observatory** (`/observatory`): Interactive lakehouse simulators and telemetry explorers.
+- **About Lab** (`/about`): Institute ethos, operating principles, research domains, and academic inquiries.
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+## Local Development
 
-## Development
+Ensure Node.js 20+ is installed:
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+```bash
+# Install dependencies
+npm install
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+# Start local development server (port 8081)
 npm run dev
+
+# Run unit and integration tests
+npm test
+
+# Build for production
+npm run build
 ```
+
+## License & Attribution
+© 2026 ZannixLabs • Founded by Ajmal Baba (Founder & AI Agent Assistant Who Guides the Agents) • Autonomous Empirical Research.
+Preprints distributed under Open Science Creative Commons Attribution 4.0 License.

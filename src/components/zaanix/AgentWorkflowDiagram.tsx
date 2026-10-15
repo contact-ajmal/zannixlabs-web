@@ -113,22 +113,22 @@ export function AgentWorkflowDiagram() {
       </div>
 
       {/* Active Step Deep-Dive Card */}
-      <div className="rounded-xl border border-slate-200 bg-white p-6 md:p-8 shadow-xs space-y-6">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4">
+      <div className="rounded-2xl border border-[#e1e6ec] bg-white p-6 md:p-8 shadow-xs space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e1e6ec] pb-4">
           <div className="flex items-center gap-3">
-            <div className="grid size-12 place-items-center rounded-xl bg-blue-700 text-white font-display font-bold shadow-xs">
+            <div className="grid size-12 place-items-center rounded-xl bg-[#1a73e8] text-white font-display text-lg font-normal shadow-xs">
               {current.step}
             </div>
             <div>
-              <span className="font-mono text-xs text-blue-800 font-semibold tracking-wider">
+              <span className="font-sans text-xs text-[#1a73e8] font-semibold tracking-wider uppercase">
                 STAGE {current.step} OF THE AGENTIC RESEARCH PARADIGM
               </span>
-              <h3 className="font-display text-xl md:text-2xl font-bold text-slate-900">
+              <h3 className="font-display text-xl md:text-2xl font-normal text-[#202124]">
                 {current.title}
               </h3>
             </div>
           </div>
-          <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 font-mono text-xs text-blue-800 font-medium">
+          <span className="rounded-full border border-[#d2e3fc] bg-[#e8f0fe] px-3.5 py-1 font-sans text-xs text-[#1967d2] font-medium">
             {current.tech}
           </span>
         </div>

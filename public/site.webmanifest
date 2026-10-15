@@ -1,0 +1,20 @@
+{
+  "name": "ZannixLabs",
+  "short_name": "ZannixLabs",
+  "description": "Agentic Research Across Industries — Applied AI Research Lab & Platform",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png?v=zannix2026",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512x512.png?v=zannix2026",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#1a73e8",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
