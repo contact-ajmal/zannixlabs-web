@@ -358,6 +358,94 @@ function HomePage() {
 
         <AgentWorkflowDiagram />
 
+        {/* The 14-Agent Specialist Collective & 10 Modular Skills Preview */}
+        <div className="mt-16 rounded-3xl border border-[#dadce0] bg-[#f8fafd] p-6 md:p-10 space-y-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+                <Sparkles className="size-3.5" />
+                <span>Multi-Agent Architecture</span>
+              </div>
+              <h3 className="font-display text-2xl md:text-3xl font-normal text-[#202124]">
+                The 14-Agent Research Collective &amp; 10 Modular Skills
+              </h3>
+              <p className="text-sm text-[#5f6368] font-sans leading-relaxed">
+                Empirical investigation is decomposed across 14 specialist sub-agents and 10 modular research skillsets. From causal identification and closed-form symbolic proofs to Lakehouse Parquet curation and camera-ready typesetting, each agent operates with dedicated MCP tools and rigorous validation guards.
+              </p>
+            </div>
+            <Button
+              className="rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-xs font-medium px-5 h-10 shrink-0 shadow-xs"
+              asChild
+            >
+              <Link to="/paradigm">
+                Inspect 14 Agents &amp; 10 Skills <ArrowRight className="ml-1.5 size-3.5" />
+              </Link>
+            </Button>
+          </div>
+
+          {/* Highlights Grid */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-2xl border border-[#dadce0] bg-white p-5 space-y-3">
+              <span className="font-mono text-xs text-[#1a73e8] bg-blue-50 px-2.5 py-1 rounded-md">
+                Phase 1 · Discovery
+              </span>
+              <h4 className="font-display text-base font-medium text-[#202124]">
+                Prior Art &amp; Bio-Translational
+              </h4>
+              <p className="text-xs text-[#5f6368] font-sans leading-relaxed">
+                <strong>@lit-scholar</strong> surveys 200M+ papers across arXiv &amp; OpenAlex while <strong>@bio-informatician</strong> links clinical telemetry to ClinVar, AlphaGenome &amp; ChEMBL.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-[#dadce0] bg-white p-5 space-y-3">
+              <span className="font-mono text-xs text-[#1a73e8] bg-blue-50 px-2.5 py-1 rounded-md">
+                Phase 2 &amp; 3 · Theory
+              </span>
+              <h4 className="font-display text-base font-medium text-[#202124]">
+                Causality, Math &amp; Spatial
+              </h4>
+              <p className="text-xs text-[#5f6368] font-sans leading-relaxed">
+                <strong>@causal-architect</strong> builds DAGs and DiD refutations; <strong>@symbolic-mathematician</strong> derives SymPy proofs; <strong>@geo-spatialist</strong> maps H3 spatial clusters.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-[#dadce0] bg-white p-5 space-y-3">
+              <span className="font-mono text-xs text-[#1a73e8] bg-blue-50 px-2.5 py-1 rounded-md">
+                Phase 4 · Computation
+              </span>
+              <h4 className="font-display text-base font-medium text-[#202124]">
+                Lakehouse &amp; Visuals
+              </h4>
+              <p className="text-xs text-[#5f6368] font-sans leading-relaxed">
+                <strong>@data-curator</strong> builds DuckDB Parquet marts; <strong>@computational-lab</strong> fits regressions in Jupyter; <strong>@viz-designer</strong> creates publication figures.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-[#dadce0] bg-white p-5 space-y-3">
+              <span className="font-mono text-xs text-[#1a73e8] bg-blue-50 px-2.5 py-1 rounded-md">
+                Phase 5 &amp; 6 · Release
+              </span>
+              <h4 className="font-display text-base font-medium text-[#202124]">
+                Audit, PDF &amp; Policy
+              </h4>
+              <p className="text-xs text-[#5f6368] font-sans leading-relaxed">
+                <strong>@peer-auditor</strong> stress-tests confounders; <strong>@reproducibility-sentry</strong> verifies SHA256 hashes; <strong>@science-author</strong> compiles camera-ready PDFs.
+              </p>
+            </div>
+          </div>
+
+          {/* Skillsets Banner */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-[#e1e6ec] text-xs text-[#5f6368] font-sans">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-[#202124]">10 Modular Skills:</span>
+              <span className="hidden sm:inline">Empirical Lakehouse · Causal Inference · Literature Review · Symbolic Math · Spatial Econometrics · Model Benchmarking · Policy Impact</span>
+            </div>
+            <Link to="/paradigm" className="font-medium text-[#1a73e8] hover:text-[#1557b0] inline-flex items-center">
+              View all 10 skills &amp; 14 agents <ArrowRight className="ml-1 size-3" />
+            </Link>
+          </div>
+        </div>
+
         <div className="mt-10 text-center">
           <Button
             variant="outline"

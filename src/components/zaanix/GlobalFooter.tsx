@@ -17,7 +17,7 @@ const researchLinks = [
 ];
 
 const instituteLinks = [
-  { label: "Published Blogs", to: "/blogs" },
+  { label: "Blogs", to: "/blogs" },
   { label: "The Agentic Research Paradigm", to: "/paradigm" },
   { label: "Research Catalog", to: "/research" },
   { label: "Interactive Observatory", to: "/observatory" },

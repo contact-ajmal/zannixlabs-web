@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { GlobalNav } from "@/components/zaanix/GlobalNav";
 import { GlobalFooter } from "@/components/zaanix/GlobalFooter";
 import { AgentWorkflowDiagram } from "@/components/zaanix/AgentWorkflowDiagram";
+import { AgentCollectiveDirectory } from "@/components/zaanix/AgentCollectiveDirectory";
 import { instituteStats } from "@/components/zaanix/researchData";
 
 export const Route = createFileRoute("/paradigm")({
@@ -164,12 +165,29 @@ function ParadigmPage() {
           <AgentWorkflowDiagram />
         </section>
 
+        {/* Section 03: The 14-Agent Specialist Research Collective & Modular Skills */}
+        <section className="mx-auto max-w-7xl px-5 py-16 border-t border-[#e1e6ec]">
+          <div className="mb-10 max-w-3xl space-y-3">
+            <span className="font-sans text-xs text-[#1a73e8] font-semibold tracking-wider uppercase">
+              // 03 — SPECIALIST RESEARCH COLLECTIVE &amp; SKILLSETS
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl font-normal tracking-tight text-[#202124]">
+              The 14-Agent Research Mesh &amp; 10 Modular Skills
+            </h2>
+            <p className="text-base text-[#5f6368] font-sans leading-relaxed">
+              Rather than relying on a single monolithic model, ZannixLabs decomposes empirical science into <strong>14 dedicated specialist sub-agents</strong> and <strong>10 modular research skills</strong>. Each specialist is equipped with domain-specific MCP toolsets—from DuckDB spatial clustering and DoWhy causal DAGs to SymPy symbolic proof checking and ReportLab academic typesetting.
+            </p>
+          </div>
+
+          <AgentCollectiveDirectory />
+        </section>
+
         {/* The Human-Agent Partnership */}
         <section className="mx-auto max-w-7xl px-5 py-12 border-t border-[#e1e6ec]">
           <div className="grid gap-8 lg:grid-cols-2 items-center">
             <div className="space-y-4">
               <span className="font-sans text-xs text-[#1a73e8] font-semibold tracking-wider uppercase">
-                // 03 — SCIENTIFIC LEADERSHIP
+                // 04 — SCIENTIFIC LEADERSHIP
               </span>
               <h2 className="font-display text-3xl md:text-5xl font-normal tracking-tight text-[#202124]">
                 The Principal Investigator Model
