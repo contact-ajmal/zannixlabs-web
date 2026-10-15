@@ -27,7 +27,8 @@ import {
   PlayCircle, 
   ArrowRight,
   TrendingUp,
-  AlertCircle
+  AlertCircle,
+  BookOpen
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";

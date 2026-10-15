@@ -76,7 +76,7 @@ const workflowSteps = [
 
 export function AgentWorkflowDiagram() {
   const [activeStep, setActiveStep] = useState(0);
-  const current = workflowSteps[activeStep];
+  const current = (workflowSteps[activeStep] ?? workflowSteps[0])!;
 
   return (
     <div className="space-y-8">

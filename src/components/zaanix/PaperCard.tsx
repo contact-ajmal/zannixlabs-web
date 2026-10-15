@@ -156,7 +156,6 @@ export function PaperCard({ paper }: { paper: ResearchPaper }) {
               <Link
                 to="/research/$paperId"
                 params={{ paperId: paper.slug }}
-                // @ts-expect-error search view param
                 search={{ view: "original" }}
               >
                 <FileText className="mr-1.5 size-3.5" /> Read arXiv Paper
@@ -170,7 +169,6 @@ export function PaperCard({ paper }: { paper: ResearchPaper }) {
               <Link
                 to="/research/$paperId"
                 params={{ paperId: paper.slug }}
-                // @ts-expect-error search view param
                 search={{ view: "pdf" }}
               >
                 <BookOpen className="mr-1.5 size-3.5" /> PDF

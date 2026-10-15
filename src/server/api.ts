@@ -172,12 +172,13 @@ export async function handleApiRequest(request: Request, env: unknown): Promise<
       };
 
       if (cfEnv.DB) {
-        const subRes = await cfEnv.DB.prepare("SELECT COUNT(*) as count FROM subscribers").first();
+        const db = cfEnv.DB as any;
+        const subRes = await db.prepare("SELECT COUNT(*) as count FROM subscribers").first();
         if (subRes && typeof subRes.count === "number") {
           subscriberCount = 1420 + subRes.count;
         }
 
-        const dlRes = await cfEnv.DB.prepare(
+        const dlRes = await db.prepare(
           "SELECT paper_id, COUNT(*) as count FROM paper_downloads GROUP BY paper_id"
         ).all();
 

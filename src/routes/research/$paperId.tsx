@@ -16,7 +16,7 @@ type ViewMode = "executive" | "original" | "pdf";
 
 export const Route = createFileRoute("/research/$paperId")({
   validateSearch: (search: Record<string, unknown>): { view?: ViewMode } => {
-    const v = search.view as ViewMode | undefined;
+    const v = search["view"] as ViewMode | undefined;
     if (v === "original" || v === "pdf" || v === "executive") {
       return { view: v };
     }
