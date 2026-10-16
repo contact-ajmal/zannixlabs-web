@@ -121,7 +121,7 @@ function getIcon(name: string) {
   }
 }
 
-export default function BlogPostDetailPage() {
+function BlogPostDetailPage() {
   const { post, nextPosts } = Route.useLoaderData();
   const [activeDashboardOption, setActiveDashboardOption] = useState<string>(
     post.dashboard?.activeMetricOptions?.[0]?.id || "all"

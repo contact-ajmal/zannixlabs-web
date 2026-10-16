@@ -29,7 +29,7 @@ export const Route = createFileRoute("/blogs/")({
   component: BlogCatalogPage,
 });
 
-export default function BlogCatalogPage() {
+function BlogCatalogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
