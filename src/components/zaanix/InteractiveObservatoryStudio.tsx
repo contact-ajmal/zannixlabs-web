@@ -673,7 +673,8 @@ export function InteractiveObservatoryStudio() {
           {/* Action Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
             <Link
-              to="/research/anthropic-economic-index-decoupling"
+              to="/research/$paperId"
+              params={{ paperId: "anthropic-economic-index-decoupling" }}
               className="flex items-center gap-2 p-2 rounded-lg bg-blue-50 hover:bg-blue-100 border border-blue-200 transition-all text-xs font-mono text-blue-700 font-semibold shadow-2xs"
             >
               <FileText className="size-3.5 text-blue-700" />

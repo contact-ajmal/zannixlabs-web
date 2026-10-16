@@ -33,7 +33,7 @@ import {
   type ResearchSkillItem,
 } from "./agentCollectiveData";
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   BookOpen,
   Dna,
   Database,

@@ -134,22 +134,32 @@ export const blogPosts: BlogPost[] = [
     ],
     chartType: "bar",
     chartConfig: {
-      xAxisKey: "policy",
+      xAxisKey: "name",
       title: "12-Month Cumulative Long-Wait Pathway-Weeks by Allocation Policy",
       subtitle: "Evaluated across Birmingham and Solihull ICB under identical +500 monthly pathway capacity budget",
       dataKeys: [
-        { key: "cum_pw_gt52", label: "Cumulative Pathway-Weeks >52w", color: "#2563EB" },
-        { key: "tail_gt65", label: "Ending Tail >65w Stock", color: "#EF4444" },
+        { key: "cum_pw_gt52", name: "Cumulative Pathway-Weeks >52w", color: "#2563EB" },
+        { key: "tail_gt65", name: "Ending Tail >65w Stock", color: "#EF4444" },
       ],
     },
     chartData: [
-      { policy: "Policy 0 (Status Quo)", cum_pw_gt52: 677842, tail_gt65: 3005 },
-      { policy: "Policy 1 (Proportional)", cum_pw_gt52: 388264, tail_gt65: 1008 },
-      { policy: "Policy 2 (Long-Wait)", cum_pw_gt52: 388378, tail_gt65: 1000 },
-      { policy: "Policy 3 (Inflow Deficit)", cum_pw_gt52: 409574, tail_gt65: 1176 },
-      { policy: "Policy 4 (Greedy Marginal)", cum_pw_gt52: 386850, tail_gt65: 1006 },
-      { policy: "Policy 5 (Robust Min-Max)", cum_pw_gt52: 385073, tail_gt65: 998 },
+      { name: "Policy 0 (Status Quo)", cum_pw_gt52: 677842, tail_gt65: 3005 },
+      { name: "Policy 1 (Proportional)", cum_pw_gt52: 388264, tail_gt65: 1008 },
+      { name: "Policy 2 (Long-Wait)", cum_pw_gt52: 388378, tail_gt65: 1000 },
+      { name: "Policy 3 (Inflow Deficit)", cum_pw_gt52: 409574, tail_gt65: 1176 },
+      { name: "Policy 4 (Greedy Marginal)", cum_pw_gt52: 386850, tail_gt65: 1006 },
+      { name: "Policy 5 (Robust Min-Max)", cum_pw_gt52: 385073, tail_gt65: 998 },
     ],
+    dashboard: {
+      title: "Interactive NHS Elective Recovery Policy Simulator",
+      subtitle: "Simulate capacity allocation rules across acute specialties in Birmingham and Solihull ICB",
+      activeMetricOptions: [
+        { id: "all", label: "Full Simulation (All Specialties)" },
+        { id: "ortho", label: "Trauma & Orthopaedics Focus" },
+        { id: "ophthalmology", label: "Ophthalmology (Eye Care)" },
+        { id: "ent", label: "ENT (Ear, Nose & Throat)" },
+      ],
+    },
     codeSnippets: [
       {
         title: "Stock-Flow Reconciliation SQL (DuckDB Lakehouse)",
@@ -192,7 +202,14 @@ ORDER BY period_date;`,
           "Our Robust Stochastic Min-Max policy (Policy 5) outperformed all alternatives: it reduced cumulative patient waiting harm by 43.19% and cut the ultra-long tail (>65 weeks) from 3,005 to 998 pathways. It works by shielding dedicated orthopaedic surgical hubs (Royal Orthopaedic Hospital) while establishing rapid outpatient diagnostic triage for ENT and high-volume cataract lists."
         ]
       }
-    ]
+    ],
+    relatedPaper: {
+      title: "Where Should Additional NHS Elective Capacity Go? An Evidence-Based Framework for Reducing Long Waits Under Operational Constraints",
+      slug: "nhs-elective-capacity-allocation",
+      pdfUrl: "/papers/nhs-elective-capacity-allocation.pdf",
+      tarGzUrl: "/papers/nhs-elective-capacity-allocation.tar.gz",
+      doi: "10.5281/zenodo.10856891",
+    },
   },
   {
     id: "human-genomic-noncoding-vus-resolution",

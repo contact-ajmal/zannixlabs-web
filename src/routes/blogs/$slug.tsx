@@ -124,7 +124,7 @@ function getIcon(name: string) {
 export default function BlogPostDetailPage() {
   const { post, nextPosts } = Route.useLoaderData();
   const [activeDashboardOption, setActiveDashboardOption] = useState<string>(
-    post.dashboard.activeMetricOptions[0]?.id || "all"
+    post.dashboard?.activeMetricOptions?.[0]?.id || "all"
   );
 
   return (
@@ -192,26 +192,30 @@ export default function BlogPostDetailPage() {
               </div>
 
               <div className="flex items-center gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-[#dadce0] text-xs h-8 text-[#3c4043]"
-                  asChild
-                >
-                  <a href={post.relatedPaper.pdfUrl} target="_blank" rel="noreferrer">
-                    <Download className="mr-1.5 size-3.5 text-[#1a73e8]" />
-                    Read Academic PDF
-                  </a>
-                </Button>
-                <Button
-                  size="sm"
-                  className="rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-xs h-8"
-                  asChild
-                >
-                  <Link to="/research/$paperId" params={{ paperId: post.paperSlug }}>
-                    Inspect Preprint
-                  </Link>
-                </Button>
+                {post.relatedPaper?.pdfUrl && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full border-[#dadce0] text-xs h-8 text-[#3c4043]"
+                    asChild
+                  >
+                    <a href={post.relatedPaper.pdfUrl} target="_blank" rel="noreferrer">
+                      <Download className="mr-1.5 size-3.5 text-[#1a73e8]" />
+                      Read Academic PDF
+                    </a>
+                  </Button>
+                )}
+                {post.paperSlug && (
+                  <Button
+                    size="sm"
+                    className="rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white text-xs h-8"
+                    asChild
+                  >
+                    <Link to="/research/$paperId" params={{ paperId: post.paperSlug }}>
+                      Inspect Preprint
+                    </Link>
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -386,36 +390,44 @@ export default function BlogPostDetailPage() {
           </section>
 
           {/* Open Science Academic Download Card */}
-          <section className="mt-14 rounded-3xl border border-[#dadce0] bg-white p-6 sm:p-8 shadow-xs">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div className="space-y-2">
-                <Badge className="bg-[#1e8e3e]/10 text-[#1e8e3e] border-[#1e8e3e]/20 font-sans text-xs">
-                  Peer-Reproducible Artifacts
-                </Badge>
-                <h3 className="font-display text-xl font-bold text-[#202124]">
-                  {post.relatedPaper.title}
-                </h3>
-                <div className="font-mono text-xs text-[#5f6368]">
-                  DOI: {post.relatedPaper.doi}
+          {post.relatedPaper && (
+            <section className="mt-14 rounded-3xl border border-[#dadce0] bg-white p-6 sm:p-8 shadow-xs">
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="space-y-2">
+                  <Badge className="bg-[#1e8e3e]/10 text-[#1e8e3e] border-[#1e8e3e]/20 font-sans text-xs">
+                    Peer-Reproducible Artifacts
+                  </Badge>
+                  <h3 className="font-display text-xl font-bold text-[#202124]">
+                    {post.relatedPaper.title}
+                  </h3>
+                  {post.relatedPaper.doi && (
+                    <div className="font-mono text-xs text-[#5f6368]">
+                      DOI: {post.relatedPaper.doi}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3">
+                  {post.relatedPaper.pdfUrl && (
+                    <Button className="rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white" asChild>
+                      <a href={post.relatedPaper.pdfUrl} target="_blank" rel="noreferrer">
+                        <Download className="mr-1.5 size-4" />
+                        Download PDF
+                      </a>
+                    </Button>
+                  )}
+                  {post.relatedPaper.tarGzUrl && (
+                    <Button variant="outline" className="rounded-full border-[#dadce0]" asChild>
+                      <a href={post.relatedPaper.tarGzUrl} download>
+                        <Download className="mr-1.5 size-4" />
+                        Download .tar.gz
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </div>
-
-              <div className="flex flex-wrap items-center gap-3">
-                <Button className="rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white" asChild>
-                  <a href={post.relatedPaper.pdfUrl} target="_blank" rel="noreferrer">
-                    <Download className="mr-1.5 size-4" />
-                    Download PDF
-                  </a>
-                </Button>
-                <Button variant="outline" className="rounded-full border-[#dadce0]" asChild>
-                  <a href={post.relatedPaper.tarGzUrl} download>
-                    <Download className="mr-1.5 size-4" />
-                    Download .tar.gz
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           {/* Share & Inquiries Footer */}
           <section className="mt-14 flex flex-col gap-6 rounded-3xl border border-[#e1e6ec] bg-[#f8f9fa] p-6 sm:flex-row sm:items-center sm:justify-between">
